@@ -1,6 +1,6 @@
 <template>
-  <div class="card  col-xs-6 col-xl-7  m-sm-2 m-xl-3">
-    <div class="bigBlock card-body ">
+  <div class="card col-xs-6 col-xl-7 m-sm-2 m-xl-3">
+    <div class="bigBlock">
       <div class="title">
         <p>Успехи за неделю</p>
         <i class="fas fa-ellipsis-h"></i>
