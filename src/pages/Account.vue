@@ -1,6 +1,7 @@
 <template>
-  <main>
-    <h1 class="visually-hidden">Sidebars examples</h1>
+  <div class="account-content">
+
+
 
     <NavbarAccount/>
 
@@ -8,7 +9,7 @@
 
     <IndexAccount v-show="true"/>
 
-  </main>
+  </div>
 </template>
 
 <script>
