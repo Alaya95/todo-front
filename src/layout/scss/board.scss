@@ -6,6 +6,7 @@
     align-items: center;
     width: 90%;
     overflow-x: auto;
+
   }
 }
 @media screen and (max-width: 1023px){
@@ -14,6 +15,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 }
 
@@ -166,7 +170,7 @@
 
 @media screen and (max-height: 1200px){
    .board-column {
-     height: 1000px;
+     height: 800px;
      overflow-x: hidden;
    }
 }
