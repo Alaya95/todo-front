@@ -1,6 +1,7 @@
 <template>
   <div class="card col-xs-6 col-xl-4 m-sm-2 m-xl-3">
     <div class="bigBlock">
+
       <div class="title">
         <p>Завершенные задачи</p>
         <i class="fas fa-ellipsis-h"></i>

@@ -1,8 +1,10 @@
 <template>
   <div class="account-content">
+
     <NavbarAccount />
 
     <IndexAccount v-show="true" />
+
   </div>
 </template>
 

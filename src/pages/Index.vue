@@ -4,6 +4,7 @@
 
     <div class="container text-white">
       <div class="block">
+
         <div class="width__content-left">
           <div>
             <h1 class="font-montserrat-subrayada font-size__content mb-2">
@@ -25,7 +26,9 @@
         </div>
 
         <div class="text-center width__content-right">
-          <img src="../assets/13.png" alt="task" width="100%" />
+
+          <img src="../assets/13.png" alt="task" width="100%">
+
         </div>
       </div>
     </div>

@@ -1,20 +1,26 @@
 <template>
   <div class="account-content">
+
+
+
     <NavbarAccount />
 
     <div class="board">
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
-      <TaskColumn />
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
+      <TaskColumn/>
     </div>
+
   </div>
+
+
 </template>
 
 <script>
@@ -32,4 +38,5 @@ export default {
 
 <style lang="scss">
 @import "../layout/scss/board.scss";
-</style>
+
+</style>>
