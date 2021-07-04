@@ -4,7 +4,7 @@
     <div class="container-fluid color__bg-nav"></div>
 
     <div class="container text-white">
-      <div class="margin__content align-items-center d-flex flex-wrap justify-content-center">
+      <div class="block">
 
         <div class="width__content-left">
           <div>
@@ -24,11 +24,7 @@
         </div>
 
         <div class="text-center width__content-right">
-          <img
-              class="img-fluid"
-              src="#"
-              width="80%"
-          />
+          <img src="../assets/13.png" alt="task" width="100%">
         </div>
       </div>
     </div>

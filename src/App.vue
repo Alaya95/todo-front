@@ -9,7 +9,7 @@
 // import Index from "./pages/Index";
 // import Account from "./pages/Account";
 // import Board from "./pages/Board";
-import Header from "./pages/Header";
+import Header from "./components/Header";
 
 export default {
   name: "App",
