@@ -1,6 +1,6 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
-
+@import "tasksForm";
 // Variables
 @import "variables";
 
@@ -40,13 +40,15 @@
   &__link {
     font-size: 24px;
     text-decoration: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
     margin: 5px 10px;
     &:hover {
-      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
-      color: #32B9A1 !important;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out;
+      color: #32b9a1 !important;
       & i {
-        color: #32B9A1 !important;
+        color: #32b9a1 !important;
       }
     }
   }
@@ -112,9 +114,9 @@
 
   &:hover {
     color: #ffffff;
-    background-color: #32B9A1;
+    background-color: #32b9a1;
     text-decoration: none;
-    box-shadow: 0 0 10px #32B9A1;
+    box-shadow: 0 0 10px #32b9a1;
   }
 }
 

@@ -1,46 +1,61 @@
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background: #414141;
-    width: 300px;
-    color: #ffffff;
-    border: 2px solid #32B9A1;
-    border-radius: 10px;
-
-    & p {
-        color: #32B9A1;
-        font-weight: bold;
-        font-size: 20px;
-        margin: 10px 0 10px 0;
-    }
-
-    & div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 10px;
-
-        & input {
-            height: 30px;
-            width: fit-content;
-            color: #ffffff;
-            background: #6E6E6E;
-            outline: none;
-            border: none;
-            font-size: 16px;
-        }
-
-    }
-    & button {
-        width: 100px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        font-size: 15px;
-        font-weight: bold;
-    }
+.blur {
+  z-index: 99;
+  transition: all 0.2s linear;
+  background-color: #ccc;
+  opacity: 0.3;
+  position: fixed;
+  display: block;
+  min-height: 100vh;
+  min-width: 100vw;
 }
+.registr-modal {
+  z-index: 9999;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  filter: none !important;
+  left: 50%;
+  transition: all 0.2s linear;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #414141;
+  width: 500px;
+  color: #ffffff;
+  border: 2px solid #32b9a1;
+  border-radius: 10px;
 
+  & p {
+    color: #32b9a1;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0 10px 0;
+  }
 
+  & div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    & input {
+      height: 30px;
+      width: fit-content;
+      color: #ffffff;
+      background: #6e6e6e;
+      outline: none;
+      border: none;
+      font-size: 16px;
+    }
+  }
+  & button {
+    width: 100px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}

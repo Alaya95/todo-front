@@ -1,6 +1,8 @@
 <template>
   <div class="account-content">
 
+
+
     <NavbarAccount />
 
     <div class="board">
@@ -18,6 +20,7 @@
 
   </div>
 
+
 </template>
 
 <script>
@@ -29,11 +32,11 @@ export default {
   components: {
     NavbarAccount,
     TaskColumn,
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
 @import "../layout/scss/board.scss";
-@import "../layout/scss/board.scss";
-</style>
+
+</style>>

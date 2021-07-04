@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <div class="container-fluid color__bg-nav"></div>
 
@@ -17,19 +16,23 @@
               любит планировать свое время
             </p>
 
-            <a class="font-montserrat font-size__paragraph content-link margin__bott" href="board">
+            <a
+              class="font-montserrat font-size__paragraph content-link margin__bott"
+              href="board"
+            >
               Начните прямо сейчас
             </a>
           </div>
         </div>
 
         <div class="text-center width__content-right">
+
           <img src="../assets/13.png" alt="task" width="100%">
+
         </div>
       </div>
     </div>
   </div>
-
 </template>
 <script>
 export default {};

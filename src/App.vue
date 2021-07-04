@@ -15,9 +15,6 @@ export default {
   name: "App",
   components: {
     Header,
-    // Board,
-    // Index,
-    // Account,
   },
 };
 </script>

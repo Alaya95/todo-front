@@ -7,9 +7,7 @@
         <i class="fas fa-ellipsis-h"></i>
       </div>
       <div class="tusks">
-
         <CompleteTask />
-
       </div>
     </div>
   </div>
@@ -20,11 +18,9 @@ import CompleteTask from "./CompleteTask";
 export default {
   name: "CompleteTaskBlock",
   components: {
-    CompleteTask
-  }
-}
+    CompleteTask,
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

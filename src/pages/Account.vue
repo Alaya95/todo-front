@@ -1,12 +1,9 @@
 <template>
   <div class="account-content">
 
+    <NavbarAccount />
 
-
-    <NavbarAccount/>
-
-
-    <IndexAccount v-show="true"/>
+    <IndexAccount v-show="true" />
 
   </div>
 </template>
@@ -16,16 +13,14 @@ import NavbarAccount from "../components/account/NavbarAccount";
 import IndexAccount from "../components/account/IndexAccount";
 
 export default {
-  name: 'Account',
+  name: "Account",
   components: {
     IndexAccount,
-    NavbarAccount
-  }
-}
+    NavbarAccount,
+  },
+};
 </script>
 
 <style lang="scss">
-
 @import "../layout/scss/account.scss";
-
 </style>
