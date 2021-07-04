@@ -1,5 +1,4 @@
 <template>
-
   <header>
     <div class="container header-menu">
       <a class="header-menu_logo" href="#">
@@ -9,54 +8,33 @@
 
       <button
 
-
-<header>
-  <div class="container header-menu">
-    <a class="header-menu_logo" href="#">
-      <i class="fas fa-tasks icon"></i>
-      Kanban
-    </a>
-
-    <button
-
-        aria-controls="navbarTogglerDemo02"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        class="header-dropdown"
-        data-bs-target="#navbarTogglerDemo02"
-        data-bs-toggle="collapse"
-        type="button"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="header-dropdown"
+          data-bs-target="#navbarTogglerDemo02"
+          data-bs-toggle="collapse"
+          type="button"
 
       >
         <span></span>
       </button>
 
+
       <div class="header-menu_list">
         <ul>
           <li class="dropdown">
             <a
-
-    >
-      <span></span>
-    </button>
-
-    <div class="header-menu_list">
-      <ul>
-        <li class="dropdown">
-          <a
-
-              v-pre
-              id="navbarDropdown"
-              aria-expanded="false"
-              aria-haspopup="true"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-
+                v-pre
+                id="navbarDropdown"
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-toggle="dropdown"
+                href="#"
+                role="button"
             >
               <i class="fas fa-chevron-down"></i>
             </a>
-
             <div aria-labelledby="navbarDropdown">
               <a href="#"></a>
 
@@ -64,7 +42,6 @@
 
               <form id="logout-form" action="#" method="POST"></form>
             </div>
-            
           </li>
 
           <li>
@@ -77,12 +54,14 @@
         </ul>
       </div>
     </div>
-    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister" />
+    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister"/>
   </header>
+
 </template>
 
 <script>
 import RegistrForm from "./header/RegistrForm";
+
 export default {
   name: "Header",
   components: {
@@ -103,11 +82,9 @@ export default {
     },
   },
 };
+</script>
 
-
-<style lang="scss">
-@import "src/layout/scss/_header.scss";
-
+<style lang="scss" scoped>
+  @import "src/layout/scss/header.scss";
 
 </style>
-
