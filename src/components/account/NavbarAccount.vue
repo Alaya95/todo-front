@@ -3,14 +3,14 @@
 
     <div class="navbar-link">
       <a href="#">Доски</a>
-    </div>
-    <div class="navbar-link">
+
+
       <a href="#">Список задач</a>
-    </div>
-    <div class="navbar-link">
+
+
       <a href="#">статистика</a>
-    </div>
-    <div class="navbar-link">
+
+
       <a href="#">Настройки</a>
     </div>
     <div class="navbar-link">

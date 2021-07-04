@@ -5,7 +5,6 @@
 
     <NavbarAccount/>
 
-    <div class="b-example-divider"></div>
 
     <IndexAccount v-show="true"/>
 

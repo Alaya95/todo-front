@@ -1,52 +1,122 @@
 <template>
+<div>
+  <!-- стандартная задача -->
+  <div class="board-column_task">
+    <div class="task-title">
+      <a href="#">Название подзадачи</a>
+      <a aria-current="page" class="" href="#">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+    </div>
 
-  <div class="card-body bg-secondary-light text-white rounded">
-    <span class="title-second task">Название подзадачи</span>
-    <br>
-    <p>
-      Тут допустим будет написано описание задачи или вывод фото.
-      можно просто вывести здесь статусы.
-      нужно основательно подумать что мы хотим тут увидеть
-    </p>
+    <div class="task-description">
+      <p>
+        Тут допустим будет написано описание задачи или вывод фото.
+        можно просто вывести здесь статусы.
+        нужно основательно подумать что мы хотим тут увидеть
+      </p>
+    </div>
 
-    <div class="card-body-nav-footer ">
-      <div class="card-body-nav-footer-left">
+    <div class="task-info">
+      <a href="#">
+        <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
+      </a>
 
-        <a href="#">
-          <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
-        </a>
+      <a href="#" aria-current="page" class="">
+        <i class="far fa-comments"></i>
+        <span class="">99+</span>
+      </a>
 
-        <a href="#" aria-current="page" class="nav-link active primary position-relative">
-          <svg class="bi bi-chat">
-            <use xlink:href="#bi-chat"/>
-          </svg>
+      <a href="#" aria-current="page" class="">
+        <i class="fas fa-paperclip"></i>
+        <span class="">5+</span>
+      </a>
 
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                99+
-                <span class="visually-hidden">unread messages</span>
-              </span>
-        </a>
-
-        <a href="#" aria-current="page" class="nav-link active primary position-relative">
-          <svg class="bi bi-paperclip">
-            <use xlink:href="#bi-paperclip"/>
-          </svg>
-
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                5+
-                <span class="visually-hidden">unread messages</span>
-              </span>
-        </a>
-      </div>
-
-      <div class="card-body-nav-footer-right">
-        <span class="l-5 badge rounded-pill bg-primary">Статус</span>
+      <div class="task-info_status">
+        <span class="">Статус</span>
       </div>
     </div>
   </div>
 
 
+  <!-- стандартная задача с картинкой -->
+  <div class="board-column_task">
+    <div class="task-title">
+      <a href="#">Название подзадачи</a>
+      <a aria-current="page" class="" href="#">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+    </div>
 
+    <div class="task-description">
+      <p>
+        Тут допустим будет написано описание задачи или вывод фото.
+        можно просто вывести здесь статусы.
+        нужно основательно подумать что мы хотим тут увидеть
+      </p>
+    </div>
+
+    <div class="task-image">
+      <a href="#">
+        <img src="../../../assets/13.png" alt="doc" />
+      </a>
+    </div>
+
+
+    <div class="task-info">
+      <a href="#">
+        <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
+      </a>
+
+      <a href="#" aria-current="page" class="">
+        <i class="far fa-comments"></i>
+        <span class="">99+</span>
+      </a>
+
+      <a href="#" aria-current="page" class="">
+        <i class="fas fa-paperclip"></i>
+        <span class="">5+</span>
+      </a>
+
+      <div class="task-info_status">
+        <span class="">Статус</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+
+
+-->
+  <div class="board-column_task">
+    <div class="task-title">
+      <a href="#">Название подзадачи</a>
+      <a aria-current="page" class="" href="#">
+        <i class="fas fa-ellipsis-h"></i>
+      </a>
+    </div>
+    <div class="task-info">
+      <a href="#">
+        <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
+      </a>
+
+      <a href="#" aria-current="page" class="">
+        <i class="far fa-comments"></i>
+        <span class="">99+</span>
+      </a>
+
+      <a href="#" aria-current="page" class="">
+        <i class="fas fa-paperclip"></i>
+        <span class="">5+</span>
+      </a>
+
+      <div class="task-info_status">
+        <span class="">Статус</span>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
