@@ -1,0 +1,75 @@
+header {
+  background: #414141;
+
+  .header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    text-transform: uppercase;
+
+
+    &_logo {
+      font-size: 26px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      min-width: 155px;
+      font-family: Montserrat Subrayada, sans-serif;
+      &:hover {
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+        color: #32B9A1 !important;
+
+        & i {
+          transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+          color: #32B9A1;
+
+        }
+      }
+    }
+
+    &_list {
+      margin-left: auto;
+      & ul {
+        & .dropdown {
+          display: none;
+        }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+
+        & .dropdown {
+          display: none;
+        }
+
+        & li {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+          margin: 0 5px;
+
+          & a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 20px;
+
+            &:hover {
+              transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+              color: #32B9A1;
+              & i {
+                transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+                color: #32B9A1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
