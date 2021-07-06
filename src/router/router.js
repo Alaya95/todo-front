@@ -8,9 +8,9 @@ Vue.use(Router);
 
 let router = new Router({
   routes: [
-    { path: "/", component: Index },
-    { path: "/account", component: Account },
-    { path: "/board", component: Board },
+    { path: "/", name: "main", component: Index },
+    { path: "/account", name: "account", component: Account },
+    { path: "/board", name: "board", component: Board },
   ],
 });
 

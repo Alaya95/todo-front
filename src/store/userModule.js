@@ -1,27 +1,58 @@
-import Vue from "vue";
-import Vuex from "vuex";
 import api from "../modules/api";
 
-Vue.use(Vuex);
-
-const userModule = new Vuex.Store({
+const userModule = {
   state: () => ({
     user: {},
     isAuth: false,
   }),
   mutations: {
-    createUser(data) {
-      this.user = data;
+    setUser(state, data) {
+      state.user = data.user;
+      state.isAuth = true;
     },
   },
   actions: {
-    async registerUser(data) {
-      const result = await api("register", "POST", data);
-      console.log(result);
-      this.commit("createUser", result);
+    async registerUser({ commit }, data) {
+      try {
+        const result = await api("register", "POST", data);
+        if (result?.user) {
+          localStorage.setItem("token", result.token);
+          commit("setUser", result.user);
+        } else {
+          console.log(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async loginUser({ commit }, data) {
+      try {
+        const result = await api("login", "POST", data);
+        if (result?.user) {
+          localStorage.setItem("token", result.token);
+          commit("setUser", result);
+        } else {
+          console.log(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async loginByToken({ commit }) {
+      try {
+        const result = await api("login", "POST");
+        if (result?.user) {
+          console.log(result.user);
+          commit("setUser", result);
+        } else {
+          console.log(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   getters: {},
-});
+};
 
 export default userModule;

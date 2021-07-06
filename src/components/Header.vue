@@ -1,24 +1,12 @@
 <template>
-
   <header>
     <div class="container header-menu">
-      <a class="header-menu_logo" href="#">
+      <router-link class="header-menu_logo" :to="{ name: 'main' }">
         <i class="fas fa-tasks icon"></i>
         Kanban
-      </a>
+      </router-link>
 
       <button
-
-
-<header>
-  <div class="container header-menu">
-    <a class="header-menu_logo" href="#">
-      <i class="fas fa-tasks icon"></i>
-      Kanban
-    </a>
-
-    <button
-
         aria-controls="navbarTogglerDemo02"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -26,7 +14,6 @@
         data-bs-target="#navbarTogglerDemo02"
         data-bs-toggle="collapse"
         type="button"
-
       >
         <span></span>
       </button>
@@ -35,16 +22,6 @@
         <ul>
           <li class="dropdown">
             <a
-
-    >
-      <span></span>
-    </button>
-
-    <div class="header-menu_list">
-      <ul>
-        <li class="dropdown">
-          <a
-
               v-pre
               id="navbarDropdown"
               aria-expanded="false"
@@ -52,7 +29,6 @@
               data-toggle="dropdown"
               href="#"
               role="button"
-
             >
               <i class="fas fa-chevron-down"></i>
             </a>
@@ -64,11 +40,15 @@
 
               <form id="logout-form" action="#" method="POST"></form>
             </div>
-            
           </li>
 
-          <li>
+          <li
+            @click="openLogin"
+            @blur="closeLogin"
+            class="account-enter-button"
+          >
             <a href="#">Войти</a>
+            <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
           <li>
@@ -77,37 +57,45 @@
         </ul>
       </div>
     </div>
-    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister" />
+    <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
   </header>
 </template>
 
 <script>
 import RegistrForm from "./header/RegistrForm";
+import LoginForm from "./header/LoginForm";
 export default {
   name: "Header",
   components: {
     RegistrForm,
+    LoginForm,
   },
   data: () => {
     return {
-      isOpen: false,
+      isOpenRegister: false,
+      isOpenLogin: false,
     };
   },
   methods: {
     openRegister() {
-      console.log(123);
-      this.isOpen = true;
+      this.isOpenLogin = false;
+      this.isOpenRegister = true;
     },
     closeRegister() {
-      this.isOpen = false;
+      this.isOpenRegister = false;
+    },
+    openLogin() {
+      this.isOpenRegister = false;
+      this.isOpenLogin = true;
+    },
+    closeLogin() {
+      console.log(123, this.isOpenLogin);
+      this.isOpenLogin = false;
     },
   },
 };
-
+</script>
 
 <style lang="scss">
 @import "src/layout/scss/_header.scss";
-
-
 </style>
-
