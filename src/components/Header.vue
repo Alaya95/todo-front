@@ -7,6 +7,7 @@
       </router-link>
 
       <button
+
         aria-controls="navbarTogglerDemo02"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -14,14 +15,17 @@
         data-bs-target="#navbarTogglerDemo02"
         data-bs-toggle="collapse"
         type="button"
+
       >
         <span></span>
       </button>
+
 
       <div class="header-menu_list">
         <ul>
           <li class="dropdown">
             <a
+
               v-pre
               id="navbarDropdown"
               aria-expanded="false"
@@ -29,10 +33,10 @@
               data-toggle="dropdown"
               href="#"
               role="button"
+
             >
               <i class="fas fa-chevron-down"></i>
             </a>
-
             <div aria-labelledby="navbarDropdown">
               <a href="#"></a>
 
@@ -57,13 +61,19 @@
         </ul>
       </div>
     </div>
+
     <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
+
+    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister"/>
+
   </header>
+
 </template>
 
 <script>
 import RegistrForm from "./header/RegistrForm";
 import LoginForm from "./header/LoginForm";
+
 export default {
   name: "Header",
   components: {
@@ -96,6 +106,11 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 @import "src/layout/scss/_header.scss";
+
+//<style lang="scss" scoped>
+  //@import "src/layout/scss/header.scss";
+
 </style>
