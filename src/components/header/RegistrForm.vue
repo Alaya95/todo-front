@@ -5,8 +5,8 @@
       <p>Регистрация</p>
 
       <div>
-        <label for="login">Введите ваш логин</label>
-        <input name="login" id="login" type="text" />
+        <label for="name">Введите ваш логин</label>
+        <input name="name" id="name" type="text" />
       </div>
 
       <div>
@@ -37,15 +37,15 @@
 <script>
 import store from "@/store/store";
 export default {
-  name: "LoginForm",
+  name: "RegistrForm",
   props: ["closeRegister"],
   methods: {
     enter() {
       const data = {
-        name: document.getElementById("login").value,
+        name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
-        password_comfirmation: document.getElementById("confirmPassword").value,
+        password_confirmation: document.getElementById("confirmPassword").value,
         phone: document.getElementById("numberPhone").value,
         remember_me: false,
       };

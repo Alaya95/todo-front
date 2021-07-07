@@ -16,5 +16,13 @@ export default {
   components: {
     Header,
   },
+  mounted() {
+    this.loginByToken();
+  },
+  methods: {
+    loginByToken() {
+      this.$store.dispatch("loginByToken");
+    },
+  },
 };
 </script>

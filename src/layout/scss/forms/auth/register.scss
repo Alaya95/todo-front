@@ -8,23 +8,41 @@
   min-height: 100vh;
   min-width: 100vw;
 }
+.account-enter-button {
+  position: relative;
+}
 .registr-modal {
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #32b9a1;
+  border-radius: 10px;
+}
+.login-modal {
+  width: 300px;
+  left: -28px;
+  top: 55px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-left: 2px solid #32b9a1;
+  border-right: 2px solid #32b9a1;
+  border-bottom: 2px solid #32b9a1;
+}
+.registr-modal,
+.login-modal {
   z-index: 9999;
   display: flex;
   position: absolute;
-  top: 50%;
+
   filter: none !important;
-  left: 50%;
+
   transition: all 0.2s linear;
-  transform: translate(-50%, -50%);
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background-color: #414141;
-  width: 500px;
   color: #ffffff;
-  border: 2px solid #32b9a1;
-  border-radius: 10px;
 
   & p {
     color: #32b9a1;
