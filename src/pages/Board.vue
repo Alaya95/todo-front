@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import TaskColumn from "../components/account/boards/TaskColumn";
+import TaskColumn from "../components/boards/TaskColumn";
 import NavbarAccount from "../components/account/NavbarAccount";
 
 export default {
