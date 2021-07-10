@@ -82,6 +82,7 @@ export default {
   },
   data: () => {
     return {
+      isOpen: false,
       isOpenRegister: false,
       isOpenLogin: false,
     };

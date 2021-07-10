@@ -4,16 +4,9 @@
     <NavbarAccount />
 
     <div class="board">
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
-      <TaskColumn/>
+      <TaskColumn :key="1"/>
+      <TaskColumn :key="2"/>
+      <TaskColumn :key="3"/>
 
       <div class="board-column_addTask">
         <button @click="openCreateColumnForm">
@@ -53,6 +46,12 @@ export default {
     closeCreateColumnForm() {
       this.openCreateColumn = false;
     },
+    fetchDesk() {
+      this.$store.dispatch('fetchDesk')
+    }
+  },
+  mounted() {
+    this.fetchDesk()
   }
 };
 </script>

@@ -69,6 +69,8 @@
 </template>
 
 <script>
+//import store from "../../store/store";
+
 export default {
   name: "TaskInColumn",
   data() {
@@ -77,6 +79,12 @@ export default {
       showTaskMenu: false,
     };
   },
+  methods: {
+    addTask() {
+      this.fetchDesk();
+      this.closeCreateTaskForm
+    },
+  }
 }
 </script>
 
