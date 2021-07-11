@@ -30,7 +30,7 @@
         </button>
       </div>
 
-      <CreateTask v-show="openCreateTask" v-bind:closeCreateTaskForm="closeCreateTaskForm" />
+      <CreateTask :id="id" v-show="openCreateTask" v-bind:closeCreateTaskForm="closeCreateTaskForm" />
     </div>
 
 </template>
@@ -41,7 +41,10 @@ import CreateTask from "./forms/CreateTask";
 
 export default {
   name: "TaskColumn",
-  components: {CreateTask, TaskInColumn},
+  components: {
+    CreateTask,
+    TaskInColumn
+  },
   data(){
     return {
       showColumnMenu: false,
@@ -50,9 +53,11 @@ export default {
       openCreateTask: false
     };
   },
+  props: [
+      "id"
+  ],
   methods: {
     openCreateTaskForm() {
-      console.log(123);
       this.openCreateTask = true;
     },
     closeCreateTaskForm() {

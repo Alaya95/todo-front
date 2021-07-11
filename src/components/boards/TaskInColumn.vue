@@ -16,8 +16,8 @@
       <!-- выпадающее меню задачи для ее редактирования и изменения-->
       <div v-show="showTaskMenu" class="task-menu">
         <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask ">Редактировать</button>
-        <button v-else @click="editTitleTask = !editTitleTask ">Изменить</button>
-        <button>Удалить</button>
+        <button v-else @click="editTask">Изменить</button>
+        <button @click="deleteTask">Удалить</button>
       </div>
 
       <!-- Описание задачи -->
@@ -43,7 +43,7 @@
       <div class="task-info">
 
         <a href="#">
-          <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
+          <img alt="" class="rounded" height="48" width="48">
         </a>
 
         <!-- количество комментариев, если ничего нет. то пусто -->
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import store from "../../store/store";
+
 export default {
   name: "TaskInColumn",
   data() {
@@ -77,6 +79,23 @@ export default {
       showTaskMenu: false,
     };
   },
+  methods: {
+    editTask() {
+      const data = {
+        id: 7,
+        name: '123456',
+        description: '123456',
+      };
+      store.dispatch('editTask', data)
+    },
+    deleteTask() {
+      const data =  {
+        id: 9
+      }
+      store.dispatch('deleteTask', data)
+    }
+
+  }
 }
 </script>
 
