@@ -10,31 +10,69 @@ const deskModule = {
     }),
     mutations: {
         fetchDesk(state, data) {
-            state.desk = data.desk;
+            state.desk = data;
             state.isLouded = true
-            //return Promise.resolve(undefined);
-        }
+        },
     },
     actions: {
-        async fetchDesk({ commit }) {
+        /* задачи */
+        // получить все задачи
+        async fetchDesk({commit}) {
             try {
                 const result = await api('tasks')
                 if (result) {
-                 console.log(result);
-                    return   commit(result);
+                    console.log(result)
+                    commit("fetchDesk", result);
                 }
             } catch (error) {
                 console.log(error)
             }
         },
-        async createTask({ commit}, data) {
-            const result = await api('task/store', "POST", data)
-            console.log( result, commit)
-        }
+        // создать задачу
+        async createTask({ commit }, data) {
+            try {
+                const result = await api('task/store', "POST", data);
+                console.log(result, commit);
+
+                if (result) {
+                    console.log(result)
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
+        // редактировать задачу
+        async editTask({ commit }, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('task/' + data.id, "put", data)
+                console.log(result, commit)
+                if (result) {
+                    console.log(result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        //удалить задачу
+        async deleteTask({ commit }, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('task/2', "delete", data)
+                console.log(result, commit)
+                if (result) {
+                    console.log(result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
     },
     getters: {
-        getDesk() {
-            return this.state.desk
+        getDesk(state) {
+            return state.desk
         }
     }
 }
