@@ -47,11 +47,10 @@
           </li>
 
           <li
-            @click="openLogin"
             @blur="closeLogin"
             class="account-enter-button"
           >
-            <a href="#">Войти</a>
+            <a @click="openLogin" href="#">Войти</a>
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
@@ -61,10 +60,7 @@
         </ul>
       </div>
     </div>
-
     <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
-
-    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister"/>
 
   </header>
 
@@ -100,8 +96,8 @@ export default {
       this.isOpenLogin = true;
     },
     closeLogin() {
-      console.log(123, this.isOpenLogin);
       this.isOpenLogin = false;
+      console.log(this.isOpenLogin)
     },
   },
 };
