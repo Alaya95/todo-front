@@ -17,7 +17,7 @@
       <div v-show="showTaskMenu" class="task-menu">
         <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask ">Редактировать</button>
         <button v-else @click="editTask">Изменить</button>
-        <button>Удалить</button>
+        <button @click="deleteTask">Удалить</button>
       </div>
 
       <!-- Описание задачи -->
@@ -87,6 +87,12 @@ export default {
         description: '123456',
       };
       store.dispatch('editTask', data)
+    },
+    deleteTask() {
+      const data =  {
+        id: 9
+      }
+      store.dispatch('deleteTask', data)
     }
 
   }
