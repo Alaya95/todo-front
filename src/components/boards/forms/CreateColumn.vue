@@ -8,8 +8,8 @@
 
       <input name="columnName" id="columnName" type="text">
 
-      <button @click="fetchDesks">
-        Добавить задачу
+      <button>
+        создать колонку
       </button>
 
     </div>
@@ -22,20 +22,7 @@
 export default {
   name: "CreateColumn",
   props: ['closeCreateColumnForm'],
-  methods: {
-   /* fetchDesks() {
-      //return
-      console.log(this.$store.dispatch(''))
-    }*/
 
-
-   /* enter() {
-      const data = {
-        name: document.getElementById("columnName").value,
-      };
-      store.dispatch('createColumn', data);
-    }*/
-  }
 }
 </script>
 
