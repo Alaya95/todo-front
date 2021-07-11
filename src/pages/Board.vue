@@ -26,7 +26,9 @@
 import CreateColumn from "../components/boards/forms/CreateColumn";
 import NavbarAccount from "../components/account/NavbarAccount";
 import TaskColumn from "../components/boards/TaskColumn";
-//import {mapGetters} from "vuex";
+
+import {mapGetters} from "vuex";
+import router from "../router/router";
 
 
 export default {
@@ -36,6 +38,7 @@ export default {
     NavbarAccount,
     TaskColumn,
   },
+
   data() {
     return {
       openCreateColumn: false,
@@ -50,17 +53,26 @@ export default {
     },
     fetchDesk() {
       this.$store.dispatch('fetchDesk')
+    },
+     redirect(){
+      console.log(!this.getAuthStatus);
+      !this.getAuthStatus && router.push({name: "main", path: "/"})
     }
   },
   mounted() {
-    this.fetchDesk()
+    this.fetchDesk(),
+    this.redirect();
   },
- // computed: {
- //   ...mapGetters(["getDesk"]),
- // },
+  computed: {
+    ...mapGetters([
+      'getAuthStatus',
+    ]),
+  },
+
 };
 </script>
 
 <style lang="scss">
   @import "../layout/scss/board.scss";
-</style>>
+</style>
+

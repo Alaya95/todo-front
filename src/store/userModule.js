@@ -40,8 +40,9 @@ const userModule = {
     },
     async loginByToken({ commit }) {
       try {
-        const result = await api("login", "POST");
-        if (result?.user) {
+        const result = await api("tasks");
+        console.log(result);
+        if (result.user) {
           console.log(result.user);
           commit("setUser", result);
         } else {
@@ -52,7 +53,14 @@ const userModule = {
       }
     },
   },
-  getters: {},
+  getters: {
+    getUserData(state){
+      return state.user;
+    },
+    getAuthStatus(state){
+      return state.isAuth;
+    }
+  },
 };
 
 export default userModule;

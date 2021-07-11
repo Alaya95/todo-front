@@ -50,7 +50,9 @@
             @blur="closeLogin"
             class="account-enter-button"
           >
-            <a @click="openLogin" href="#">Войти</a>
+
+            <a @click="openLogin" >Войти</a>
+
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 

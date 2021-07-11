@@ -11,6 +11,8 @@
 <script>
 import NavbarAccount from "../components/account/NavbarAccount";
 import IndexAccount from "../components/account/IndexAccount";
+import {mapGetters} from "vuex";
+import router from "../router/router";
 
 export default {
   name: "Account",
@@ -18,6 +20,19 @@ export default {
     IndexAccount,
     NavbarAccount,
   },
+  computed: {
+    ...mapGetters([
+      'getAuthStatus',
+    ]),
+  },
+  methods: {
+    redirect(){
+      !this.getAuthStatus && router.push({name: "main", path: "/"})
+    }
+  },
+  mounted() {
+    this.redirect();
+  }
 };
 </script>
 
