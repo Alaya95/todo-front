@@ -47,11 +47,10 @@
           </li>
 
           <li
-            @click="openLogin"
             @blur="closeLogin"
             class="account-enter-button"
           >
-            <a href="#">Войти</a>
+            <a @click="openLogin" >Войти</a>
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
@@ -63,8 +62,6 @@
     </div>
 
     <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
-
-    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister"/>
 
   </header>
 

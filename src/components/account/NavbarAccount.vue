@@ -2,16 +2,9 @@
   <div class="navbar">
 
     <div class="navbar-link">
-      <a href="#">Доски</a>
-
-
-      <a href="#">Список задач</a>
-
-
-      <a href="#">статистика</a>
-
-
-      <a href="#">Настройки</a>
+      <router-link to="main">Главная</router-link>
+      <router-link to="board">Доски</router-link>
+      <router-link to="account">Аккаунт</router-link>
     </div>
     <div class="navbar-link">
       <a class="navbar-link__exit" href="#">
