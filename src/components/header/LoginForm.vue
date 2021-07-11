@@ -1,4 +1,5 @@
-<template >
+<template>
+
   <div class="login-modal">
     <p>Авторизация</p>
     <div>
@@ -24,7 +25,7 @@ export default {
       const data = {
         email: document.getElementById("login_email").value,
         password: document.getElementById("login_password").value,
-        remember_me: false,
+        remember_me: true,
       };
       store.dispatch("loginUser", data);
       this.closeLogin();
