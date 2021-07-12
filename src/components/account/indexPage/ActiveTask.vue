@@ -11,7 +11,6 @@
             v-for="task in getTasks" :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
-
             v-on:remove-task="removeTask"
         />
       </div>
@@ -19,6 +18,7 @@
   </div>
 
 </template>
+
 <script>
 import Tasks from "./Tasks";
 import {mapGetters} from "vuex";
@@ -26,7 +26,7 @@ export default {
   name: "ActiveTask",
   components: {Tasks},
   methods: {
-    removeTask(id) {
+    removeTask(id){
       this.tasks = this.tasks.filter(t => t.id !== id)
     },
     fetchTasks() {
