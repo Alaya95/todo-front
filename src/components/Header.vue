@@ -51,7 +51,9 @@
             class="account-enter-button"
             v-show="!getAuthStatus"
           >
+
             <a @click="openLogin" >Войти</a>
+
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
@@ -61,7 +63,6 @@
         </ul>
       </div>
     </div>
-
     <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
 
   </header>
@@ -81,6 +82,7 @@ export default {
   },
   data: () => {
     return {
+      isOpen: false,
       isOpenRegister: false,
       isOpenLogin: false,
     };
@@ -108,8 +110,8 @@ export default {
       this.isOpenLogin = true;
     },
     closeLogin() {
-      console.log(123, this.isOpenLogin);
       this.isOpenLogin = false;
+      console.log(this.isOpenLogin)
     },
   },
 };

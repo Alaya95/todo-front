@@ -41,6 +41,9 @@ export default {
       order: 1,
     }
   },
+  props: [
+      "id"
+  ],
   methods: {
     setOrder (data){
       this.order=data;

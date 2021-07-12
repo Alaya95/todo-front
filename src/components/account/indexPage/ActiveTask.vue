@@ -5,11 +5,15 @@
         <p>Активные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-      <div class="tusks">
-
+      <div class="tusks" v-bind:tasks="getTasks">
         <!-- здесь откручиваем задачи  -->
-        <Tasks/>
+        <Tasks
+            v-for="task in getTasks.slice(0,4)" :key="task.item"
 
+            todo_prop.sync="task"
+            v-bind:task="task"
+            v-on:remove-task="removeTask"
+        />
       </div>
     </div>
   </div>
@@ -18,11 +22,29 @@
 
 <script>
 import Tasks from "./Tasks";
-
+import {mapGetters} from "vuex";
 export default {
   name: "ActiveTask",
-  components: {Tasks}
+  components: {Tasks},
+  methods: {
+    removeTask(id){
+      this.tasks = this.tasks.filter(t => t.id !== id)
+    },
+    fetchTasks() {
+      this.$store.dispatch('fetchTasks');
+    },
+  },
+  mounted() {
+    this.fetchTasks();
+  },
+  computed: {
+    ...mapGetters([
+      'getTasks',
+    ]),
+  },
+
 }
+
 </script>
 
 <style scoped>

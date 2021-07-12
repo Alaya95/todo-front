@@ -9,13 +9,20 @@
 </template>
 
 <script>
-import TaskColumn from "../components/boards/TaskColumn";
+// import CreateColumn from "../components/boards/forms/CreateColumn";
 import NavbarAccount from "../components/account/NavbarAccount";
-import { mapGetters } from "vuex";
+
+import TaskColumn from "../components/boards/TaskColumn";
+
+import {mapGetters} from "vuex";
+// import router from "../router/router";
+
+
 
 export default {
   name: "Board",
   components: {
+    // CreateColumn,
     NavbarAccount,
     TaskColumn,
   },
