@@ -9,20 +9,14 @@
 </template>
 
 <script>
-// import CreateColumn from "../components/boards/forms/CreateColumn";
+
 import NavbarAccount from "../components/account/NavbarAccount";
-
 import TaskColumn from "../components/boards/TaskColumn";
-
 import {mapGetters} from "vuex";
-// import router from "../router/router";
-
-
 
 export default {
   name: "Board",
   components: {
-    // CreateColumn,
     NavbarAccount,
     TaskColumn,
   },
@@ -33,4 +27,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../layout/scss/board.scss";</style>
+@import "../layout/scss/board.scss";
+</style>

@@ -6,14 +6,14 @@
         <i class="fas fa-ellipsis-h"></i>
       </div>
       <div class="tusks" v-bind:tasks="getTasks">
-        <!-- здесь откручиваем задачи  -->
+        <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
             v-for="task in getTasks.slice(0,4)" :key="task.item"
-
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
         />
+
       </div>
     </div>
   </div>
@@ -23,6 +23,7 @@
 <script>
 import Tasks from "./Tasks";
 import {mapGetters} from "vuex";
+
 export default {
   name: "ActiveTask",
   components: {Tasks},

@@ -8,8 +8,8 @@ import TaskForm from "../components/tasks/TaskForm";
 Vue.use(Router);
 
 let router = new Router({
-  hashbang:false,
-  mode: 'history',
+// hashbang:false,
+// mode: 'history',
   routes: [
     { path: "/", name: "main", component: Index },
     { path: "/account", name: "account", component: Account },

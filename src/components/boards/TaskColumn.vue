@@ -32,24 +32,17 @@ import TaskInColumn from "./TaskInColumn";
 export default {
   name: "TaskColumn",
   components: { TaskInColumn },
-  props: ["column"],
-  mounted() {
-    console.log(this.column);
-  },
+  props: ["column", "id"],
   data:()=>{
     return{
       order: 1,
     }
   },
-  props: [
-      "id"
-  ],
   methods: {
     setOrder (data){
       this.order=data;
     },
     drop(e){
-      console.log(this.column.id)
       this.$store.dispatch("moveTask", {e, id: this.column.id, order: this.order});
     }
   },
