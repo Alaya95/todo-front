@@ -8,7 +8,8 @@
 
       <div>
         <div class="date">
-          28 июля 2020 16:30
+          <p>{{showTime()}}</p>
+          <p>{{showDate()}}</p>
         </div>
       </div>
 
@@ -18,7 +19,17 @@
 
 <script>
 export default {
-  name: "DatetimeAccount"
+  name: "DatetimeAccount",
+
+  methods: {
+    showTime() {
+      return ((new Date()).toLocaleTimeString());
+    },
+    showDate() {
+      return ((new Date()).toLocaleDateString());
+    }
+  },
+
 }
 </script>
 

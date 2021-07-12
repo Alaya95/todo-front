@@ -1,4 +1,5 @@
 <template>
+
   <div class="login-modal">
     <p>Авторизация</p>
     <div>

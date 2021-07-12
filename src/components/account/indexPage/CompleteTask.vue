@@ -1,17 +1,29 @@
 <template>
   <div class="tusk">
     <label>
-      Приготовить ужин
+      {{ task.title }}
     </label>
     <div>
-      <a href="#"><i class="fas fa-trash-alt"></i></a>
+      <a href="#">
+        <i class="fas fa-trash-alt"
+           v-on:click="$emit('remove-task', task.id)">
+
+        </i></a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CompleteTask"
+  name: "CompleteTask",
+
+  props: {
+    task: {
+      type: Object,
+      required: true,
+    }
+
+  }
 }
 </script>
 
