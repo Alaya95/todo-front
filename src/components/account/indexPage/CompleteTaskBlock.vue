@@ -8,7 +8,7 @@
       </div>
       <div class="tusks"  v-bind:tasks="getTasks">
         <CompleteTask
-            v-for="task in getTasks" :key="task.item"
+            v-for="task in getTasks.slice(0,4)" :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
