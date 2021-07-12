@@ -22,7 +22,7 @@ import {mapGetters} from "vuex";
 export default {
   name: "Board",
   components: {
-    CreateColumn,
+    //CreateColumn,
     NavbarAccount,
     TaskColumn,
   },
