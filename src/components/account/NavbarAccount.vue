@@ -2,19 +2,15 @@
   <div class="navbar">
 
     <div class="navbar-link">
-      <a href="#">Доски</a>
 
+      <router-link :to='{name: "main"}'>Главная</router-link>
+      <router-link :to='{name: "board"}'>Доски</router-link>
+      <router-link :to='{name: "account"}'>Аккаунт</router-link>
+      <router-link :to='{name: "tasks"}'>Страница задачи</router-link>
 
-      <a href="#">Список задач</a>
-
-
-      <a href="#">статистика</a>
-
-
-      <a href="#">Настройки</a>
     </div>
     <div class="navbar-link">
-      <a class="navbar-link__exit" href="#">
+      <a @click="logout" class="navbar-link__exit" href="#">
         <i class="fas fa-sign-out-alt"></i>
         Выход
       </a>
@@ -24,7 +20,12 @@
 
 <script>
 export default {
-  name: "NavbarAccount"
+  name: "NavbarAccount",
+  methods: {
+    logout(){
+      this.$store.dispatch("logout");
+    }
+  }
 }
 </script>
 

@@ -6,10 +6,20 @@
         <i class="fas fa-ellipsis-h"></i>
       </div>
 
-      <div class="tusks" v-bind:tasks="getTasks">
-        <!-- здесь откручиваем задачи  -->
+
+      //<div class="tusks" v-bind:tasks="getTasks">
+
+        <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
-            v-for="task in getTasks" :key="task.item"
+            v-for="task in getTasks.slice(0,4)" 
+            :key="task.item"
+            todo_prop.sync="task"
+            v-bind:task="task"
+            v-on:remove-task="removeTask"
+        />
+
+
+
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
@@ -21,51 +31,34 @@
 </template>
 
 <script>
-
-  import Tasks from "./Tasks";
-  import store from "@/store/store";
-  import {mapGetters} from "vuex";
-  //import {mapGetters} from "vuex";
+import Tasks from "./Tasks";
+import store from "@/store/store";
+import {mapGetters} from "vuex";
 
   export default {
   name: "ActiveTask",
   components: {Tasks},
-  data() {
-  return {
-    //tasks: [],
-  }
-},
-
   methods: {
   removeTask(id) {
     const data =  {
-      id: id
-    }
-  //this.getTasks = this.getTasks.filter(t => t.id !== id)
+        id: id
+        }
+      },
+    fetchTasks() {
+      this.$store.dispatch('fetchTasks');
+      },
     store.dispatch('deleteTask', data)
-  },
-
-  fetchTasks() {
-  this.$store.dispatch('fetchTasks');
-
-  },
-
-  },
-
+    },
+   },
   mounted() {
   this.fetchTasks();
-},
-    computed: {
+  },
+  computed: {
       ...mapGetters([
         'getTasks',
       ]),
-    },
-
+  },
 }
 
 </script>
-
-
-<style scoped>
-
-</style>
+<style scoped></style>

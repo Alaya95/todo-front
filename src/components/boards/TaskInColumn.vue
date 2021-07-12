@@ -1,84 +1,139 @@
 <template>
-  <div>
+  <div >
     <!-- стандартная задача -->
-    <div class="board-column_task">
-      <!-- вывод названия задачи -->
+    <div :id="task.id" :draggable="draggable" @dragend="dragEnd" @dragstart="dragStart" @dragover.prevent="setOrder(task.order)" @dragenter.prevent class="board-column_task">
       <div class="task-title">
-        <p v-if="editTitleTask">Название подзадачи</p>
-        <input v-else type="text" value="Название подзадачи">
-
-        <!-- кнопка для выпадающего меню задачи-->
-        <button @click="showTaskMenu = !showTaskMenu">
+        <a href="#">{{ task.title }}</a>
+        <a aria-current="page" class="" href="#">
           <i class="fas fa-ellipsis-h"></i>
-        </button>
+        </a>
       </div>
+
+      <div class="task-description">
+        <p>
+          {{ task.text }}
+        </p>
+      </div>
+
+      <div class="task-info">
+        <a href="#">
+          <img
+            alt=""
+            class="rounded"
+            height="48"
+            src="https://githut.com/mdo.png"
+            width="48"
+          />
+        </a>
+
+        <a href="#" aria-current="page" class="">
+          <i class="far fa-comments"></i>
+          <span class="">{{ task.comments }}</span>
+        </a>
+
+        <a href="#" aria-current="page" class="">
+          <i class="fas fa-paperclip"></i>
+          <span class="">{{ task.attachable }}</span>
+        </a>
+
+        <div class="task-info_status">
+          <span class="">{{ task.status }}</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div class="board-column_task">
+       <div class="task-title">
+        <a href="#">Название подзадачи</a>
+        <a aria-current="page" class="" href="#">
+          <i class="fas fa-ellipsis-h"></i>
+        </a>
 
       <!-- выпадающее меню задачи для ее редактирования и изменения-->
       <div v-show="showTaskMenu" class="task-menu">
         <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask ">Редактировать</button>
-        <button v-else @click="editTitleTask = !editTitleTask ">Изменить</button>
-        <button>Удалить</button>
+        <button v-else @click="editTask">Изменить</button>
+        <button @click="deleteTask">Удалить</button>
+
       </div>
 
-      <!-- Описание задачи -->
       <div class="task-description">
-        <p v-if="editTitleTask">
-          Тут допустим будет написано описание задачи или вывод фото.
-          можно просто вывести здесь статусы.
-          нужно основательно подумать что мы хотим тут увидеть
+        <p>
+          Тут допустим будет написано описание задачи или вывод фото. можно
+          просто вывести здесь статусы. нужно основательно подумать что мы хотим
+          тут увидеть
         </p>
-        <textarea v-else id="" cols="30" name="taskDescription" rows="8">Тут допустим будет написано описание задачи или вывод фото.можно просто вывести здесь статусы.нужно основательно подумать что мы хотим тут увидеть
-        </textarea>
       </div>
 
-      <!-- Прикрепленная к задаче картинка -->
       <div class="task-image">
         <a href="#">
-          <img alt="doc" src="../../assets/13.png"/>
+          <img src="../../../assets/13.png" alt="doc" />
         </a>
       </div>
 
-
-      <!-- Информация о количестве комментариев, статусе задачи и прикрепленных файлах -->
       <div class="task-info">
-
         <a href="#">
-          <img alt="" class="rounded" height="48" src="https://githut.com/mdo.png" width="48">
+
+          <img
+            alt=""
+            class="rounded"
+            height="48"
+            src="https://githut.com/mdo.png"
+            width="48"
+          />
+
         </a>
 
-        <!-- количество комментариев, если ничего нет. то пусто -->
-        <a aria-current="page" class="" href="#">
+        <a href="#" aria-current="page" class="">
           <i class="far fa-comments"></i>
           <span class="">99+</span>
         </a>
 
-        <!-- количество прикрепленных файлов -->
-        <a aria-current="page" class="" href="#">
+        <a href="#" aria-current="page" class="">
           <i class="fas fa-paperclip"></i>
           <span class="">5+</span>
         </a>
 
-        <!-- статус задачи -->
         <div class="task-info_status">
-          Статус
+          <span class="">Статус</span>
         </div>
-
       </div>
-    </div>
-  </div>
+    </div>-->
+
+    <!--
+
+
+--></div>
 </template>
 
 <script>
+
+import store from "../../store/store";
+
+
 export default {
   name: "TaskInColumn",
-  data() {
-    return {
-      editTitleTask: true,
-      showTaskMenu: false,
-    };
+  props: ["task", "draggable", "setOrder"],
+  methods: {
+    dragStart(e){
+      e.dataTransfer.dropEffect="move";
+      e.dataTransfer.effectAllowed="move";
+      const target = e.target;
+      e.dataTransfer.setData("card_id", target.id);
+      setTimeout(()=>{
+        target.style.opacity="0.3";
+      }, 0)
+    },
+    dragEnd(e){
+      e.target.style.opacity = "1";
+    },
   },
-}
+
+};
+
+
+
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

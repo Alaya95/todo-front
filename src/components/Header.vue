@@ -23,7 +23,7 @@
 
       <div class="header-menu_list">
         <ul>
-          <li class="dropdown">
+          <li v-show="getAuthStatus" class="">
             <a
 
               v-pre
@@ -40,31 +40,30 @@
             <div aria-labelledby="navbarDropdown">
               <a href="#"></a>
 
-              <a href="account">Account</a>
+              <router-link :to='{name: "account"}'>{{getUserData.name}}</router-link>
 
               <form id="logout-form" action="#" method="POST"></form>
             </div>
           </li>
 
           <li
-            @click="openLogin"
             @blur="closeLogin"
             class="account-enter-button"
+            v-show="!getAuthStatus"
           >
-            <a href="#">Войти</a>
+
+            <a @click="openLogin" >Войти</a>
+
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
-          <li>
+          <li v-show="!getAuthStatus">
             <a @click="openRegister">Регистрация</a>
           </li>
         </ul>
       </div>
     </div>
-
     <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
-
-    <RegistrForm v-show="isOpen" v-bind:closeRegister="closeRegister"/>
 
   </header>
 
@@ -73,6 +72,7 @@
 <script>
 import RegistrForm from "./header/RegistrForm";
 import LoginForm from "./header/LoginForm";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Header",
@@ -87,6 +87,16 @@ export default {
       isOpenLogin: false,
     };
   },
+  computed: {
+    ...mapGetters([
+      'getAuthStatus',
+      'getUserData', 
+    ])
+  },
+  watch: {
+    getAuthStatus: (next)=>console.log(next),
+    getUserData: (next)=>console.log(next),
+  },
   methods: {
     openRegister() {
       this.isOpenLogin = false;
@@ -100,8 +110,8 @@ export default {
       this.isOpenLogin = true;
     },
     closeLogin() {
-      console.log(123, this.isOpenLogin);
       this.isOpenLogin = false;
+      console.log(this.isOpenLogin)
     },
   },
 };

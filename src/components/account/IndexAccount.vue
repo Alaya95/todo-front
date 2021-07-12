@@ -11,7 +11,7 @@
 
         <div class="w-100"></div>
 
-        <ActiveTask/>
+        <ActiveTask />
 
         <CompleteTask/>
 

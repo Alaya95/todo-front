@@ -7,8 +7,12 @@ const userModule = {
   }),
   mutations: {
     setUser(state, data) {
-      state.user = data.user;
+      state.user = data;
       state.isAuth = true;
+    },
+    removeUser(state) {
+      state.user = {};
+      state.isAuth = false;
     },
   },
   actions: {
@@ -30,7 +34,7 @@ const userModule = {
         const result = await api("login", "POST", data);
         if (result?.user) {
           localStorage.setItem("token", result.token);
-          commit("setUser", result);
+          commit("setUser", result.user);
         } else {
           console.log(result);
         }
@@ -40,9 +44,8 @@ const userModule = {
     },
     async loginByToken({ commit }) {
       try {
-        const result = await api("login", "POST");
-        if (result?.user) {
-          console.log(result.user);
+        const result = await api("user");
+        if (result.id) {
           commit("setUser", result);
         } else {
           console.log(result);
@@ -51,8 +54,31 @@ const userModule = {
         console.log(error);
       }
     },
+    async logout({commit}){
+      try {
+        const result = await api("logout", "POST");
+        if (result.id) {
+          localStorage.removeItem("token");
+          commit("removeUser");
+        } else {
+          console.log(result);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   },
-  getters: {},
+  getters: {
+    getUserData(state){
+      return state.user;
+    },
+    getUserName(state){
+      return state.user.name;
+    },
+    getAuthStatus(state){
+      return state.isAuth;
+    }
+  },
 };
 
 export default userModule;
