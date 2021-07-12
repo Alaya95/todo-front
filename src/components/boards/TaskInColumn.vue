@@ -1,7 +1,8 @@
 <template>
-  <div >
+  <div>
     <!-- стандартная задача -->
-    <div :id="task.id" :draggable="draggable" @dragend="dragEnd" @dragstart="dragStart" @dragover.prevent="setOrder(task.order)" @dragenter.prevent class="board-column_task">
+    <div :id="task.id" :draggable="draggable" class="board-column_task" @dragend="dragEnd"
+         @dragstart="dragStart" @dragover.prevent="setOrder(task.order)" @dragenter.prevent>
       <div class="task-title">
         <a href="#">{{ task.title }}</a>
         <a aria-current="page" class="" href="#">
@@ -18,20 +19,20 @@
       <div class="task-info">
         <a href="#">
           <img
-            alt=""
-            class="rounded"
-            height="48"
-            src="https://githut.com/mdo.png"
-            width="48"
+              alt=""
+              class="rounded"
+              height="48"
+              src="https://github.com/mdo.png"
+              width="48"
           />
         </a>
 
-        <a href="#" aria-current="page" class="">
+        <a aria-current="page" class="" href="#">
           <i class="far fa-comments"></i>
           <span class="">{{ task.comments }}</span>
         </a>
 
-        <a href="#" aria-current="page" class="">
+        <a aria-current="page" class="" href="#">
           <i class="fas fa-paperclip"></i>
           <span class="">{{ task.attachable }}</span>
         </a>
@@ -42,96 +43,30 @@
       </div>
     </div>
 
-
-    <!--<div class="board-column_task">
-       <div class="task-title">
-        <a href="#">Название подзадачи</a>
-        <a aria-current="page" class="" href="#">
-          <i class="fas fa-ellipsis-h"></i>
-        </a>
-
-      <!-- выпадающее меню задачи для ее редактирования и изменения-->
-      <div v-show="showTaskMenu" class="task-menu">
-        <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask ">Редактировать</button>
-        <button v-else @click="editTask">Изменить</button>
-        <button @click="deleteTask">Удалить</button>
-
-      </div>
-
-      <div class="task-description">
-        <p>
-          Тут допустим будет написано описание задачи или вывод фото. можно
-          просто вывести здесь статусы. нужно основательно подумать что мы хотим
-          тут увидеть
-        </p>
-      </div>
-
-      <div class="task-image">
-        <a href="#">
-          <img src="../../../assets/13.png" alt="doc" />
-        </a>
-      </div>
-
-      <div class="task-info">
-        <a href="#">
-
-          <img
-            alt=""
-            class="rounded"
-            height="48"
-            src="https://githut.com/mdo.png"
-            width="48"
-          />
-
-        </a>
-
-        <a href="#" aria-current="page" class="">
-          <i class="far fa-comments"></i>
-          <span class="">99+</span>
-        </a>
-
-        <a href="#" aria-current="page" class="">
-          <i class="fas fa-paperclip"></i>
-          <span class="">5+</span>
-        </a>
-
-        <div class="task-info_status">
-          <span class="">Статус</span>
-        </div>
-      </div>
-    </div>-->
-
-    <!--
-
-
---></div>
+  </div>
 </template>
 
 <script>
-
-import store from "../../store/store";
 
 
 export default {
   name: "TaskInColumn",
   props: ["task", "draggable", "setOrder"],
   methods: {
-    dragStart(e){
-      e.dataTransfer.dropEffect="move";
-      e.dataTransfer.effectAllowed="move";
+    dragStart(e) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
       const target = e.target;
       e.dataTransfer.setData("card_id", target.id);
-      setTimeout(()=>{
-        target.style.opacity="0.3";
+      setTimeout(() => {
+        target.style.opacity = "0.3";
       }, 0)
     },
-    dragEnd(e){
+    dragEnd(e) {
       e.target.style.opacity = "1";
     },
   },
-
 };
-
 
 
 </script>
