@@ -23,7 +23,7 @@
 
       <div class="header-menu_list">
         <ul>
-          <li class="dropdown">
+          <li v-show="getAuthStatus" class="">
             <a
 
               v-pre
@@ -40,7 +40,7 @@
             <div aria-labelledby="navbarDropdown">
               <a href="#"></a>
 
-              <a href="account">Account</a>
+              <router-link :to='{name: "account"}'>{{getUserData.name}}</router-link>
 
               <form id="logout-form" action="#" method="POST"></form>
             </div>
@@ -49,12 +49,13 @@
           <li
             @blur="closeLogin"
             class="account-enter-button"
+            v-show="!getAuthStatus"
           >
             <a @click="openLogin" >Войти</a>
             <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
           </li>
 
-          <li>
+          <li v-show="!getAuthStatus">
             <a @click="openRegister">Регистрация</a>
           </li>
         </ul>
@@ -70,6 +71,7 @@
 <script>
 import RegistrForm from "./header/RegistrForm";
 import LoginForm from "./header/LoginForm";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Header",
@@ -82,6 +84,16 @@ export default {
       isOpenRegister: false,
       isOpenLogin: false,
     };
+  },
+  computed: {
+    ...mapGetters([
+      'getAuthStatus',
+      'getUserData', 
+    ])
+  },
+  watch: {
+    getAuthStatus: (next)=>console.log(next),
+    getUserData: (next)=>console.log(next),
   },
   methods: {
     openRegister() {

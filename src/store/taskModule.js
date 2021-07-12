@@ -12,13 +12,11 @@ const taskModule = {
     },
   },
   actions: {
-    
     async fetchTasks({ commit }) {
       try {
         const result = await api("tasks");
         console.log(result);
         if (result.user) {
-          console.log(result.user);
           commit("setUser", result);
         } else {
           console.log(result);

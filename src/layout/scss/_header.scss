@@ -31,25 +31,30 @@ header {
 
     &_list {
       margin-left: auto;
+      width: 300px;
       & ul {
+
         & .dropdown {
           display: none;
         }
+
+        & .active {
+          display: block !important;
+          width: -webkit-fill-available;
+        }
+
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
         margin: 0;
 
-        & .dropdown {
-          display: none;
-        }
 
         & li {
           display: flex;
           flex-direction: row;
           align-items: center;
-          justify-content: space-around;
+          justify-content: space-between;
           margin: 0 5px;
 
           & a {
