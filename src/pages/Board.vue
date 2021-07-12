@@ -60,7 +60,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchDesk(),
+    this.fetchDesk();
     this.redirect();
   },
   computed: {

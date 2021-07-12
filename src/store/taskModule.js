@@ -12,66 +12,79 @@ const taskModule = {
         },
     },
     actions: {
-        async fetchTasks({ commit }) {
+        async fetchTasks({commit}) {
             try {
                 const result = await api("tasks");
-                console.log(result);
+                commit('setTasks', result)
                 if (result.user) {
                     console.log(result.user);
                     commit("setUser", result);
                 } else {
                     console.log(result);
                 }
+                return result;
             } catch (error) {
                 console.log(error);
             }
         },
+        async deletedTask({ commit }, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('task/'+ data.id, "delete", data)
+                console.log(result, commit)
+                if (result) {
+                    console.log(result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
     },
     getters: {
-        getStatus(state){
+        getStatus(state) {
             return state.isLoaded;
         },
-        getTasks(state){
+        getTasks(state) {
             return state.tasks;
         }
     },
-/*
-  state: () => ({
-    tasks: {},
-    isLoaded: false,
-  }),
-  mutations: {
-    setTasks(state, data) {
-      state.task = data;
-      state.isAuth = true;
-    },
-  },
-  actions: {
-    
-    async fetchTasks({ commit }) {
-      try {
-        const result = await api("tasks");
-        console.log(result);
-        if (result.user) {
-          console.log(result.user);
-          commit("setUser", result);
-        } else {
-          console.log(result);
+    /*
+      state: () => ({
+        tasks: {},
+        isLoaded: false,
+      }),
+      mutations: {
+        setTasks(state, data) {
+          state.task = data;
+          state.isAuth = true;
+        },
+      },
+      actions: {
+
+        async fetchTasks({ commit }) {
+          try {
+            const result = await api("tasks");
+            console.log(result);
+            if (result.user) {
+              console.log(result.user);
+              commit("setUser", result);
+            } else {
+              console.log(result);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        },
+      },
+      getters: {
+        getTaskStatus(state){
+          return state.isLoaded;
+        },
+        getTasks(state){
+          return state.tasks;
         }
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-  getters: {
-    getTaskStatus(state){
-      return state.isLoaded;
-    },
-    getTasks(state){
-      return state.tasks;
-    }
-  },
-*/
+      },
+    */
 };
 
 export default taskModule;
