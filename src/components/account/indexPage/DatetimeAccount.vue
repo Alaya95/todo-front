@@ -25,7 +25,15 @@ export default {
   }),
   computed: {
     localeDate() {
-      return (new Date(this.date)).toLocaleDateString()
+      let mounth = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+      let days = [ 'Воскресенье', 'Понедельник', 'Вторник', 'Среда',
+        'Четверг', 'Пятница', 'Суббота'];
+
+      return days[(new Date(this.date)).getDay()] + ' ' +
+          (new Date(this.date)).getDate() + ' ' +
+          mounth[(new Date(this.date)).getMonth()] + ' ' +
+          (new Date(this.date)).getFullYear();
     },
     showTime() {
       return (new Date(this.date)).toLocaleTimeString()
