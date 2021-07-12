@@ -1,7 +1,7 @@
 <template>
   <div class="tusk">
     <label>
-      {{ task.title }}
+      {{ task.task_name }}
     </label>
     <div>
       <a href="#">

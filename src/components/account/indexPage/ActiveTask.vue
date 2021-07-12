@@ -5,10 +5,11 @@
         <p>Активные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-      <div class="tusks" v-bind:tasks="tasks">
+
+      <div class="tusks" v-bind:tasks="getTasks">
         <!-- здесь откручиваем задачи  -->
         <Tasks
-            v-for="task in tasks" :key="task.item"
+            v-for="task in getTasks" :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
@@ -20,43 +21,50 @@
 </template>
 
 <script>
-import Tasks from "./Tasks";
 
-export default {
+  import Tasks from "./Tasks";
+  import store from "@/store/store";
+  import {mapGetters} from "vuex";
+  //import {mapGetters} from "vuex";
+
+  export default {
   name: "ActiveTask",
   components: {Tasks},
+  data() {
+  return {
+    //tasks: [],
+  }
+},
 
-  data(){
-    return {
-      tasks: [
-        //{id: 1, title: 'Купить хлеб', completed: false},
-        //{id: 2, title: 'Купить молоко', completed: false},
-        //{id: 3, title: 'Купить дом', completed: false},
-      ],
-    }
-  },
   methods: {
-    removeTask(id){
-      this.tasks = this.tasks.filter(t => t.id !== id)
+  removeTask(id) {
+    const data =  {
+      id: id
     }
+  //this.getTasks = this.getTasks.filter(t => t.id !== id)
+    store.dispatch('deleteTask', data)
+  },
+
+  fetchTasks() {
+  this.$store.dispatch('fetchTasks');
 
   },
-  mounted() {
-    fetch('http://127.0.0.1:8000/api/tasks')
-    //fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then(response => response.json())
-      .then(json =>
-          console.log(json))
-     // {
-      //  this.tasks = json
-      //})
-    //console.log(this.tasks);
-        .catch(error => console.log(error));
+
   },
+
+  mounted() {
+  this.fetchTasks();
+},
+    computed: {
+      ...mapGetters([
+        'getTasks',
+      ]),
+    },
 
 }
 
 </script>
+
 
 <style scoped>
 

@@ -36,22 +36,6 @@ export default {
     CompleteTask,
     ActiveTask
   },
-//  data(){
-//    return {
-//      tasks: [
-//        {id: 1, title: 'Купить хлеб', completed: false},
-//        {id: 2, title: 'Купить молоко', completed: false},
-//        {id: 3, title: 'Купить дом', completed: false},
-//      ],
-//    }
-    //console.log(this.tasks)
-//  },
-//  mounted() {
-    //fetch('http://127.0.0.1:8000/api/tasks')
-    //  .then(response => response.json()
-    //  .then(json => console.log(json)))
-
-//  },
 }
 </script>
 

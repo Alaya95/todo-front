@@ -6,9 +6,9 @@
         <p>Завершенные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-      <div class="tusks"  v-bind:tasks="tasks">
+      <div class="tusks"  v-bind:tasks="getTasks">
         <CompleteTask
-            v-for="task in tasks" :key="task.item"
+            v-for="task in getTasks" :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
@@ -20,6 +20,8 @@
 
 <script>
 import CompleteTask from "./CompleteTask";
+import {mapGetters} from "vuex";
+import store from "@/store/store";
 export default {
   name: "CompleteTaskBlock",
   components: {
@@ -27,30 +29,36 @@ export default {
   },
   data(){
     return {
-      tasks: [
-        {id: 1, title: 'Вымыть окна', completed: true},
-        {id: 2, title: 'Найти работу', completed: true},
-        {id: 3, title: 'Отвезти собаку на прививку', completed: true},
-      ],
+      //tasks: [
+        //{id: 1, title: 'Вымыть окна', completed: true},
+        //{id: 2, title: 'Найти работу', completed: true},
+       // {id: 3, title: 'Отвезти собаку на прививку', completed: true},
+     // ],
     }
   },
   methods: {
-    removeTask(id){
-      this.tasks = this.tasks.filter(t => t.id !== id)
-      //console.log(this.tasks);
-    }
+    removeTask(id) {
+      const data =  {
+        id: id
+      }
+      //this.getTasks = this.getTasks.filter(t => t.id !== id)
+      store.dispatch('deleteTask', data)
+    },
+    
+    fetchTasks() {
+      this.$store.dispatch('fetchTasks')
+    },
   },
+
   mounted() {
-    //fetch('http://127.0.0.1:8000/api/tasks?_limit=5')
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=4')
-        .then(response => response.json())
-        .then(json =>
-            //  console.log(json))
-        {
-          this.tasks = json
-        })
-   // console.log(this.tasks);
+    this.fetchTasks();
   },
+  computed: {
+    ...mapGetters([
+      'getTasks',
+    ]),
+  },
+
 };
 </script>
 

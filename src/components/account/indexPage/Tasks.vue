@@ -3,7 +3,7 @@
       <label>
         <input class="radio" name="bubu" type="radio">
         <span class="pseudo-radio"></span>
-        {{ task.title }}
+        {{ task.task_name }}
       </label>
       <div>
         <a href="#"><i class="fas fa-edit"></i></a>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "tasks",
+  name: "getTasks",
 
   props: {
     task: {
