@@ -6,19 +6,18 @@
       <a aria-current="page" class="" href="#">
         <i class="fas fa-ellipsis-h"></i>
       </a>
-
     </div>
 
     <div :id="column.id" @dragover.prevent @drop.prevent="drop" @dragenter.prevent>
-        <TaskInColumn
-          :setOrder="setOrder"
-          draggable="true"
+      <TaskInColumn
           v-for="task in column.tasks"
-          :task="task"
           :key="task.id"
-        />
+          :setOrder="setOrder"
+          :task="task"
+          draggable="true"
+      />
+    </div>
 
-    </div>    
     <div class="board-column_addTask">
       <a class="#">
         <i class="fas fa-plus-square"></i>
@@ -34,24 +33,21 @@ import TaskInColumn from "./TaskInColumn";
 export default {
   name: "TaskColumn",
 
-  components: { TaskInColumn },
+  components: {TaskInColumn},
   props: ["column", "id"],
-  data:()=>{
-    return{
+  data: () => {
+    return {
       order: 1,
     }
 
   },
-  props: [
-      "id"
-  ],
   methods: {
 
-    setOrder (data){
-      this.order=data;
+    setOrder(data) {
+      this.order = data;
 
     },
-    drop(e){
+    drop(e) {
       this.$store.dispatch("moveTask", {e, id: this.column.id, order: this.order});
     }
   },
