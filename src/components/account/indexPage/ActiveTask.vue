@@ -1,29 +1,22 @@
 <template>
   <div class="card col-xs-6 col-xl-7 m-sm-2 m-xl-3">
     <div class="bigBlock">
+
       <div class="title">
         <p>Активные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
 
-
-      //<div class="tusks" v-bind:tasks="getTasks">
-
+      <div class="tusks" v-bind:tasks="getTasks">
         <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
-            v-for="task in getTasks.slice(0,4)" 
+            v-for="task in getTasks.slice(0,4)"
             :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
         />
 
-
-
-            todo_prop.sync="task"
-            v-bind:task="task"
-            v-on:remove-task="removeTask"
-        />
       </div>
     </div>
   </div>
@@ -32,32 +25,27 @@
 
 <script>
 import Tasks from "./Tasks";
-import store from "@/store/store";
 import {mapGetters} from "vuex";
+import store from "../../../store/store";
 
-  export default {
+export default {
   name: "ActiveTask",
   components: {Tasks},
   methods: {
-  removeTask(id) {
-    const data =  {
-        id: id
-        }
-      },
+    removeTask(id) {
+      const data = {id: id}
+      store.dispatch('deleteTask', data)
+    },
     fetchTasks() {
       this.$store.dispatch('fetchTasks');
-      },
-    store.dispatch('deleteTask', data)
     },
-   },
+  },
   mounted() {
-  this.fetchTasks();
+    this.fetchTasks();
   },
   computed: {
-      ...mapGetters([
-        'getTasks',
-      ]),
-  },
+    ...mapGetters(['getTasks',]),
+  }
 }
 
 </script>
