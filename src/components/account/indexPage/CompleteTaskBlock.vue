@@ -27,15 +27,6 @@ export default {
   components: {
     CompleteTask,
   },
-  data(){
-    return {
-      //tasks: [
-        //{id: 1, title: 'Вымыть окна', completed: true},
-        //{id: 2, title: 'Найти работу', completed: true},
-       // {id: 3, title: 'Отвезти собаку на прививку', completed: true},
-     // ],
-    }
-  },
   methods: {
     removeTask(id) {
       const data =  {
