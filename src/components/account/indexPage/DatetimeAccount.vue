@@ -8,8 +8,8 @@
 
       <div>
         <div class="date">
-          <p>{{showTime()}}</p>
-          <p>{{showDate()}}</p>
+          <p> {{localeDate}}</p>
+          <p>{{showTime}}</p>
         </div>
       </div>
 
@@ -20,14 +20,23 @@
 <script>
 export default {
   name: "DatetimeAccount",
-
-  methods: {
-    showTime() {
-      return ((new Date()).toLocaleTimeString());
+  data: () => ({
+    date: 1580558031264,
+  }),
+  computed: {
+    localeDate() {
+      return (new Date(this.date)).toLocaleDateString()
     },
-    showDate() {
-      return ((new Date()).toLocaleDateString());
-    }
+    showTime() {
+      return (new Date(this.date)).toLocaleTimeString()
+    },
+  },
+
+  created() {
+    this.intervalId = setInterval(() => this.date = Date.now(), 1000);
+  },
+  beforeDestroy() {
+    if (this.intervalId) clearInterval(this.intervalId)
   },
 
 }
