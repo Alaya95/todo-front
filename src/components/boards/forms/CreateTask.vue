@@ -43,6 +43,8 @@ export default {
         description: document.getElementById( this.$refs.descriptionTask.id ).value,
         deadline: document.getElementById( this.$refs.deadlineTask.id ).value,
         period: document.getElementById( this.$refs.periodTask.id ).value,
+        order:1,
+        column_id: 1,
         executor_id: 1,
         initiator_id: 1,
         board_id: 1,

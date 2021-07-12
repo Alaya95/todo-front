@@ -82,9 +82,9 @@ export default {
   methods: {
     editTask() {
       const data = {
-        id: 7,
-        name: '123456',
-        description: '123456',
+        id: 35,
+        name: 'изменено',
+        description: 'изменено',
       };
       store.dispatch('editTask', data)
     },
