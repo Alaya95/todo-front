@@ -5,8 +5,6 @@
 
     <IndexAccount v-show="true" />
 
-    {{ getTasks}}
-
   </div>
 </template>
 
