@@ -5,6 +5,8 @@
 
     <IndexAccount v-show="true" />
 
+    {{ getTasks}}
+
   </div>
 </template>
 
@@ -23,16 +25,23 @@ export default {
   computed: {
     ...mapGetters([
       'getAuthStatus',
+      'getTasks',
     ]),
   },
   methods: {
     redirect(){
       !this.getAuthStatus && router.push({name: "main", path: "/"})
-    }
+    },
+    fetchTasks() {
+      this.$store.dispatch('fetchTasks');
+      console.log(this.$store.dispatch('fetchTasks'))
+    },
   },
   mounted() {
     this.redirect();
-  }
+    this.fetchTasks();
+  },
+
 };
 </script>
 
