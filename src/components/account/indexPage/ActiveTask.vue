@@ -5,15 +5,19 @@
         <p>Активные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-      <div class="tusks" v-bind:tasks="getTasks">
+
+
+      //<div class="tusks" v-bind:tasks="getTasks">
 
         <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
-            v-for="task in getTasks.slice(0,4)" :key="task.item"
+            v-for="task in getTasks.slice(0,4)" 
+            :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
         />
+
 
 
             todo_prop.sync="task"
@@ -28,32 +32,33 @@
 
 <script>
 import Tasks from "./Tasks";
+import store from "@/store/store";
 import {mapGetters} from "vuex";
 
-export default {
+  export default {
   name: "ActiveTask",
   components: {Tasks},
   methods: {
-    removeTask(id){
-      this.tasks = this.tasks.filter(t => t.id !== id)
-    },
+  removeTask(id) {
+    const data =  {
+        id: id
+        }
+      },
     fetchTasks() {
       this.$store.dispatch('fetchTasks');
+      },
+    store.dispatch('deleteTask', data)
     },
-  },
+   },
   mounted() {
-    this.fetchTasks();
+  this.fetchTasks();
   },
   computed: {
-    ...mapGetters([
-      'getTasks',
-    ]),
+      ...mapGetters([
+        'getTasks',
+      ]),
   },
-
 }
 
 </script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

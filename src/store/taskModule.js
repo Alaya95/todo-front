@@ -1,5 +1,6 @@
 import api from "../modules/api";
 
+
 const taskModule = {
     state: () => ({
         tasks: {},
@@ -27,10 +28,12 @@ const taskModule = {
                 console.log(error);
             }
         },
-        async deletedTask({ commit }, data) {
+
+        //удалить задачу
+        async deleteTask({ commit }, data) {
             try {
                 // в юрл нужно передавать id самой задачи.
-                const result = await api('task/'+ data.id, "delete", data)
+                const result = await api('task/' + data.id, "delete", data)
                 console.log(result, commit)
                 if (result) {
                     console.log(result)

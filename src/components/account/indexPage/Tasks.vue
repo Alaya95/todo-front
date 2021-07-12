@@ -21,7 +21,7 @@
 import store from "../../../store/store";
 
 export default {
-  name: "tasks",
+  name: "getTasks",
 
   props: {
     task: {
