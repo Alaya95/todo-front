@@ -15,6 +15,7 @@
 
         <CompleteTask/>
 
+
       </div>
       <div class="w-100"></div>
     </div>
@@ -35,6 +36,7 @@ export default {
     CompleteTask,
     ActiveTask
   },
+
 }
 </script>
 

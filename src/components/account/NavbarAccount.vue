@@ -2,10 +2,12 @@
   <div class="navbar">
 
     <div class="navbar-link">
+
       <router-link :to='{name: "main"}'>Главная</router-link>
       <router-link :to='{name: "board"}'>Доски</router-link>
       <router-link :to='{name: "account"}'>Аккаунт</router-link>
-      <router-link :to='{name: "tasks"}'>Аккаунт</router-link>
+      <router-link :to='{name: "tasks"}'>Страница задачи</router-link>
+
     </div>
     <div class="navbar-link">
       <a @click="logout" class="navbar-link__exit" href="#">

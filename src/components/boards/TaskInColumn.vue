@@ -42,13 +42,20 @@
       </div>
     </div>
 
-    <!-- стандартная задача с картинкой -->
+
     <!--<div class="board-column_task">
        <div class="task-title">
         <a href="#">Название подзадачи</a>
         <a aria-current="page" class="" href="#">
           <i class="fas fa-ellipsis-h"></i>
         </a>
+
+      <!-- выпадающее меню задачи для ее редактирования и изменения-->
+      <div v-show="showTaskMenu" class="task-menu">
+        <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask ">Редактировать</button>
+        <button v-else @click="editTask">Изменить</button>
+        <button @click="deleteTask">Удалить</button>
+
       </div>
 
       <div class="task-description">
@@ -67,6 +74,7 @@
 
       <div class="task-info">
         <a href="#">
+
           <img
             alt=""
             class="rounded"
@@ -74,6 +82,7 @@
             src="https://githut.com/mdo.png"
             width="48"
           />
+
         </a>
 
         <a href="#" aria-current="page" class="">
@@ -100,6 +109,8 @@
 
 <script>
 
+import store from "../../store/store";
+
 
 export default {
   name: "TaskInColumn",
@@ -118,7 +129,11 @@ export default {
       e.target.style.opacity = "1";
     },
   },
+
 };
+
+
+
 </script>
 
 <style scoped></style>
