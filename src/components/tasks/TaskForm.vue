@@ -67,6 +67,7 @@
                             todo_prop.sync="comment"
                             v-bind:comment="comment"
                             v-bind:user="getUserData"
+                            v-on:delete-coment="deleteTaskFormComments"
                     />
 
                 </div>
@@ -106,7 +107,11 @@
                 };
                 console.log(data);
                 store.dispatch('createTaskFormComment', data)
-            }
+            },
+            deleteTaskFormComments(id) {
+                const data = {id: id}
+                store.dispatch('deleteTaskFormComment', data)
+            },
 
         },
         mounted() {

@@ -12,14 +12,15 @@
         </div>
 
         <div class="commentEdit">
-            <a href="#">Изменить</a>
-            <a href="#">Удалить</a>
+            <button type="button" @click="changeTaskFormComments">Изменить</button>
+            <button type="button" @click="deleteTaskFormComments(id)">Удалить</button>
         </div>
     </div>
 
 </template>
 
 <script>
+    import store from "../../store/store";
     export default {
         name: "TaskComments",
         props: {
@@ -32,6 +33,17 @@
                 required: true,
             },
         },
+        methods: {
+            changeTaskFormComments() {
+
+            },
+            deleteTaskFormComments() {
+                const data = {
+                    id: 3
+                }
+                store.dispatch('deleteTaskFormComment', data)
+            },
+        }
 
 
     }
