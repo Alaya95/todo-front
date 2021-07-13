@@ -1,28 +1,51 @@
 <template>
 
-        <div class="comment">
-            <div class="commentHeader">
-                <img src="#" alt="">
-                <a href="#">имя или логин</a>
-                <p>24.06.17 18:30</p>
-            </div>
-
-            <div class="commentText">
-                <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum,
-                    vero!</p>
-            </div>
-
-            <div class="commentEdit">
-                <a href="#">Изменить</a>
-                <a href="#">Удалить</a>
-            </div>
+    <div class="comment">
+        <div class="commentHeader">
+            <img src="#" alt="">
+            <a href="#">{{user.name}}</a>
+            <p>{{comment.updated_at}}</p>
         </div>
+
+        <div class="commentText">
+            <p>{{comment.content}}</p>
+        </div>
+
+        <div class="commentEdit">
+            <button type="button" @click="changeTaskFormComments">Изменить</button>
+            <button type="button" @click="deleteTaskFormComments(id)">Удалить</button>
+        </div>
+    </div>
 
 </template>
 
 <script>
+    import store from "../../store/store";
     export default {
-        name: "TaskComments"
+        name: "TaskComments",
+        props: {
+            comment: {
+                type: Object,
+                required: true,
+            },
+            user: {
+                type: String,
+                required: true,
+            },
+        },
+        methods: {
+            changeTaskFormComments() {
+
+            },
+            deleteTaskFormComments() {
+                const data = {
+                    id: 3
+                }
+                store.dispatch('deleteTaskFormComment', data)
+            },
+        }
+
+
     }
 </script>
 

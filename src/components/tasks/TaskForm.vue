@@ -33,7 +33,7 @@
                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae consectetur, consequuntur dolore inventore modi nesciunt omnis pariatur placeat ratione reprehenderit sint vel vitae. Asperiores debitis deleniti dolores perferendis tempore.
                     </span>
                         <span>Accusantium aliquid, dolor eum excepturi, facere facilis illo incidunt molestiae, nihil porro provident quas ut? Accusamus assumenda deserunt dolorum eos facere iusto laudantium maxime nisi officiis, placeat quod suscipit temporibus.</span>
-                        </p>
+                    </p>
                 </div>
 
                 <div class="files">
@@ -54,16 +54,21 @@
                 <!-- Блок записи комментария -->
                 <div class="createComments">
                     <label for="comments">Комментарии</label>
-                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
-                    <button>Сохранить</button>
+                    <textarea name="comments" id="comments" ref="comments" cols="30" rows="10"></textarea>
+                    <button type="button" @click="createTaskFormComments">Сохранить</button>
                 </div>
 
                 <!-- Блок вывода комментариев -->
                 <div class="comments">
 
-                    <TaskComments/>
-                    <TaskComments/>
-                    <TaskComments/>
+                    <TaskComments
+                            v-for="comment in getTaskFormComments"
+                            :key="comment.id"
+                            todo_prop.sync="comment"
+                            v-bind:comment="comment"
+                            v-bind:user="getUserData"
+                            v-on:delete-coment="deleteTaskFormComments"
+                    />
 
                 </div>
             </div>
@@ -79,6 +84,9 @@
     import TaskCheckList from "../../components/tasks/TaskCheckList";
     import TaskFiles from "../../components/tasks/TaskFiles";
 
+    import store from "../../store/store";
+    import {mapGetters} from "vuex";
+
     export default {
         name: "TaskForm",
         components: {
@@ -87,6 +95,34 @@
             TaskCheckList,
             TaskFiles,
         },
+        methods: {
+            fetchTaskFormComments() {
+                store.dispatch('fetchTaskFormComments');
+            },
+            createTaskFormComments() {
+                const data = {
+                    content: document.getElementById(this.$refs.comments.id).value,
+                    user_id: 19,
+                    task_id: 10,
+                };
+                console.log(data);
+                store.dispatch('createTaskFormComment', data)
+            },
+            deleteTaskFormComments(id) {
+                const data = {id: id}
+                store.dispatch('deleteTaskFormComment', data)
+            },
+
+        },
+        mounted() {
+            this.fetchTaskFormComments();
+        },
+        computed: {
+            ...mapGetters([
+                'getTaskFormComments',
+                'getUserData',
+            ]),
+        }
     }
 </script>
 
