@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="container header-menu">
+    <div class="header-menu">
       <router-link class="header-menu_logo" :to="{ name: 'main' }">
         <i class="fas fa-tasks icon"></i>
         Kanban
@@ -37,12 +37,12 @@
             >
               <i class="fas fa-chevron-down"></i>
             </a>
-            <div aria-labelledby="navbarDropdown">
+            <div aria-labelledby="navbarDropdown" class="dropdownNavbar">
               <a href="#"></a>
 
               <router-link :to='{name: "account"}'>{{getUserData.name}}</router-link>
 
-              <form id="logout-form" action="#" method="POST"></form>
+             <!-- <form id="logout-form" action="#" method="POST"></form>-->
             </div>
           </li>
 
