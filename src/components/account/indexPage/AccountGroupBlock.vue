@@ -13,11 +13,9 @@
             :key="group.item"
             group_prop.sync="group"
             v-bind:group="group"
-
         />
 
       </div>
-      <button>Подробнее</button>
     </div>
   </div>
 
@@ -28,10 +26,10 @@ import AccountGroup from "./AccountGroup";
 export default {
   name: "AccountGroupBlock",
   components: {AccountGroup},
-  props: ['groups'],
+  //props: ['groups'],
   data(){
     return {
-      getGroups: [],
+      groups: [],
     }
   },
 

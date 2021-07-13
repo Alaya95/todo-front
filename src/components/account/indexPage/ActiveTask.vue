@@ -3,22 +3,19 @@
     <div class="bigBlock">
 
       <div class="title">
-        <p>Активные задачи</p>
+        <p>Срок для завершения задачи истекает</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
 
       <div class="tusks" v-bind:tasks="getTasks" v-if="getTasks.length">
         <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
-
-
             v-for="task in getTasks.slice(0,4)"
             :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
         />
-
 
       </div>
       <p v-else>Активных задач нет</p>
