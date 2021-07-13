@@ -15,6 +15,8 @@
 
         <CompleteTask/>
 
+        <AccountGroupBlock/>
+
 
       </div>
       <div class="w-100"></div>
@@ -27,10 +29,12 @@ import ProgressForTheWeek from "./indexPage/ProgressForTheWeek";
 import DatetimeAccount from "./indexPage/DatetimeAccount";
 import CompleteTask from "./indexPage/CompleteTaskBlock";
 import ActiveTask from "./indexPage/ActiveTask";
+import AccountGroupBlock from "./indexPage/AccountGroupBlock";
 
 export default {
   name: "IndexAccount",
   components: {
+    AccountGroupBlock,
     ProgressForTheWeek,
     DatetimeAccount,
     CompleteTask,

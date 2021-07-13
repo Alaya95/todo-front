@@ -7,10 +7,15 @@
       </label>
       <div>
         <a href="#"><i class="fas fa-edit"></i></a>
-        <button @click="deletedTask">
+
+        <a href="#">
+          <i class="fas fa-trash-alt"
+             v-on:click="$emit('remove-task', task.id)">
+          </i></a>
+        <!--<button @click="deletedTask">
           <i class="fas fa-trash-alt"
              >
-          </i></button>
+          </i></button>-->
       </div>
     </div>
 </template>
@@ -18,7 +23,7 @@
 <script>
 
 
-import store from "../../../store/store";
+//import store from "../../../store/store";
 
 export default {
   name: "getTasks",
@@ -29,23 +34,18 @@ export default {
       required: true,
     }
   },
-  methods: {
-    deletedTask() {
-      const data =  {
-        id: 8
-      };
-      store.dispatch('deletedTask', data)
-    }
-  },
+  //methods: {
+  //  removeTask(id) {
+  //    const data = {
+  //      id: id
+  //    };
+  //    store.dispatch('deletedTask', data)
+  // }
+  //},
 }
 
 </script>
 
 <style scoped>
-
-
-
-
-
 
 </style>

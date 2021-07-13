@@ -7,9 +7,11 @@
         <i class="fas fa-ellipsis-h"></i>
       </div>
 
-      <div class="tusks" v-bind:tasks="getTasks">
+      <div class="tusks" v-bind:tasks="getTasks" v-if="getTasks.length">
         <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
+
+
             v-for="task in getTasks.slice(0,4)"
             :key="task.item"
             todo_prop.sync="task"
@@ -17,7 +19,9 @@
             v-on:remove-task="removeTask"
         />
 
+
       </div>
+      <p v-else>Активных задач нет</p>
     </div>
   </div>
 
@@ -31,6 +35,7 @@ import store from "../../../store/store";
 export default {
   name: "ActiveTask",
   components: {Tasks},
+
   methods: {
     removeTask(id) {
       const data = {id: id}
