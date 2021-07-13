@@ -54,18 +54,19 @@
                 <!-- Блок записи комментария -->
                 <div class="createComments">
                     <label for="comments">Комментарии</label>
-                    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
-                    <button>Сохранить</button>
+                    <textarea  name="comments" id="comments" ref="comments" cols="30" rows="10"></textarea>
+                    <button @click="createTaskFormComments">Сохранить</button>
                 </div>
 
                 <!-- Блок вывода комментариев -->
-                <div class="comments" v-bind:taskForm="getTaskFormComments">
+                <div class="comments">
 
                     <TaskComments
                             v-for="comment in getTaskFormComments"
-                            :key="comment.content"
+                            :key="comment.id"
                             todo_prop.sync="comment"
                             v-bind:comment="comment"
+                            v-bind:user="getUserData"
                     />
 
                 </div>
@@ -97,12 +98,24 @@
             fetchTaskFormComments() {
                 store.dispatch('fetchTaskFormComments');
             },
+            createTaskFormComments() {
+                                  const data = {
+                        content: document.getElementById( this.$refs.comments).value,
+                        user_id: 2,
+
+                    };
+                    store.dispatch('createTaskFormComment', data)
+                }
+
         },
         mounted() {
             this.fetchTaskFormComments();
         },
         computed: {
-            ...mapGetters(['getTaskFormComments',]),
+            ...mapGetters([
+                'getTaskFormComments',
+                'getUserData',
+            ]),
         }
     }
 </script>

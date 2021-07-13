@@ -3,8 +3,8 @@
     <div class="comment">
         <div class="commentHeader">
             <img src="#" alt="">
-            <a href="#">имя или логин</a>
-            <p>24.06.17 18:30</p>
+            <a href="#">{{user.name}}</a>
+            <p>{{comment.updated_at}}</p>
         </div>
 
         <div class="commentText">
@@ -26,8 +26,13 @@
             comment: {
                 type: Object,
                 required: true,
-            }
+            },
+            user: {
+                type: String,
+                required: true,
+            },
         },
+
 
     }
 </script>
