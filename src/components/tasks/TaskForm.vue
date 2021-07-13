@@ -33,7 +33,7 @@
                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae consectetur, consequuntur dolore inventore modi nesciunt omnis pariatur placeat ratione reprehenderit sint vel vitae. Asperiores debitis deleniti dolores perferendis tempore.
                     </span>
                         <span>Accusantium aliquid, dolor eum excepturi, facere facilis illo incidunt molestiae, nihil porro provident quas ut? Accusamus assumenda deserunt dolorum eos facere iusto laudantium maxime nisi officiis, placeat quod suscipit temporibus.</span>
-                        </p>
+                    </p>
                 </div>
 
                 <div class="files">
@@ -59,11 +59,14 @@
                 </div>
 
                 <!-- Блок вывода комментариев -->
-                <div class="comments">
+                <div class="comments" v-bind:taskForm="getTaskFormComments">
 
-                    <TaskComments/>
-                    <TaskComments/>
-                    <TaskComments/>
+                    <TaskComments
+                            v-for="comment in getTaskFormComments"
+                            :key="comment.content"
+                            todo_prop.sync="comment"
+                            v-bind:comment="comment"
+                    />
 
                 </div>
             </div>
@@ -79,6 +82,9 @@
     import TaskCheckList from "../../components/tasks/TaskCheckList";
     import TaskFiles from "../../components/tasks/TaskFiles";
 
+    import store from "../../store/store";
+    import {mapGetters} from "vuex";
+
     export default {
         name: "TaskForm",
         components: {
@@ -87,6 +93,17 @@
             TaskCheckList,
             TaskFiles,
         },
+        methods: {
+            fetchTaskFormComments() {
+                store.dispatch('fetchTaskFormComments');
+            },
+        },
+        mounted() {
+            this.fetchTaskFormComments();
+        },
+        computed: {
+            ...mapGetters(['getTaskFormComments',]),
+        }
     }
 </script>
 
