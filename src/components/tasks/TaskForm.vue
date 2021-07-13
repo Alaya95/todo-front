@@ -54,8 +54,8 @@
                 <!-- Блок записи комментария -->
                 <div class="createComments">
                     <label for="comments">Комментарии</label>
-                    <textarea  name="comments" id="comments" ref="comments" cols="30" rows="10"></textarea>
-                    <button @click="createTaskFormComments">Сохранить</button>
+                    <textarea name="comments" id="comments" ref="comments" cols="30" rows="10"></textarea>
+                    <button type="button" @click="createTaskFormComments">Сохранить</button>
                 </div>
 
                 <!-- Блок вывода комментариев -->
@@ -99,13 +99,14 @@
                 store.dispatch('fetchTaskFormComments');
             },
             createTaskFormComments() {
-                                  const data = {
-                        content: document.getElementById( this.$refs.comments).value,
-                        user_id: 2,
-
-                    };
-                    store.dispatch('createTaskFormComment', data)
-                }
+                const data = {
+                    content: document.getElementById(this.$refs.comments.id).value,
+                    user_id: 19,
+                    task_id: 10,
+                };
+                console.log(data);
+                store.dispatch('createTaskFormComment', data)
+            }
 
         },
         mounted() {
