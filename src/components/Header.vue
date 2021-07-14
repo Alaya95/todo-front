@@ -93,10 +93,10 @@ export default {
       'getUserData', 
     ])
   },
-  watch: {
-    getAuthStatus: (next)=>console.log(next),
-    getUserData: (next)=>console.log(next),
-  },
+  //watch: {
+  //  getAuthStatus: (next)=>console.log(next),
+  //  getUserData: (next)=>console.log(next),
+  //},
   methods: {
     openRegister() {
       this.isOpenLogin = false;
