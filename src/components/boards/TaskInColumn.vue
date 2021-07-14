@@ -7,16 +7,20 @@
       <!-- заголовок задачи и выпадающее меню для ее редактирования-->
       <div class="task-title">
         <p v-if="editTitleTask" :draggable="false">{{ task.title }}</p>
-        <input v-else :id='("nameTask" + task.title)' ref="titleTask" name="titleTask" :value="task.title" type="text" v-text="task.title">
+        <input
+            v-else :id='("nameTask" + task.title)'
+            ref="titleTask" name="titleTask"
+            :value="task.title" type="text"
+        >
 
         <!-- кнопка для выпадающего меню задачи-->
-        <button :draggable="false" aria-current="page" @click="showTaskMenu = !showTaskMenu">
+        <button :draggable="false" aria-current="page" @click="openTaskMenu">
           <i class="fas fa-ellipsis-h"></i>
         </button>
       </div>
 
       <!-- выпадающее меню задачи для ее редактирования и изменения-->
-      <div v-show="showTaskMenu" class="task-menu">
+      <div v-show="isOpenTaskMenu" class="task-menu">
         <button v-if="editTitleTask" @click="editTitleTask = !editTitleTask">Редактировать</button>
         <button v-else @click="editTask">Изменить</button>
         <button @click="deleteTaskColumn">Удалить</button>
@@ -35,7 +39,7 @@
 
       <!-- Прикрепленная к задаче картинка -->
       <div v-show="false" class="task-image">
-        <a href="#">
+        <a>
           <img alt="doc" src="../../assets/13.png"/>
         </a>
       </div>
@@ -79,6 +83,7 @@ export default {
     return {
       editTitleTask: true,
       showTaskMenu: false,
+      isOpenTaskMenu: false,
     };
   },
   methods: {
@@ -94,6 +99,13 @@ export default {
     dragEnd(e) {
       e.target.style.opacity = "1";
     },
+    openTaskMenu() {
+      this.isOpenTaskMenu = !this.isOpenTaskMenu;
+    },
+    closeTaskMenu() {
+      this.isOpenTaskMenu = false;
+      this.editTitleTask = true;
+    },
     editTask() {
       const data = {
         id:  this.$refs.taskId.id,
@@ -102,12 +114,15 @@ export default {
       };
       console.log(data)
       store.dispatch('editTask', data)
+      this.closeTaskMenu();
     },
     deleteTaskColumn() {
       const data = {
         id: this.$refs.taskId.id,
       }
       store.dispatch('deleteTaskColumn', data)
+
+      this.closeTaskMenu();
     }
 
   },
