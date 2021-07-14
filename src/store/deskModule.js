@@ -379,13 +379,9 @@ export default {
             commit("moveTask", obj);
         },
         async fetchDesk({commit}) {
-            console.log('fdfs')
             try {
-
                 const result = await api('board_1')
-                console.log('hads', result)
                 if (result) {
-                    console.log(result)
                     commit("fetchDesk", result);
                 }
             } catch (error) {
@@ -396,39 +392,31 @@ export default {
         async createTask({commit}, data) {
             try {
                 const result = await api('task/store', "POST", data);
-                console.log(result, commit);
-
-                if (result) {
+                if (!result.message) {
                     console.log(result)
                 }
-
+                console.log(result, commit);
             } catch (error) {
                 console.log(error)
             }
-
         },
         // редактировать задачу
         async editTask({commit}, data) {
             try {
                 // в юрл нужно передавать id самой задачи.
-                const result = await api('task/1', "put", data)
+                const result = await api('task/' + data.id, "put", data)
                 console.log(result, commit)
-                if (result) {
-                    console.log(result)
-                }
             } catch (error) {
                 console.log(error)
             }
         },
         //удалить задачу
-        async deleteTask({commit}, data) {
+        async deleteTaskColumn({commit}, data) {
             try {
                 // в юрл нужно передавать id самой задачи.
-                const result = await api('task/1', "delete", data)
+                const result = await api('task/' + data.id, "delete", data)
                 console.log(result, commit)
-                if (result) {
-                    console.log(result)
-                }
+
             } catch (error) {
                 console.log(error)
             }
