@@ -1,0 +1,122 @@
+.moreTask {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: -webkit-fill-available;
+  margin: 10px;
+
+  & .task-list {
+    margin: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+
+    & .spoiler {
+      background: #142e41;
+      border-radius: 10px;
+      margin: 10px 5px;
+      min-width: 48%;
+
+      & summary::-webkit-details-marker {
+        display: none
+      }
+
+      // анимация при открывании скрытого блока
+      &[open] div {
+        animation: spoiler 1s;
+
+      }
+
+      &[open] summary:before {
+        content: revert;
+      }
+
+
+      @keyframes spoiler {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+
+      /* Убираем стандартный маркер Firefox */
+
+      summary {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: #044250;
+        padding: 12px;
+        border-radius: 5px;
+        width: inherit;
+
+        & .summary-title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+
+        & .summary-status {
+          display: block;
+          background: #6574cd;
+          width: 85px;
+          border-radius: 5px;
+          padding: 5px;
+        }
+
+
+        &::-webkit-details-marker {
+          display: block;
+        }
+      }
+
+
+      &-info {
+        margin: 14px;
+        width: inherit;
+
+
+        &_description, &_status, &_data {
+          margin-bottom: 10px;
+        }
+
+        &_description {
+          text-align: justify;
+          width: inherit;
+          text-indent: 11px;
+        }
+
+        &_data {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 5px;
+
+          & div {
+            margin: 0 5px;
+          }
+
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .spoiler {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .spoiler {
+    width: 47%;
+  }
+}
