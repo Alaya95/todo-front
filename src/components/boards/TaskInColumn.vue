@@ -42,21 +42,29 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "TaskInColumn",
   props: ["task", "draggable", "setOrder"],
   methods: {
     dragStart(e) {
+
+      /*dataTransfer = используется для хранения данных, перетаскиваемых мышью во время операции drag and drop.
+      * dropEffect = Для событий dragenter и dragover, dropEffect будет инициализировано значением, зависящим от того, какое действие запрашивает пользователь.
+      * move - перемещение элемента в новое место
+      * */
       e.dataTransfer.dropEffect = "move";
+
+      /*
+      effectAllowed - Определяет эффекты, которые разрешены для этого перетаскивания.
+      move: Элемент может быть перемещён в новое место.
+       */
       e.dataTransfer.effectAllowed = "move";
       const target = e.target;
+
       e.dataTransfer.setData("card_id", target.id);
       setTimeout(() => {
         target.style.opacity = "0.3";
@@ -67,8 +75,6 @@ export default {
     },
   },
 };
-
-
 </script>
 
 <style scoped></style>

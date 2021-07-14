@@ -34,12 +34,11 @@ export default {
   name: "TaskColumn",
 
   components: {TaskInColumn},
-  props: ["column", "id"],
+  props: ["column"],
   data: () => {
     return {
       order: 1,
     }
-
   },
   methods: {
 
