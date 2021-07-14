@@ -420,7 +420,38 @@ export default {
             } catch (error) {
                 console.log(error)
             }
-        }
+        },
+        async createColumn({commit}, data) {
+            try {
+                console.log(data)
+                const result = await api('column/store','POST', data)
+
+                if (result) {
+                    console.log(result, commit)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
+        async editColumn({commit}, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('column/' + data.id, "put", data)
+                console.log(result, commit)
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async deleteColumn({commit}, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('column/' + data.id, "delete", data)
+                console.log(result, commit)
+            } catch (error) {
+                console.log(error)
+            }
+        },
     }
 };
 
