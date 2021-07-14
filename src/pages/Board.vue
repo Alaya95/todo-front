@@ -12,6 +12,7 @@
         </button>
       </div>
 
+      <CreateColumn v-show="openCreateColumn" :closeCreateColumnForm="closeCreateColumnForm"/>
     </div>
   </div>
 </template>
@@ -20,15 +21,18 @@
 import NavbarAccount from "../components/account/NavbarAccount";
 import TaskColumn from "../components/boards/TaskColumn";
 import {mapGetters} from "vuex";
+import CreateColumn from "@/components/boards/forms/CreateColumn";
 
 export default {
   name: "Board",
   components: {
+    CreateColumn,
     NavbarAccount,
     TaskColumn,
   },
   data() {
     return {
+      createColumn: false,
       openCreateColumn: false,
     };
   },
@@ -37,7 +41,11 @@ export default {
       this.$store.dispatch('fetchDesk')
     },
     openCreateColumnForm() {
-      this.openCreateColumn = true;
+      if(this.openCreateColumn) {
+        this.openCreateColumn = false
+      } else {
+        this.openCreateColumn = true
+      }
     },
     closeCreateColumnForm() {
       this.openCreateColumn = false;
