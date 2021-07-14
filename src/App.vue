@@ -22,6 +22,9 @@ export default {
     loginByToken() {
       this.$store.dispatch("loginByToken");
     },
+    redirect(name = "main"){
+      this.$route.name!==name && router.push({name});  
+    }
   },
   computed: {
     ...mapGetters([
@@ -29,8 +32,13 @@ export default {
     ]),
   },
   watch: {
-    getAuthStatus: function ( newVal){
-        newVal && router.push("account");
+    getAuthStatus: function (newVal){
+      console.log(123);
+      newVal ? this.redirect(localStorage.getItem("route")) : this.redirect();
+    },
+    "$route.name": function(newVal){
+      console.log(123);
+      this.getAuthStatus ? localStorage.setItem("route", newVal) : this.redirect();
     }
   }
 };

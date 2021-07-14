@@ -12,7 +12,6 @@
 import NavbarAccount from "../components/account/NavbarAccount";
 import IndexAccount from "../components/account/IndexAccount";
 import {mapGetters} from "vuex";
-import router from "../router/router";
 
 export default {
   name: "Account",
@@ -22,25 +21,19 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getAuthStatus',
       'getTasks',
     ]),
   },
   methods: {
-    redirect(){
-      !this.getAuthStatus && router.push({name: "main", path: "/"})
-    },
     fetchTasks() {
       this.$store.dispatch('fetchTasks');
       console.log(this.$store.dispatch('fetchTasks'))
     },
   },
   mounted() {
-    this.redirect();
     this.fetchTasks();
-  },
-
-};
+  }
+}
 </script>
 
 <style lang="scss">

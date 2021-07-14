@@ -57,7 +57,7 @@ const userModule = {
     async logout({commit}){
       try {
         const result = await api("logout", "POST");
-        if (result.id) {
+        if (result.message) {
           localStorage.removeItem("token");
           commit("removeUser");
         } else {
