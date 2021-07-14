@@ -10,7 +10,7 @@
 
     </div>
     <div class="navbar-link">
-      <a @click="logout" class="navbar-link__exit" href="#">
+      <a @click="logout" class="navbar-link__exit">
         <i class="fas fa-sign-out-alt"></i>
         Выход
       </a>

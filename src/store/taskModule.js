@@ -3,7 +3,7 @@ import api from "../modules/api";
 
 const taskModule = {
     state: () => ({
-        tasks: {},
+        tasks: [],
         isLoaded: false,
     }),
     mutations: {
@@ -17,13 +17,6 @@ const taskModule = {
             try {
                 const result = await api("tasks");
                 commit('setTasks', result)
-                if (result.user) {
-                    console.log(result.user);
-                    commit("setUser", result);
-                } else {
-                    console.log(result);
-                }
-                return result;
             } catch (error) {
                 console.log(error);
             }
@@ -44,7 +37,7 @@ const taskModule = {
         },
     },
     getters: {
-        getStatus(state) {
+        getTaskStatus(state) {
             return state.isLoaded;
         },
         getTasks(state) {

@@ -1,14 +1,14 @@
 <template>
 
-  <div class="board-column">
-    <div class="board-column_title">
-      <p class="">{{ column.title }}</p>
-      <a aria-current="page" class="" href="#">
+  <div class="board-column" :id="column.id" @dragover.prevent @drop.prevent="drop" @dragenter.prevent>
+    <div :draggable="false" class="board-column_title" >
+      <p :draggable="false">{{ column.title }}</p>
+      <button :draggable="false" aria-current="page">
         <i class="fas fa-ellipsis-h"></i>
-      </a>
+      </button>
     </div>
 
-    <div :id="column.id" @dragover.prevent @drop.prevent="drop" @dragenter.prevent>
+    <div  class="column-width" >
       <TaskInColumn
           v-for="task in column.tasks"
           :key="task.id"
@@ -16,14 +16,18 @@
           :task="task"
           draggable="true"
       />
+
+      <div :draggable="false"  class="board-column_addTask">
+        <a :draggable="false" class="#">
+          <i  :draggable="false" class="fas fa-plus-square"></i>
+          Добавить задачу
+        </a>
+      </div>
+
+
     </div>
 
-    <div class="board-column_addTask">
-      <a class="#">
-        <i class="fas fa-plus-square"></i>
-        Добавить задачу
-      </a>
-    </div>
+
   </div>
 </template>
 
@@ -34,12 +38,11 @@ export default {
   name: "TaskColumn",
 
   components: {TaskInColumn},
-  props: ["column", "id"],
+  props: ["column"],
   data: () => {
     return {
       order: 1,
     }
-
   },
   methods: {
 
