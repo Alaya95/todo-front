@@ -371,7 +371,6 @@ export default {
             !order ? board.tasks.push(card) : board.tasks.splice(order - 1, 0, card);
             state.columns.forEach(({tasks}) => tasks.forEach((task, index) => {
                 task.order = index + 1
-              console.log(task.order)
             }));
         }
     },
