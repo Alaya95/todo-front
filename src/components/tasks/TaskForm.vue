@@ -2,7 +2,8 @@
     <form action="#" method="#">
         <div class="title">
             <!-- При нажатии на ссылку вызываем модальное окно о перемещении карточки в другую колонку, в идеале и на другую доску?-->
-            <p>Название задачи</p>
+            <p>Название задачи </p>
+
             <p>в колонке <a href="#">В процессе</a></p>
         </div>
 
@@ -83,12 +84,19 @@
     import TaskComments from "../../components/tasks/TaskComments";
     import TaskCheckList from "../../components/tasks/TaskCheckList";
     import TaskFiles from "../../components/tasks/TaskFiles";
-
     import store from "../../store/store";
     import {mapGetters} from "vuex";
 
+
     export default {
         name: "TaskForm",
+        data() {
+            return {
+                id: this.$route.params.id
+
+            }
+        },
+
         components: {
             TaskNav,
             TaskComments,
@@ -103,7 +111,7 @@
                 const data = {
                     content: document.getElementById(this.$refs.comments.id).value,
                     user_id: 19,
-                    task_id: 10,
+                    task_id: 29,
                 };
                 console.log(data);
                 store.dispatch('createTaskFormComment', data)
@@ -122,6 +130,7 @@
                 'getTaskFormComments',
                 'getUserData',
             ]),
+
         }
     }
 </script>
