@@ -5,6 +5,8 @@ import Account from "../pages/Account";
 import Board from "../pages/Board";
 import TaskForm from "../components/tasks/TaskForm";
 import MoreDetailed from "../pages/MoreDetailed";
+import MoreGroups from "../pages/MoreGroups";
+import MoreBoards from "../pages/MoreBoards";
 
 Vue.use(Router);
 
@@ -15,14 +17,10 @@ let router = new Router({
     { path: "/", name: "main", component: Index },
     { path: "/account", name: "account", component: Account },
     { path: "/board", name: "board", component: Board },
-    
-    
-    
-    
-    
-
     { path: "/tasks:id", name: "tasks", component: TaskForm, props: true },
     { path: "/more", name: "more", component: MoreDetailed },
+    { path: "/usergroups", name: "usergroups", component: MoreGroups },
+    { path: "/userboards", name: "userboards", component: MoreBoards },
     { path: "/tasks", name: "tasks", component: TaskForm },
     { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
 

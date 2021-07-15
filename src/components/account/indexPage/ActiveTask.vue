@@ -6,11 +6,10 @@
         <p>Срок для завершения задачи истекает</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-
-      <div class="tusks" v-bind:tasks="getTasks" v-if="getTasks.length">
+      <div class="tusks" v-bind:tasks="getTasksAll" v-if="getTasksAll.length">
         <!-- здесь откручиваем задачи  сделать скрол -->
         <Tasks
-            v-for="task in getTasks.slice(0,4)"
+            v-for="task in getTasksAll.slice(0,4)"
             :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
@@ -36,17 +35,17 @@ export default {
   methods: {
     removeTask(id) {
       const data = {id: id}
-      store.dispatch('deleteTask', data)
+      store.dispatch('deleteTaskOne', data)
     },
-    fetchTasks() {
-      this.$store.dispatch('fetchTasks');
+    fetchTasksAll() {
+      this.$store.dispatch('fetchTasksAll');
     },
   },
   mounted() {
-    this.fetchTasks();
+    this.fetchTasksAll();
   },
   computed: {
-    ...mapGetters(['getTasks',]),
+    ...mapGetters(['getTasksAll',]),
   }
 }
 

@@ -5,6 +5,7 @@ import userModule from "./userModule";
 import taskModule from "./taskModule";
 import deskModule from "./deskModule";
 import taskFormModule from "./taskFormModule";
+import accountModule from "./accountModule";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     taskModule,
     deskModule,
     taskFormModule,
+    accountModule,
   },
 });
 

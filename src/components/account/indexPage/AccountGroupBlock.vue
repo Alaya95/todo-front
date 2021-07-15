@@ -4,12 +4,12 @@
 
       <div class="title">
         <p>Ваши группы</p>
-        <i class="fas fa-ellipsis-h"></i>
+        <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
       </div>
 
       <div class="tusks" >
         <AccountGroup
-            v-for="group in groups"
+            v-for="group in getGroups.slice(0,4)"
             :key="group.item"
             group_prop.sync="group"
             v-bind:group="group"
@@ -22,23 +22,36 @@
 </template>
 <script>
 import AccountGroup from "./AccountGroup";
+import {mapGetters} from "vuex";
+import store from "@/store/store";
 
 export default {
   name: "AccountGroupBlock",
   components: {AccountGroup},
-  //props: ['groups'],
-  data(){
-    return {
-      groups: [],
-    }
+
+
+  methods: {
+    removeGroup(id) {
+      const data =  {
+        id: id
+      }
+      //this.getTasks = this.getTasks.filter(t => t.id !== id)
+      store.dispatch('deleteGroup', data)
+    },
+
+    fetchGroups() {
+      this.$store.dispatch('fetchGroups')
+    },
   },
 
   mounted() {
-    fetch('http://f0557894.xsph.ru/api/groups')
-        .then(response => response.json())
-        .then(json =>
-            this.groups = json)
-  }
+    this.fetchGroups();
+  },
+  computed: {
+    ...mapGetters([
+      'getGroups',
+    ]),
+  },
 
 }
 </script>
