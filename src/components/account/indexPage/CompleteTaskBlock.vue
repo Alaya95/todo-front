@@ -6,9 +6,9 @@
         <p>Завершенные задачи</p>
         <i class="fas fa-ellipsis-h"></i>
       </div>
-      <div class="tusks"  v-bind:tasks="getTasks" v-if="getTasks.length">
+      <div class="tusks"  v-bind:tasks="getTasksAll" v-if="getTasksAll.length">
         <CompleteTask
-            v-for="task in getTasks.slice(0,4)" :key="task.item"
+            v-for="task in getTasksAll.slice(0,4)" :key="task.item"
             todo_prop.sync="task"
             v-bind:task="task"
             v-on:remove-task="removeTask"
@@ -34,11 +34,11 @@ export default {
         id: id
       }
       //this.getTasks = this.getTasks.filter(t => t.id !== id)
-      store.dispatch('deleteTask', data)
+      store.dispatch('deleteTaskAll', data)
     },
     
     fetchTasks() {
-      this.$store.dispatch('fetchTasks')
+      this.$store.dispatch('fetchTasksAll')
     },
   },
 
@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getTasks',
+      'getTasksAll',
     ]),
   },
 

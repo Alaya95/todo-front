@@ -11,7 +11,7 @@
 <script>
 import NavbarAccount from "../components/account/NavbarAccount";
 import IndexAccount from "../components/account/IndexAccount";
-import {mapGetters} from "vuex";
+//import {mapGetters} from "vuex";
 
 export default {
   name: "Account",
@@ -19,20 +19,20 @@ export default {
     IndexAccount,
     NavbarAccount,
   },
-  computed: {
-    ...mapGetters([
-      'getTasks',
-    ]),
-  },
-  methods: {
-    fetchTasks() {
-      this.$store.dispatch('fetchTasks');
-      console.log(this.$store.dispatch('fetchTasks'))
-    },
-  },
-  mounted() {
-    this.fetchTasks();
-  }
+//  computed: {
+//    ...mapGetters([
+//      'getTasks',
+//    ]),
+//  },
+  //methods: {
+    //fetchTasks() {
+    //  this.$store.dispatch('fetchTasks');
+    //  console.log(this.$store.dispatch('fetchTasks'))
+    //},
+  //},
+  //mounted() {
+    //this.fetchTasks();
+  //}
 }
 </script>
 

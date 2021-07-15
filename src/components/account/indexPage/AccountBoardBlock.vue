@@ -4,9 +4,9 @@
 
       <div class="title">
         <p>Ваши доски</p>
-        <i class="fas fa-ellipsis-h"></i>
-      </div>
+        <router-link :to='{name: "userboards"}'> <i class="fas fa-ellipsis-h"></i></router-link>
 
+      </div>
       <div class="tusks" v-bind:boards="getBoards" v-if="getBoards.length">
         <AccountBoard
             v-for="board in getBoards"
@@ -25,26 +25,36 @@
 <script>
 
 import AccountBoard from "./AccountBoard";
+import {mapGetters} from "vuex";
+import store from "@/store/store";
 
 export default {
   name: "AccountBoardBlock",
   components: {AccountBoard},
-  //props: ['boards'],
 
-   data(){
-   return {
-     getBoards: [],
+  methods: {
+    removeBoard(id) {
+      const data =  {
+        id: id
+      }
+      //this.getTasks = this.getTasks.filter(t => t.id !== id)
+      store.dispatch('deleteBoard', data)
+    },
 
-   }
- },
+    fetchBoards() {
+      this.$store.dispatch('fetchBoards')
+    },
+  },
 
   mounted() {
 
-    fetch('http://f0557894.xsph.ru/api/boards')
-        .then(response => response.json())
-        .then(json =>
-            this.getBoards = json)
-  }
+      this.fetchBoards();
+  },
+  computed: {
+    ...mapGetters([
+      'getBoards',
+    ]),
+  },
 
 }
 </script>
