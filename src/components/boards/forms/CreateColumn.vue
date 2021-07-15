@@ -6,9 +6,9 @@
       <p>Создать новую колонку</p>
       <p>введите название колонки</p>
 
-      <input name="columnName" id="columnName" type="text">
+      <input id="columnName" ref="columnName" name="columnName" type="text">
 
-      <button>
+      <button @click="createColumn">
         создать колонку
       </button>
 
@@ -22,7 +22,18 @@
 export default {
   name: "CreateColumn",
   props: ['closeCreateColumnForm'],
+  methods: {
+    createColumn() {
+      const data = {
+        board_id: 1,
+        title: this.$refs.columnName.value
+      };
 
+      this.$store.dispatch('createColumn', data)
+
+      this.closeCreateColumnForm()
+    }
+  }
 }
 </script>
 

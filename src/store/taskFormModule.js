@@ -10,6 +10,7 @@ const taskFormModule = {
             state.taskForm = data;
             state.isLoaded = true
         },
+
     },
     actions: {
 // получить все комментарии
@@ -71,7 +72,8 @@ const taskFormModule = {
     getters: {
         getTaskFormComments(state) {
             return state.taskForm
-        }
+        },
+
     }
 }
 

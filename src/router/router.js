@@ -11,16 +11,19 @@ import MoreBoards from "../pages/MoreBoards";
 Vue.use(Router);
 
 let router = new Router({
-//hashbang:false,
-//mode: 'history',
+// hashbang:false,
+// mode: 'history',
   routes: [
     { path: "/", name: "main", component: Index },
     { path: "/account", name: "account", component: Account },
     { path: "/board", name: "board", component: Board },
-    { path: "/tasks", name: "tasks", component: TaskForm },
+    { path: "/tasks:id", name: "tasks", component: TaskForm, props: true },
     { path: "/more", name: "more", component: MoreDetailed },
     { path: "/usergroups", name: "usergroups", component: MoreGroups },
     { path: "/userboards", name: "userboards", component: MoreBoards },
+    { path: "/tasks", name: "tasks", component: TaskForm },
+    { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
+
   ],
 });
 

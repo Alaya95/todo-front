@@ -4,7 +4,7 @@
         <div class="commentHeader">
             <img src="#" alt="">
             <a href="#">{{user.name}}</a>
-            <p>{{comment.updated_at}}</p>
+            <p>{{comment.updated_at | date}}</p>
         </div>
 
         <div class="commentText">
@@ -13,14 +13,17 @@
 
         <div class="commentEdit">
             <button type="button" @click="changeTaskFormComments">Изменить</button>
-            <button type="button" @click="deleteTaskFormComments(id)">Удалить</button>
+            <button type="button" @click="deleteTaskFormComments(comment)">Удалить</button>
         </div>
     </div>
 
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
     import store from "../../store/store";
+    import moment from 'moment';
+
     export default {
         name: "TaskComments",
         props: {
@@ -37,12 +40,26 @@
             changeTaskFormComments() {
 
             },
-            deleteTaskFormComments() {
+            deleteTaskFormComments(comment) {
                 const data = {
-                    id: 3
+                    id: comment.id
                 }
                 store.dispatch('deleteTaskFormComment', data)
             },
+        },
+        computed: {
+            ...mapGetters([
+                'getTaskFormComments',
+
+            ]),
+        },
+
+        filters: {
+            date: function (value) {
+                if (value) {
+                    return moment(String(value)).format('MM/DD/YYYY hh:mm')
+                }
+            }
         }
 
 
