@@ -17,7 +17,7 @@
       background: #142e41;
       border-radius: 10px;
       margin: 10px 5px;
-      min-width: 48%;
+      min-width: 98%;
 
       & summary::-webkit-details-marker {
         display: none
@@ -67,6 +67,7 @@
           width: 85px;
           border-radius: 5px;
           padding: 5px;
+          text-align: center;
         }
 
 
@@ -109,14 +110,4 @@
   }
 }
 
-@media screen and (min-width: 600px) {
-  .spoiler {
-    width: 100%;
-  }
-}
 
-@media screen and (min-width: 1000px) {
-  .spoiler {
-    width: 47%;
-  }
-}
