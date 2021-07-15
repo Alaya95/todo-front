@@ -16,7 +16,7 @@ let router = new Router({
     { path: "/account", name: "account", component: Account },
     { path: "/board", name: "board", component: Board },
     { path: "/tasks", name: "tasks", component: TaskForm },
-    { path: "/more", name: "more", component: MoreDetailed },
+    { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
   ],
 });
 
