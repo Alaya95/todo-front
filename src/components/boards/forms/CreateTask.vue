@@ -36,10 +36,10 @@ export default {
     createTask() {
       const data = {
         column_id: this.id,
-        name: 2, //this.$refs.nameTask.value,
-        description: 2, //this.$refs.descriptionTask.value,
-        deadline: '2021-07-10 21:16', //this.$refs.deadlineTask.value,
-        period: '2021-07-10 21:16',//this.$refs.periodTask.value,
+        name: this.$refs.nameTask.value,
+        description: this.$refs.descriptionTask.value,
+        deadline:  this.$refs.deadlineTask.value,
+        period: this.$refs.periodTask.value,
         board_id: 1,
         executor_id: 1,
         initiator_id: 1,
