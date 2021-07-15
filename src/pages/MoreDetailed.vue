@@ -4,7 +4,7 @@
 
     <div class="moreTask">
       <div class="task-list">
-        <DetailsTaskSpoiler/>
+        <DetailsTaskSpoiler v-for="task in getTasks" :key="task.id" :task="task" />
       </div>
     </div>
 
@@ -14,6 +14,7 @@
 <script>
 import NavbarAccount from "../components/account/NavbarAccount";
 import DetailsTaskSpoiler from "../components/moreDetailed/DetailsTaskSpoiler";
+import {mapGetters} from "vuex";
 
 export default {
   name: "MoreDetailed",
@@ -21,6 +22,20 @@ export default {
     DetailsTaskSpoiler,
     NavbarAccount,
   },
+  computed: {
+    ...mapGetters([
+      'getTasks',
+    ]),
+  },
+  methods: {
+    fetchTasks() {
+      this.$store.dispatch('fetchTasks');
+      console.log(this.$store.dispatch('fetchTasks'))
+    },
+  },
+  mounted() {
+    this.fetchTasks();
+  }
 }
 </script>
 
