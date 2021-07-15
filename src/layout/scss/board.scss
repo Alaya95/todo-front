@@ -325,11 +325,7 @@
   }
 }
 
-@media screen and (max-height: 768px) {
-  .board-column {
-    height: fit-content;
-  }
-}
+
 
 ::-webkit-scrollbar-button {
   background-repeat: no-repeat;
@@ -360,4 +356,10 @@
 
 ::-webkit-scrollbar {
   width: 5px;
+}
+
+@-moz-document url-prefix() {
+  .column-width {
+    width: -moz-available;
+  }
 }
