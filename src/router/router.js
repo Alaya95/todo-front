@@ -15,7 +15,7 @@ mode: 'history',
     { path: "/", name: "main", component: Index },
     { path: "/account", name: "account", component: Account },
     { path: "/board", name: "board", component: Board },
-    { path: "/tasks/:id", name: "tasks", component: TaskForm, props: route => ({ tasksId: route.params.id }) },
+    { path: "/tasks/:id", name: "tasks", component: TaskForm, props: route => ({ taskId: route.params.id }) },
     { path: "/more", name: "more", component: MoreDetailed },
     { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
 

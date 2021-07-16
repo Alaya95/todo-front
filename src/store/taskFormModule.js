@@ -3,6 +3,7 @@ import api from "../modules/api";
 const taskFormModule = {
     state: () => ({
         taskForm: [],
+        task:[],
         isLoaded: false
     }),
     mutations: {
@@ -10,6 +11,11 @@ const taskFormModule = {
             state.taskForm = data;
             state.isLoaded = true
         },
+
+        getTask(state,data) {
+            state.task = data;
+            state.isLoaded = true
+        }
 
     },
     actions: {
@@ -26,6 +32,17 @@ const taskFormModule = {
                 console.log(error)
             }
         },
+//получить задачу по ID
+        async fetchTask({commit}, data) {
+            try {
+                const result = await api('task/' + data);
+                commit('getTask', result)
+
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         // записать комментарий
         async createTaskFormComment({commit}, data) {
             try {
@@ -73,8 +90,12 @@ const taskFormModule = {
         getTaskFormComments(state) {
             return state.taskForm
         },
+        getTask(state) {
+            return state.task[0]
+        }
 
     }
+
 }
 
 export default taskFormModule;
