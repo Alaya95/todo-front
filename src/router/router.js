@@ -9,21 +9,14 @@ import MoreDetailed from "../pages/MoreDetailed";
 Vue.use(Router);
 
 let router = new Router({
-// hashbang:false,
-// mode: 'history',
+hashbang:false,
+mode: 'history',
   routes: [
     { path: "/", name: "main", component: Index },
     { path: "/account", name: "account", component: Account },
     { path: "/board", name: "board", component: Board },
-    
-    
-    
-    
-    
-
-    { path: "/tasks:id", name: "tasks", component: TaskForm, props: true },
+    { path: "/tasks/:id", name: "tasks", component: TaskForm, props: route => ({ tasksId: route.params.id }) },
     { path: "/more", name: "more", component: MoreDetailed },
-    { path: "/tasks", name: "tasks", component: TaskForm },
     { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
 
   ],
