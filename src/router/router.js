@@ -7,6 +7,7 @@ import TaskForm from "../components/tasks/TaskForm";
 import MoreDetailed from "../pages/MoreDetailed";
 import MoreGroups from "../pages/MoreGroups";
 import MoreBoards from "../pages/MoreBoards";
+import AccountSettings from "../pages/AccountSettings";
 
 Vue.use(Router);
 
@@ -23,6 +24,7 @@ let router = new Router({
     { path: "/userboards", name: "userboards", component: MoreBoards },
     { path: "/tasks", name: "tasks", component: TaskForm },
     { path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed },
+    { path: "/accountSettings", name: "accountSettings", component: AccountSettings },
 
   ],
 });
