@@ -10,6 +10,7 @@
       <!-- <router-link :to='{name: "detailsGroup"}'>Мои группы</router-link>
       <router-link :to='{name: "detailsBoard"}'>Мои доски</router-link> -->
       <router-link :to='{name: "detailsTasks"}'>Мои задачи</router-link>
+      <router-link :to='{name: "accountSettings"}'>настройки аккаунта</router-link>
 
     </div>
     <div class="navbar-link">

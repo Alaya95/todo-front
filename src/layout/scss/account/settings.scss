@@ -1,0 +1,105 @@
+.profile
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  margin: 30px;
+  flex-wrap: wrap;
+
+  &-avatar,  &-info {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-size: 16px;
+  }
+
+  &-info {
+    align-items: start;
+
+    &_avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin: 0 0 20px 0;
+      & img {
+       width: 80%;
+     }
+
+      & label, & input {
+        margin: 10px;
+      }
+    }
+
+    &_data {
+      p {
+        margin: 10px;
+      }
+
+    }
+
+  }
+  &-edit {
+    align-items: center;
+
+    &_name, &_email, &_pass {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+
+p{
+  margin: 15px;
+}
+
+      label {
+        text-transform: initial;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding: 4px;
+        font-size: 18px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #3f8778;
+        background: #5E5C5C;
+        color: #ffffff;
+        margin-bottom: 15px;
+        width: 300px;
+        height: 40px;
+
+       &:-webkit-autofill  {
+          color: inherit !important;
+          background: inherit;
+        }
+      }
+
+      button {
+        background: none;
+        outline: none;
+        border: 2px solid #32B9A1;
+        border-radius: 5px;
+        padding: 5px;
+        color: #32B9A1;
+        width: 240px;
+        height: 40px;
+      }
+    }
+
+    &_name {
+
+    }
+
+    &_email {
+
+    }
+
+    &_pass {
+
+      align-items: center;
+
+    }
+  }
+}

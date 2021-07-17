@@ -1,3 +1,4 @@
+
 <template>
 
   <div>
@@ -59,7 +60,6 @@ export default {
 <style scoped>
 
 .accounts {
-  /*height: 100%;*/
   overflow: hidden;
   width: initial;
   display: flex;
@@ -67,25 +67,23 @@ export default {
   justify-content: space-between;
   border-radius: 8px;
   background: #414141;
-
 }
   summary {
     display: flex;
     background: #414141;
     justify-content: space-between;
-    min-height: 60px;
+    min-height: 55px;
+    margin-bottom: 1px;
 
   }
-
   details {
     flex: 1 1 50px;
     background: #414141;
     text-align: justify;
 
   }
-
   label {
-    margin-top: 20px;
+    margin-top: 15px;
     pointer-events: none;
   }
   .task_description{
