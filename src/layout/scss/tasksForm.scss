@@ -373,6 +373,18 @@ form {
 
           &Text {
             width: -webkit-fill-available;
+            textarea {
+              width: inherit;
+              color: #32B9A1;
+              border: none;
+              background: none;
+              outline: 1px solid #4dc0b5;
+              padding: 4px;
+
+              &:active, &:focus {
+                outline: 1px solid #4dc0b5;
+              }
+            }
           }
 
           &Edit {
