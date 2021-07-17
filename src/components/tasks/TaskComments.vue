@@ -2,7 +2,7 @@
 
     <div class="comment">
         <div class="commentHeader">
-            <img src="#" alt="">
+            <img src="../../assets/avatar.png" alt="avatar">
             <a href="#">{{user.name}}</a>
             <p>{{comment.updated_at | date}}</p>
         </div>

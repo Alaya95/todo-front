@@ -4,28 +4,32 @@
             <!-- При нажатии на ссылку вызываем модальное окно о перемещении карточки в другую колонку, в идеале и на другую доску?-->
             <p>{{getTask.task_name}}</p>
 
-            <p>в колонке <a href="#">В процессе</a></p>
+            <p>в колонке <a href="#">{{getTask.column_id}}</a></p>
         </div>
 
         <div>
             <div class="center">
                 <div class="participants">
-                    <p>Участники</p>
-                    <div class="participantsLinks">
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">+</a>
-                    </div>
+                    <p>Инициатор задачи: {{getTask.initiator_name}}</p>
+
+                    <p>Исполнитель задачи: {{getTask.executor_name}}</p>
+
+
+<!--                    <div class="participantsLinks">-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">+</a>-->
+<!--                    </div>-->
                 </div>
 
                 <div class="description">
@@ -86,7 +90,7 @@
 
     export default {
         name: "TaskForm",
-
+        props: ["column"],
         components: {
             TaskNav,
             TaskComments,
@@ -104,7 +108,7 @@
             createTaskFormComments() {
                 const data = {
                     content: document.getElementById(this.$refs.comments.id).value,
-                    user_id: 19,
+                    user_id: this.getUserData.id,
                     task_id: this.$attrs.taskId,
                 };
                 console.log(data);

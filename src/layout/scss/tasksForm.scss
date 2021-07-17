@@ -105,11 +105,12 @@ form {
 
         & textarea {
           width: 420px;
+          padding: 10px;
+          margin: inherit;
           background: #6E6E6E;
           color: #ffffff;
           outline: none;
           border: none;
-          margin: 5px 0;
           border-radius: 15px;
 
           &:hover, &:focus {
@@ -373,6 +374,7 @@ form {
 
           &Text {
             width: -webkit-fill-available;
+
             textarea {
               width: inherit;
               color: #32B9A1;
