@@ -2,39 +2,39 @@
     <form action="#" method="#">
         <div class="title">
             <!-- При нажатии на ссылку вызываем модальное окно о перемещении карточки в другую колонку, в идеале и на другую доску?-->
-            <p>Название задачи </p>
+            <p>{{getTask.task_name}}</p>
 
-            <p>в колонке <a href="#">В процессе</a></p>
+            <p>в колонке <a href="#">{{getTask.column_id}}</a></p>
         </div>
 
         <div>
             <div class="center">
                 <div class="participants">
-                    <p>Участники</p>
-                    <div class="participantsLinks">
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">
-                            <img src="../../assets/avatar.png" alt="avatar">
-                        </a>
-                        <a href="#">+</a>
-                    </div>
+                    <p>Инициатор задачи: {{getTask.initiator_name}}</p>
+
+                    <p>Исполнитель задачи: {{getTask.executor_name}}</p>
+
+
+<!--                    <div class="participantsLinks">-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">-->
+<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+<!--                        </a>-->
+<!--                        <a href="#">+</a>-->
+<!--                    </div>-->
                 </div>
 
                 <div class="description">
                     <p>Описание</p>
-                    <p>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto beatae consectetur, consequuntur dolore inventore modi nesciunt omnis pariatur placeat ratione reprehenderit sint vel vitae. Asperiores debitis deleniti dolores perferendis tempore.
-                    </span>
-                        <span>Accusantium aliquid, dolor eum excepturi, facere facilis illo incidunt molestiae, nihil porro provident quas ut? Accusamus assumenda deserunt dolorum eos facere iusto laudantium maxime nisi officiis, placeat quod suscipit temporibus.</span>
-                    </p>
+                    <p>{{getTask.task_description}}</p>
                 </div>
 
                 <div class="files">
@@ -47,8 +47,8 @@
 
                 <div class="checkList">
                     <!-- Тут добавляются чек листы -->
-                    <TaskCheckList/>
-                    <TaskCheckList/>
+                    <!--                    <TaskCheckList/>-->
+                    <!--                    <TaskCheckList/>-->
 
                 </div>
 
@@ -63,7 +63,7 @@
                 <div class="comments">
 
                     <TaskComments
-                            v-for="comment in getTaskFormComments"
+                            v-for="comment in filteredComment"
                             :key="comment.id"
                             todo_prop.sync="comment"
                             v-bind:comment="comment"
@@ -82,7 +82,7 @@
 <script>
     import TaskNav from "../../components/tasks/TaskNav";
     import TaskComments from "../../components/tasks/TaskComments";
-    import TaskCheckList from "../../components/tasks/TaskCheckList";
+    // import TaskCheckList from "../../components/tasks/TaskCheckList";
     import TaskFiles from "../../components/tasks/TaskFiles";
     import store from "../../store/store";
     import {mapGetters} from "vuex";
@@ -90,31 +90,30 @@
 
     export default {
         name: "TaskForm",
-        data() {
-            return {
-                id: this.$route.params.id
-
-            }
-        },
-
+        props: ["column"],
         components: {
             TaskNav,
             TaskComments,
-            TaskCheckList,
+            // TaskCheckList,
             TaskFiles,
         },
         methods: {
             fetchTaskFormComments() {
                 store.dispatch('fetchTaskFormComments');
             },
+
+            fetchTask(data) {
+                store.dispatch('fetchTask', data);
+            },
             createTaskFormComments() {
                 const data = {
                     content: document.getElementById(this.$refs.comments.id).value,
-                    user_id: 19,
-                    task_id: 29,
+                    user_id: this.getUserData.id,
+                    task_id: this.$attrs.taskId,
                 };
                 console.log(data);
                 store.dispatch('createTaskFormComment', data)
+
             },
             deleteTaskFormComments(id) {
                 const data = {id: id}
@@ -124,15 +123,27 @@
         },
         mounted() {
             this.fetchTaskFormComments();
+            this.fetchTask(this.$attrs.taskId)
         },
         computed: {
             ...mapGetters([
                 'getTaskFormComments',
                 'getUserData',
+                'getTask',
             ]),
+            filteredComment: function () {
+                const taskId = this.$attrs.taskId
+                const comments = this.getTaskFormComments;
+                return comments.filter(function (comment) {
+                    return comment.task_id === parseInt(taskId);
+
+                });
+
+            }
 
         }
     }
+
 </script>
 
 <style lang="scss" scoped>

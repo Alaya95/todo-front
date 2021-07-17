@@ -2,17 +2,23 @@
 
     <div class="comment">
         <div class="commentHeader">
-            <img src="#" alt="">
+            <img src="../../assets/avatar.png" alt="avatar">
             <a href="#">{{user.name}}</a>
             <p>{{comment.updated_at | date}}</p>
         </div>
 
-        <div class="commentText">
-            <p>{{comment.content}}</p>
+        <div class="commentText" :id="comment.id" ref="commentId">
+            <p v-if="editComment">{{comment.content}}</p>
+            <textarea
+                    v-else :id='("nameTask" + comment.content)'
+                    ref="editComment" name="editComment"
+                    :value="comment.content" type="text"
+            ></textarea>
         </div>
 
         <div class="commentEdit">
-            <button type="button" @click="changeTaskFormComments">Изменить</button>
+            <button type="button" v-if="!isHiddenChange" @click="openInput">Редактировать</button>
+            <button type="button" v-if="isHiddenSave" @click="changeTaskFormComments">Сохранить</button>
             <button type="button" @click="deleteTaskFormComments(comment)">Удалить</button>
         </div>
     </div>
@@ -26,6 +32,13 @@
 
     export default {
         name: "TaskComments",
+        data() {
+            return {
+                editComment: true,
+                isHiddenChange: false,
+                isHiddenSave: false,
+            };
+        },
         props: {
             comment: {
                 type: Object,
@@ -38,13 +51,31 @@
         },
         methods: {
             changeTaskFormComments() {
-
-            },
+                const data = {
+                    id: this.$refs.commentId.id,
+                    content: this.$refs.editComment.value,
+                }
+                console.log(data)
+                store.dispatch('editTaskFormComment', data)
+                this.closeInput();
+                },
             deleteTaskFormComments(comment) {
                 const data = {
                     id: comment.id
                 }
+
                 store.dispatch('deleteTaskFormComment', data)
+            },
+            openInput() {
+                this.isHiddenChange = true;
+                this.editComment = false;
+                this.isHiddenSave = true;
+            },
+
+            closeInput() {
+                this.isHiddenChange = false;
+                this.editComment = true;
+                this.isHiddenSave = false;
             },
         },
         computed: {

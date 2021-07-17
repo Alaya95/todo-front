@@ -16,7 +16,7 @@
                         class="v-task-files-show"
                         @click="showFile"
                 >
-                    Открыть в новой вкладке
+                    Посмотреть
                 </button>
 
 
