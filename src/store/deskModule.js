@@ -356,6 +356,122 @@ export default {
             state.columns = data;
             state.isLouded = true
         },
+        updateDesk(state, data) {
+            /* нужный и получаемый массив могут отличеться, поэтому
+            проверяем полученные данные result
+             */
+
+            //полученный результат
+           // console.log('result', result)
+            /*board_id: 1
+            column_id: 1
+            created_at: "2021-07-17T08:35:43.000000Z"
+            deadline: null
+            executor_id: 1
+            initiator_id: 1
+            id: 83
+            name: "dsad"
+            description: "dasda"
+            period: null
+            task_status: 1
+            task_topics_id: 1
+            updated_at: "2021-07-17T08:35:43.000000Z"
+           */
+
+
+             // вид массив который нужно вложить в tasks.
+             /*attachable:0
+             comments:0
+             deadline:null
+             id:74
+             order:null
+             status:"1"
+             text:"Это выполненное задание с сохраненным описанием."
+             title:"Готовая задача."
+            console.log(data)*/
+
+            /*
+            Из-за отличия этих массивов создаем новый массив, где присваиваем параметрам
+            необходимые данные, что бы при обновлении или создании компонента не было конфликтов.
+             */
+            const tasks = {
+                id: data.id,
+                title: data.name,
+                text: data.description,
+                status: data.task_status,
+                attachable: 0,
+                comments: 0,
+                order: null,
+                deadline: null,
+            };
+
+
+            /*
+                пробегаемся циклом по уже созданному массиву (Это массив который созхраняется в
+                 state при создании страницы). ищем колонку, которая соответствует полученному id олонки и ответа, пришедшего при создании задачи с сервера, когда нужная колонка находится
+                 добавляем созданный массив task в конец  массива tasks, который хранится в state
+                создаем задачу. проверяем результат
+             */
+            state.columns.forEach((column) => {
+                column.id === data.column_id && column.tasks.push(tasks)
+            })
+        },
+        editDesk(state, data) {
+
+            // вид получаемых данных от сервера.
+            //board_id: 1
+            //column_id: 1
+            //created_at: "2021-07-17T08:22:47.000000Z"
+            //deadline: null
+            //deleted_at: null
+            //description: "r"
+            //executor_id: 1
+            //id: 81
+            //initiator_id: 1
+            //name: "rf"
+            //order: null
+            //period: null
+            //task_status: "1"
+            //task_topics_id: 1
+            //updated_at: "2021-07-17T20:18:26.000000Z"
+
+            // создаем массив с такими же параметрами как у массива который сохранен в state
+            const task = {
+                id: data.id,
+                title: data.name,
+                text: data.description,
+                status: data.task_status,
+                attachable: 0,
+                comments: 0,
+                order: data.order,
+                deadline: data.deadline,
+            };
+
+            /*
+            находи колонку которая соответствует условию,
+            затем редактируем ее, заменяя нужный нам элемент массива на массив task
+             */
+            state.columns.forEach((column) => {
+                /*
+                Первый аргумент задает начальный индекс.
+                Второй задает количество элементов для замены.
+                Третий и все последующие аргументы — это элементы, которые будут подставлены
+                в массив.
+                 */
+
+                column.id === data.column_id &&
+                column.tasks.splice(column.tasks.findIndex(({id}) => id == task.id), 1,task)
+            });
+        },
+        deleteDesk(state, data) {
+            /*
+           находи колонку которая соответствует условию,
+           затем ищем задачу с нужным id и удаляяем ее.
+            */
+            state.columns.forEach((column) => {
+                column.tasks = column.tasks.filter(({id}) => id != data.id)
+            });
+        },
         moveTask(state, {e, id, order}) {
 
             const card_id = parseInt(e.dataTransfer.getData("card_id"));
@@ -392,10 +508,14 @@ export default {
         async createTask({commit}, data) {
             try {
                 const result = await api('task/store', "POST", data);
+                // если в возвращаемом результате нет сообщения, то в коммите
+                // вызываем  нужную мутацию и передаем туда данные.
                 if (!result.message) {
+                    commit("updateDesk", result);
+                } else {
                     console.log(result)
                 }
-                console.log(result, commit);
+
             } catch (error) {
                 console.log(error)
             }
@@ -405,7 +525,15 @@ export default {
             try {
                 // в юрл нужно передавать id самой задачи.
                 const result = await api('task/' + data.id, "put", data)
-                console.log(result, commit)
+
+                if (!result.message) {
+                    console.log(result)
+                    commit('editDesk', result)
+
+                } else {
+                    console.log(result, commit)
+                }
+
             } catch (error) {
                 console.log(error)
             }
@@ -415,8 +543,16 @@ export default {
             try {
                 // в юрл нужно передавать id самой задачи.
                 const result = await api('task/' + data.id, "delete", data)
-                console.log(result, commit)
 
+                if (result.message == 'Задача удалена') {
+                    // получаем сообщение об успешном удалении, вызываем мутацию
+                    // для удалении задачи
+                    // из массива state
+                    commit('deleteDesk', data);
+                } else {
+                    console.log('не удалено')
+                    console.log(result, commit)
+                }
             } catch (error) {
                 console.log(error)
             }
@@ -424,7 +560,7 @@ export default {
         async createColumn({commit}, data) {
             try {
                 console.log(data)
-                const result = await api('column/store','POST', data)
+                const result = await api('column/store', 'POST', data)
 
                 if (result) {
                     console.log(result, commit)
