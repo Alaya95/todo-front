@@ -6,14 +6,14 @@
 
   <div class="test tusk">
   <div class="search">
-    <form @submit.prevent="onSubmit">
-      <input type="text" placeholder="Искать здесь..." v-model="title">
-      <button type="submit"><i class="fas fa-search"></i></button>
+    <form >
+      <input type="text" placeholder="Искать здесь..." v-model="searchValue">
+      <button type="submit"><i class="fas fa-search" @click="search(searchValue)"></i></button>
     </form>
   </div>
-  <div class="show-groups" v-bind:groups="groups" v-if="groups.length">
+  <div class="show-groups" v-bind:groups="SearchValue" v-if="SearchValue.length">
     <DetailsGroupSpoiler
-        v-for="group in groups"
+        v-for="group in SearchValue"
         :key="group.item"
         todo_prop.sync="group"
         v-bind:group="group"/>
@@ -30,9 +30,8 @@
 
 import NavbarAccount from "../components/account/NavbarAccount";
 import DetailsGroupSpoiler from "../components/moreDetailed/DetailsGroupSpoiler";
-//import {mapGetters} from "vuex";
-//import store from "../../../store/store";
-//http://127.0.0.1:8000/api/groups
+import {mapGetters} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: "MoreGroups",
@@ -40,41 +39,46 @@ export default {
     DetailsGroupSpoiler,
     NavbarAccount,
   },
-
   data(){
     return {
-      groups: [],
-      title: '',
-      arrayGroup: [],
+      searchValue: '',
     }
   },
   methods: {
-    onSubmit(){
-      //console.log('submit', this.title);
-      if(this.title.trim()) {
-        //console.log('submit', this.title);
-        this.groups = this.groups.filter(function (item){
-         // return item.name.toLowerCase() === this.title.toLowerCase();
-          return item.name === this.title;
+    fetchGroups() {
+      this.$store.dispatch('fetchGroups');
+    },
+    ...mapActions(['findSearchValue']),
 
-          //console.log(this.groups);
-       // console.log(item.name);
-        })
-        console.log(this.groups);
-        //console.log(this.groups.name);
-        //this.title = '';
-      }
+    search(value){
+      this.findSearchValue(value);
+      this.searchValue = '';
+    },
+    searchGroup(value){
+        if (value) {
+          return ([...this.getGroups].filter(function (item) {
+            return item.name.toLowerCase().includes(value.toLowerCase())
+          }))
+        } else {
+          return this.getGroups;
+        }
     }
+  },
+  computed: {
+
+    SearchValue(){
+      return this.searchGroup(this.getSearchValue);
+    },
+
+    ...mapGetters([
+      'getGroups',
+      'getSearchValue',
+    ]),
   },
 
   mounted() {
-    fetch('http://f0557894.xsph.ru/api/groups')
-        .then(response => response.json())
-        .then(json =>
-            this.groups = json)
-    //console.log(this.groups);
+    this.fetchGroups();
   },
-
 
 }
 
