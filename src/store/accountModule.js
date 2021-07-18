@@ -6,7 +6,10 @@ const accountModule = {
         boards: [], //сохраняем данные
         groups: [],
         tasksall: [],
+        tasksStatistics: [],
+        searchValue: '',
         isLoaded: false,
+
     }),
     mutations: {
         setBoards(state, data) {
@@ -21,8 +24,19 @@ const accountModule = {
             state.tasksall = data;
             state.isLoaded = true;
         },
+        tasksStatistics(state, data) {
+            state.tasksStatistics = data;
+            state.isLoaded = true;
+        },
+        setSearchValue(state, value){
+            state.searchValue = value;
+            //console.log(value);
+        },
+
+
     },
     actions: {
+
         async fetchBoards({commit}) {
             try {
                 const result = await api("boards");
@@ -43,6 +57,14 @@ const accountModule = {
             try {
                 const result = await api("tasks");
                 commit('setTasksAll', result)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async fetchTasksStatistics({commit}) {
+            try {
+                const result = await api("tasks/week");
+                commit('tasksStatistics', result)
             } catch (error) {
                 console.log(error);
             }
@@ -85,6 +107,11 @@ const accountModule = {
                 console.log(error)
             }
         },
+//для поиска
+        findSearchValue({ commit }, value){
+            commit('setSearchValue', value)
+
+        },
     },
     getters: {
        //// getTaskStatus(state) {
@@ -99,6 +126,12 @@ const accountModule = {
         getTasksAll(state) {
             return state.tasksall;
         },
+        getTasksStatistics(state) {
+            return state.tasksStatistics;
+        },
+        getSearchValue(state){
+            return state.searchValue;
+        }
     },
     /*
       state: () => ({
