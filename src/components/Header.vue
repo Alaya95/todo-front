@@ -8,14 +8,7 @@
       <div class="header-menu_list">
         <ul>
           <li v-show="getAuthStatus" class="">
-            <a
-                v-pre
-                id="navbarDropdown"
-                aria-expanded="false"
-                aria-haspopup="true"
-                data-toggle="dropdown"
-                role="button"
-            >
+            <a @click="dropdownMenuOpen">
               <i class="fas fa-chevron-down"></i>
             </a>
             <div aria-labelledby="navbarDropdown" class="dropdownNavbar">
@@ -37,7 +30,7 @@
       </div>
     </div>
 
-    <div v-show="true" class="dropdownMenu">
+    <div v-show="isOpen" class="dropdownMenu">
       <router-link :to='{name: "accountSettings"}' class="navbar-link__exit">Настройки</router-link>
       <a class="navbar-link__exit" @click="logout">
         <i class="fas fa-sign-out-alt"></i>
@@ -74,6 +67,12 @@ export default {
     ])
   },
   methods: {
+    dropdownMenuOpen() {
+      this.isOpen = !this.isOpen;
+    },
+    dropDownClose() {
+      this.isOpen = !this.isOpen;
+    },
     openRegister() {
       this.isOpenLogin = false;
       this.isOpenRegister = true;
