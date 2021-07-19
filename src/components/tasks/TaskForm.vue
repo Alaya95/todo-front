@@ -1,40 +1,40 @@
 <template>
     <form action="#" method="#">
         <div class="title">
-            <!-- При нажатии на ссылку вызываем модальное окно о перемещении карточки в другую колонку, в идеале и на другую доску?-->
-            <p>{{getTask.task_name}}</p>
 
-            <p>в колонке <a href="#">{{getTask.column_id}}</a></p>
+            <p>{{getTask.task[0].task_name}}</p>
+
+            <p>в колонке <a href="#">{{getTask.task[0].column_name}}</a></p>
         </div>
 
         <div>
             <div class="center">
                 <div class="participants">
-                    <p>Инициатор задачи: {{getTask.initiator_name}}</p>
+                    <p>Инициатор задачи: {{getTask.task[0].initiator_name}}</p>
 
-                    <p>Исполнитель задачи: {{getTask.executor_name}}</p>
+                    <p>Исполнитель задачи: {{getTask.task[0].executor_name}}</p>
 
 
-<!--                    <div class="participantsLinks">-->
-<!--                        <a href="#">-->
-<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-<!--                        </a>-->
-<!--                        <a href="#">-->
-<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-<!--                        </a>-->
-<!--                        <a href="#">-->
-<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-<!--                        </a>-->
-<!--                        <a href="#">-->
-<!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-<!--                        </a>-->
-<!--                        <a href="#">+</a>-->
-<!--                    </div>-->
+                    <!--                    <div class="participantsLinks">-->
+                    <!--                        <a href="#">-->
+                    <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+                    <!--                        </a>-->
+                    <!--                        <a href="#">-->
+                    <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+                    <!--                        </a>-->
+                    <!--                        <a href="#">-->
+                    <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+                    <!--                        </a>-->
+                    <!--                        <a href="#">-->
+                    <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
+                    <!--                        </a>-->
+                    <!--                        <a href="#">+</a>-->
+                    <!--                    </div>-->
                 </div>
 
                 <div class="description">
                     <p>Описание</p>
-                    <p>{{getTask.task_description}}</p>
+                    <p>{{getTask.task[0].task_description}}</p>
                 </div>
 
                 <div class="files">
@@ -63,8 +63,8 @@
                 <div class="comments">
 
                     <TaskComments
-                            v-for="comment in filteredComment"
-                            :key="comment.id"
+                            v-for="(comment, index) in getTaskFormComments"
+                            :key="index"
                             todo_prop.sync="comment"
                             v-bind:comment="comment"
                             v-bind:user="getUserData"
@@ -90,7 +90,16 @@
 
     export default {
         name: "TaskForm",
-        props: ["column"],
+        data() {
+            return {
+                editComment: true,
+                isHiddenChange: false,
+                isHiddenSave: false,
+
+            };
+        },
+
+
         components: {
             TaskNav,
             TaskComments,
@@ -98,8 +107,10 @@
             TaskFiles,
         },
         methods: {
+
             fetchTaskFormComments() {
-                store.dispatch('fetchTaskFormComments');
+
+                store.dispatch('fetchTaskFormComments', this.$attrs.taskId);
             },
 
             fetchTask(data) {
@@ -130,18 +141,13 @@
                 'getTaskFormComments',
                 'getUserData',
                 'getTask',
+
             ]),
-            filteredComment: function () {
-                const taskId = this.$attrs.taskId
-                const comments = this.getTaskFormComments;
-                return comments.filter(function (comment) {
-                    return comment.task_id === parseInt(taskId);
 
-                });
-
-            }
 
         }
+
+
     }
 
 </script>

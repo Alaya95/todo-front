@@ -13,12 +13,13 @@
                     v-else :id='("nameTask" + comment.content)'
                     ref="editComment" name="editComment"
                     :value="comment.content" type="text"
+
             ></textarea>
         </div>
 
         <div class="commentEdit">
             <button type="button" v-if="!isHiddenChange" @click="openInput">Редактировать</button>
-            <button type="button" v-if="isHiddenSave" @click="changeTaskFormComments">Сохранить</button>
+            <button type="button" v-if="isHiddenSave" @click="changeTaskFormComments(comment, index)">Сохранить</button>
             <button type="button" @click="deleteTaskFormComments(comment)">Удалить</button>
         </div>
     </div>
@@ -37,6 +38,7 @@
                 editComment: true,
                 isHiddenChange: false,
                 isHiddenSave: false,
+
             };
         },
         props: {
@@ -45,20 +47,26 @@
                 required: true,
             },
             user: {
-                type: String,
+                type: Object,
+                required: true,
+            },
+            key:{
+                type: Array,
                 required: true,
             },
         },
         methods: {
-            changeTaskFormComments() {
+            changeTaskFormComments(comment, index) {
                 const data = {
-                    id: this.$refs.commentId.id,
+                    id: comment.id,
                     content: this.$refs.editComment.value,
+                    index:index
                 }
                 console.log(data)
                 store.dispatch('editTaskFormComment', data)
                 this.closeInput();
-                },
+
+            },
             deleteTaskFormComments(comment) {
                 const data = {
                     id: comment.id
