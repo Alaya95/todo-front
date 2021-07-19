@@ -7,6 +7,7 @@ const accountModule = {
         groups: [],
         tasksall: [],
         tasksStatistics: [],
+        allGroups: [],
         searchValue: '',
         isLoaded: false,
 
@@ -28,6 +29,10 @@ const accountModule = {
             state.tasksStatistics = data;
             state.isLoaded = true;
         },
+        setAllGroups(state, data) {
+            state.allGroups = data;
+            state.isLoaded = true;
+        },
         setSearchValue(state, value){
             state.searchValue = value;
             //console.log(value);
@@ -47,8 +52,16 @@ const accountModule = {
         },
         async fetchGroups({commit}) {
             try {
-                const result = await api("groups");
+                const result = await api("groups_user");
                 commit('setGroups', result)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async fetchAllGroups({commit}) {
+            try {
+                const result = await api("groups");
+                commit('setAllGroups', result)
             } catch (error) {
                 console.log(error);
             }
@@ -128,6 +141,9 @@ const accountModule = {
         },
         getTasksStatistics(state) {
             return state.tasksStatistics;
+        },
+        getAllGroups(state){
+            return state.allGroups;
         },
         getSearchValue(state){
             return state.searchValue;
