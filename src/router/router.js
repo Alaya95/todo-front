@@ -5,7 +5,7 @@ import Account from "../pages/Account";
 import Board from "../pages/Board";
 import TaskForm from "../components/tasks/TaskForm";
 import MoreDetailed from "../pages/MoreDetailed";
-import MoreGroups from "../pages/MoreGroups";
+//import MoreGroups from "../pages/MoreGroups";
 import MoreBoards from "../pages/MoreBoards";
 import AccountSettings from "../pages/AccountSettings";
 
