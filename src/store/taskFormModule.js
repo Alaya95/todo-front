@@ -2,31 +2,43 @@ import api from "../modules/api";
 
 const taskFormModule = {
     state: () => ({
-        taskForm: [],
-        task:[],
+        task: [],
         isLoaded: false
     }),
     mutations: {
         fetchTaskForm(state, data) {
-            state.taskForm = data;
+
+            const comments = data.result.filter(function (comment) {
+                return comment.task_id === parseInt(data.task_id);
+            });
+            state.task = {...state.task, comment: comments};
             state.isLoaded = true
+
         },
 
-        getTask(state,data) {
-            state.task = data;
+        getTask(state, task) {
+            state.task = {...state.task, task: task}
             state.isLoaded = true
-        }
+        },
+        createComment(state, data) {
+            state.task = {...state.task, comment: [...state.task.comment, data]};
+            console.log(data)
+        },
+
 
     },
     actions: {
 // получить все комментарии
-        async fetchTaskFormComments({commit}) {
+        async fetchTaskFormComments({commit}, task_id) {
             try {
                 const result = await api('comments')
-                commit('fetchTaskForm', result)
-                if (result) {
-                    console.log(result)
 
+                if (result) {
+                    const data = {
+                        task_id, result
+                    }
+
+                    commit('fetchTaskForm', data)
                 }
             } catch (error) {
                 console.log(error)
@@ -47,9 +59,9 @@ const taskFormModule = {
         async createTaskFormComment({commit}, data) {
             try {
                 const result = await api('comment/store', "POST", data);
-                console.log(result, commit);
 
-                if (result) {
+                if (!result.message) {
+                    commit("createComment", result);
                     console.log(result)
                 }
 
@@ -63,9 +75,9 @@ const taskFormModule = {
             try {
 
                 const result = await api('comment/' + data.id, "put", data)
-                console.log(result, commit)
-                if (result) {
-                    console.log(result)
+                if (!result.message) {
+                    commit("createComment", result);
+
                 }
             } catch (error) {
                 console.log(error)
@@ -88,11 +100,12 @@ const taskFormModule = {
     },
     getters: {
         getTaskFormComments(state) {
-            return state.taskForm
+            return state.task.comment
         },
         getTask(state) {
-            return state.task[0]
-        }
+            return state.task
+        },
+
 
     }
 
