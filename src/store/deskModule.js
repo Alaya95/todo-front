@@ -65,16 +65,22 @@ export default {
                 title: data.title
             }
             state.columns.push(column);
+
         },
         editColumn(state, data) {
             state.columns.forEach((column) => {
                 column.id === data.id && (column.title = data.title)
             })
         },
-        //deleteColumn(state, data) {
-        //    console.log('state', state)
-        //    console.log(data)
-        //},
+        deleteColumn(state, data) {
+            console.log('state', state)
+            console.log(state.columns.findIndex((column) => column.id == data.id))
+
+            state.columns.splice(state.columns.findIndex((column) => column.id == data.id), 1)
+
+
+            console.log(data)
+        },
         moveTask(state, {e, id, order}) {
 
             const card_id = parseInt(e.dataTransfer.getData("card_id"));
@@ -97,9 +103,9 @@ export default {
         async moveTask({commit}, obj) {
             commit("moveTask", obj);
         },
-        async fetchDesk({commit}) {
+        async fetchDesk({commit}, data) {
             try {
-                const result = await api('board_1')
+                const result = await api('board/' + data.id )
                 if (result) {
                     commit("fetchDesk", result);
                 }
@@ -167,10 +173,9 @@ export default {
             try {
                 const result = await api('column/' + data.id, "delete", data)
 
-                //if(result.message) {
-                //    commit('deleteColumn', result)
-                //}
-                console.log(result, commit)
+                if(result.message == "Колонка удалена") {
+                    commit('deleteColumn', data)
+                }
             } catch (error) {
                 console.log(error)
             }
