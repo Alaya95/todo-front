@@ -43,8 +43,8 @@ export default {
                 title: data.name,
                 text: data.description,
                 status: data.task_status,
-                attachable: 0,
-                comments: 0,
+                attachable: data.attachments,
+                comments: data.comments,
                 order: data.order,
                 deadline: data.deadline,
             };
