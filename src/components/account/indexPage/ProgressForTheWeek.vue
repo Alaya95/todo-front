@@ -9,23 +9,23 @@
       <div class="radius">
         <div class="radiusBlock">
           <p>Создано</p>
-          <!--{{this.getTasksStatistics}};-->
+
           <div>
-            <p><!--{{getTaskCount()}}-->{{this.getTasksStatistics.countNew}}</p>
+            <p>{{this.getTasksStatistics.countNew}}</p>
           </div>
         </div>
 
         <div class="radiusBlock">
           <p>Активно</p>
           <div>
-            <p><!--{{getActiveTaskCount()}}-->{{this.getTasksStatistics.countInProcess}}</p>
+            <p>{{this.getTasksStatistics.countInProcess}}</p>
           </div>
         </div>
 
         <div class="radiusBlock">
           <p>Выполнено</p>
           <div>
-            <p><!--{{getCompleteTaskCount()}}-->{{this.getTasksStatistics.countCompleted}}</p>
+            <p>{{this.getTasksStatistics.countCompleted}}</p>
           </div>
         </div>
       </div>
@@ -36,42 +36,23 @@
 </template>
 
 <script>
-//import store from "../../../store/store";
+
 import {mapGetters} from "vuex";
 
 export default {
   name: "ProgressForTheWeek",
   methods: {
 
-    //getTaskCount(){
-    //  return this.getTasks.length;
-    //},
-    //getActiveTaskCount(){
-    //  const arr = this.getTasks.filter(function (item){
-    //    return item.task_status === '1';
-    //  })
-    //  return arr.length;
-    //},
-    //getCompleteTaskCount(){
-    //  const arr = this.getTasks.filter(function (item){
-    //    return item.task_status === '2';
-    //  })
-    //  return arr.length;
-    //},
 
-  //  fetchTasks() {
-  //    this.$store.dispatch('fetchTasks');
-  //  },
     fetchTasksStatistics() {
       this.$store.dispatch('fetchTasksStatistics');
     },
   },
   mounted() {
-    //this.fetchTasks();
+
     this.fetchTasksStatistics();
   },
   computed: {
-    //...mapGetters(['getTasks',]),
     ...mapGetters(['getTasksStatistics']),
   }
 }

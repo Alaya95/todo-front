@@ -7,7 +7,7 @@
   <div class="test tusk">
   <div class="search">
     <form >
-      <input type="text" placeholder="Искать здесь..." v-model="searchValue">
+      <input type="text" placeholder="Поиск по всем группам..." v-model="searchValue">
       <button type="submit"><i class="fas fa-search" @click="search(searchValue)"></i></button>
     </form>
   </div>
@@ -45,22 +45,22 @@ export default {
     }
   },
   methods: {
-    fetchGroups() {
-      this.$store.dispatch('fetchGroups');
+    fetchAllGroups() {
+      this.$store.dispatch('fetchAllGroups');
     },
     ...mapActions(['findSearchValue']),
 
     search(value){
       this.findSearchValue(value);
-      this.searchValue = '';
+
     },
     searchGroup(value){
         if (value) {
-          return ([...this.getGroups].filter(function (item) {
+          return ([...this.getAllGroups].filter(function (item) {
             return item.name.toLowerCase().includes(value.toLowerCase())
           }))
         } else {
-          return this.getGroups;
+          return this.getAllGroups;
         }
     }
   },
@@ -71,13 +71,15 @@ export default {
     },
 
     ...mapGetters([
-      'getGroups',
+      //'getGroups',
+      'getAllGroups',
       'getSearchValue',
     ]),
   },
 
   mounted() {
-    this.fetchGroups();
+
+    this.fetchAllGroups();
   },
 
 }

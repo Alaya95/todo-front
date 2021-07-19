@@ -17,7 +17,7 @@
 
         <AccountGroupBlock/>
 
-        <AccountBoardBlock/>
+       <!-- <AccountBoardBlock/> -->
 
 
 
@@ -35,12 +35,12 @@ import DatetimeAccount from "./indexPage/DatetimeAccount";
 import CompleteTask from "./indexPage/CompleteTaskBlock";
 import ActiveTask from "./indexPage/ActiveTask";
 import AccountGroupBlock from "./indexPage/AccountGroupBlock";
-import AccountBoardBlock from "./indexPage/AccountBoardBlock";
+//import AccountBoardBlock from "./indexPage/AccountBoardBlock";
 
 export default {
   name: "IndexAccount",
   components: {
-    AccountBoardBlock,
+    //AccountBoardBlock,
     AccountGroupBlock,
     ProgressForTheWeek,
     DatetimeAccount,
