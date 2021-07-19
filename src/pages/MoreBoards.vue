@@ -12,11 +12,13 @@
             <button type="submit"><i class="fas fa-search"></i></button>
           </form>
         </div>
+
         <div class="show-groups">
-          <DetailsBoardSpoiler/>
-          <DetailsBoardSpoiler/>
-          <DetailsBoardSpoiler/>
-          <DetailsBoardSpoiler/>
+          <DetailsBoardSpoiler
+          v-for="board in getAllBoard"
+          :key="board.id"
+          :board="board"
+          />
         </div>
 
       </div>
@@ -29,12 +31,26 @@
 <script>
 import NavbarAccount from "../components/account/NavbarAccount";
 import DetailsBoardSpoiler from "../components/moreDetailed/DetailsBoardSpoiler";
+import {mapGetters} from "vuex";
+
 export default {
   name: "MoreBoards",
   components: {
     DetailsBoardSpoiler,
     NavbarAccount,
   },
+  methods: {
+    fetchBoards() {
+      this.$store.dispatch('fetchBoards')
+    },
+  },
+  mounted() {
+    this.fetchBoards()
+  },
+  computed: {
+    ...mapGetters(['getAuthStatus', "getAllBoard"])
+  }
+
 }
 
 </script>
