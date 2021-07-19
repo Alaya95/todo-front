@@ -38,7 +38,10 @@ export default {
   },
   methods: {
     fetchDesk() {
-      this.$store.dispatch('fetchDesk')
+      const data = {
+         id: this.$route.params.id
+      };
+      this.$store.dispatch('fetchDesk', data)
     },
     openCreateColumnForm() {
       if(this.openCreateColumn) {
