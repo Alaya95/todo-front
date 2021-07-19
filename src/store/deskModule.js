@@ -9,9 +9,9 @@ export default {
         getDesk(state) {
             return state.columns;
         },
-        getDeskStatus(state) {
-            return state.isLoaded
-        }
+        /*  getDeskStatus(state) {
+              return state.isLoaded
+          }*/
     },
     mutations: {
         //setDesk(state, data) {
@@ -65,7 +65,6 @@ export default {
                 title: data.title
             }
             state.columns.push(column);
-
         },
         editColumn(state, data) {
             state.columns.forEach((column) => {
@@ -73,18 +72,10 @@ export default {
             })
         },
         deleteColumn(state, data) {
-            console.log('state', state)
-            console.log(state.columns.findIndex((column) => column.id == data.id))
-
             state.columns.splice(state.columns.findIndex((column) => column.id == data.id), 1)
-
-
-            console.log(data)
         },
         moveTask(state, {e, id, order}) {
-
             const card_id = parseInt(e.dataTransfer.getData("card_id"));
-
             const board = state.columns.find((column) => id === column.id);
 
             let card = null;
@@ -105,7 +96,7 @@ export default {
         },
         async fetchDesk({commit}, data) {
             try {
-                const result = await api('board/' + data.id )
+                const result = await api('board/' + data.id)
                 if (result) {
                     commit("fetchDesk", result);
                 }
@@ -173,7 +164,7 @@ export default {
             try {
                 const result = await api('column/' + data.id, "delete", data)
 
-                if(result.message == "Колонка удалена") {
+                if (result.message == "Колонка удалена") {
                     commit('deleteColumn', data)
                 }
             } catch (error) {
