@@ -1,72 +1,52 @@
 <template>
   <header>
     <div class="header-menu">
-      <router-link class="header-menu_logo" :to="{ name: 'main' }">
+      <router-link :to="{ name: 'main' }" class="header-menu_logo">
         <i class="fas fa-tasks icon"></i>
         Kanban
       </router-link>
-
-      <button
-
-        aria-controls="navbarTogglerDemo02"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        class="header-dropdown"
-        data-bs-target="#navbarTogglerDemo02"
-        data-bs-toggle="collapse"
-        type="button"
-
-      >
-        <span></span>
-      </button>
-
-
       <div class="header-menu_list">
         <ul>
           <li v-show="getAuthStatus" class="">
             <a
-
-              v-pre
-              id="navbarDropdown"
-              aria-expanded="false"
-              aria-haspopup="true"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-
+                v-pre
+                id="navbarDropdown"
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-toggle="dropdown"
+                role="button"
             >
               <i class="fas fa-chevron-down"></i>
             </a>
             <div aria-labelledby="navbarDropdown" class="dropdownNavbar">
-              <a href="#"></a>
-
-              <router-link :to='{name: "account"}'>{{getUserData.name}}</router-link>
-
-             <!-- <form id="logout-form" action="#" method="POST"></form>-->
+              <router-link :to='{name: "account"}'>{{ getUserData.name }}</router-link>
             </div>
           </li>
-
           <li
-            @blur="closeLogin"
-            class="account-enter-button"
-            v-show="!getAuthStatus"
+              v-show="!getAuthStatus"
+              class="account-enter-button"
+              @blur="closeLogin"
           >
-
-            <a @click="openLogin" >Войти</a>
-
-            <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin" />
+            <a @click="openLogin">Войти</a>
+            <LoginForm v-show="isOpenLogin" v-bind:closeLogin="closeLogin"/>
           </li>
-
           <li v-show="!getAuthStatus">
-            <a @click="openRegister">Регистрация</a>
+            <a @click="openRegister">Зарегистрироваться</a>
           </li>
         </ul>
       </div>
     </div>
-    <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister" />
 
+    <div v-show="true" class="dropdownMenu">
+      <router-link :to='{name: "accountSettings"}' class="navbar-link__exit">Настройки</router-link>
+      <a class="navbar-link__exit" @click="logout">
+        <i class="fas fa-sign-out-alt"></i>
+        Выход
+      </a>
+    </div>
+
+    <RegistrForm v-show="isOpenRegister" v-bind:closeRegister="closeRegister"/>
   </header>
-
 </template>
 
 <script>
@@ -90,13 +70,9 @@ export default {
   computed: {
     ...mapGetters([
       'getAuthStatus',
-      'getUserData', 
+      'getUserData',
     ])
   },
-  //watch: {
-  //  getAuthStatus: (next)=>console.log(next),
-  //  getUserData: (next)=>console.log(next),
-  //},
   methods: {
     openRegister() {
       this.isOpenLogin = false;
@@ -113,15 +89,17 @@ export default {
       this.isOpenLogin = false;
       console.log(this.isOpenLogin)
     },
+    logout() {
+      this.$store.dispatch("logout");
+    }
   },
 };
 </script>
-
 
 <style lang="scss">
 @import "src/layout/scss/_header.scss";
 
 //<style lang="scss" scoped>
-  //@import "src/layout/scss/header.scss";
+//@import "src/layout/scss/header.scss";
 
 </style>
