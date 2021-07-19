@@ -70,9 +70,6 @@ export default {
     dropdownMenuOpen() {
       this.isOpen = !this.isOpen;
     },
-    dropDownClose() {
-      this.isOpen = !this.isOpen;
-    },
     openRegister() {
       this.isOpenLogin = false;
       this.isOpenRegister = true;
