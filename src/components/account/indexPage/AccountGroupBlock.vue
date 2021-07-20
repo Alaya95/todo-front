@@ -8,7 +8,7 @@
         <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
       </div>
 
-      <div class="tusks" >
+      <div class="tusks"  v-if="getGroups.length">
         <AccountGroup
             v-for="group in getGroups.slice(0,4)"
             :key="group.item"
@@ -17,6 +17,7 @@
         />
 
       </div>
+      <p v-else>У вас нет групп</p>
     </div>
   </div>
 
