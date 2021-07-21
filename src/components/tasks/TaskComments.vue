@@ -2,14 +2,14 @@
   <div class="comment">
     <div class="commentHeader">
       <img alt="avatar" src="../../assets/avatar.png">
-      <a>{{ user.name }}</a>
-      <p>{{ comment.updated_at | date }}</p>
+      <a>{{ comment.user_name }}</a>
+      <p> {{ new Date(comment.created_at).toLocaleString() }}</p>
     </div>
 
     <div :id="comment.id" ref="commentId" class="commentText">
       <p v-if="editComment">{{ comment.content }}</p>
       <textarea
-          v-else :id='("nameTask" + comment.content)'
+          v-else
           ref="editComment" :value="comment.content"
           name="editComment" type="text"
       ></textarea>
@@ -17,16 +17,15 @@
 
     <div class="commentEdit">
       <button v-if="!isHiddenChange" type="button" @click="openInput">Редактировать</button>
-      <button v-if="isHiddenSave" type="button" @click="changeTaskFormComments(comment, index)">Сохранить</button>
-      <button type="button" @click="deleteTaskFormComments(comment)">Удалить</button>
+      <button v-if="isHiddenSave" type="button" @click="changeTaskFormComments">Сохранить</button>
+      <button type="button" @click="deleteTaskFormComments">Удалить</button>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import store from "../../store/store";
 import moment from 'moment';
+import {mapGetters} from "vuex";
 
 export default {
   name: "TaskComments",
@@ -37,31 +36,27 @@ export default {
       isHiddenSave: false,
     };
   },
-  props: ['index', 'user', 'comment'],
+  props: ['user', 'comment'],
   methods: {
-    changeTaskFormComments(comment, index) {
+    changeTaskFormComments() {
       const data = {
-        id: comment.id,
+        id: this.$refs.commentId.id,
         content: this.$refs.editComment.value,
-        index: index
       }
-
-      store.dispatch('editTaskFormComment', data)
+      this.$store.dispatch('editTaskFormComment', data)
       this.closeInput();
     },
-    deleteTaskFormComments(comment) {
+    deleteTaskFormComments() {
       const data = {
-        id: comment.id
+        id: this.$refs.commentId.id,
       }
-
-      store.dispatch('deleteTaskFormComment', data)
+      this.$store.dispatch('deleteTaskFormComment', data)
     },
     openInput() {
       this.isHiddenChange = true;
       this.editComment = false;
       this.isHiddenSave = true;
     },
-
     closeInput() {
       this.isHiddenChange = false;
       this.editComment = true;
@@ -70,8 +65,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getTaskFormComments',
-    ]),
+      'getUserData'
+    ])
   },
   filters: {
     date: function (value) {
