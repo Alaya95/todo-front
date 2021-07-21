@@ -18,7 +18,7 @@ let router = new Router({
         {path: "/", name: "main", component: Index},
         {path: "/account", name: "account", component: Account},
         {path: "/board/:id", name: "board", component: Board},
-        {path: "/tasks/:id", name: "tasks", component: TaskForm, props: route => ({taskId: route.params.id})},
+        {path: "/board/task/:id", name: "task", component: TaskForm},
      //   {path: "/usergroups", name: "usergroups", component: MoreGroups},
         {path: "/userboards", name: "userboards", component: MoreBoards},
         {path: "/detailsTasks", name: "detailsTasks", component: MoreDetailed},
