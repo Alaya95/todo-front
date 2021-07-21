@@ -1,35 +1,22 @@
 <template>
-  <form action="#" method="#">
+  <form :id="getTask[0].task_id" ref="taskId">
     <div class="title">
-      <p>{{ getTask.task[0].task_name }}</p>
-      <p>в колонке <a href="#">{{ getTask.task[0].column_name }}</a></p>
+      <p>{{ getTask[0].task_name }}</p>
+      <p>в колонке <a href="#">{{ getTask[0].column_name }}</a></p>
     </div>
 
     <div>
       <div class="center">
         <div class="participants">
-          <p>Инициатор задачи: {{ getTask.task[0].initiator_name }}</p>
-          <p>Исполнитель задачи: {{ getTask.task[0].executor_name }}</p>
-          <!--                    <div class="participantsLinks">-->
-          <!--                        <a href="#">-->
-          <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-          <!--                        </a>-->
-          <!--                        <a href="#">-->
-          <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-          <!--                        </a>-->
-          <!--                        <a href="#">-->
-          <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-          <!--                        </a>-->
-          <!--                        <a href="#">-->
-          <!--                            <img src="../../assets/avatar.png" alt="avatar">-->
-          <!--                        </a>-->
-          <!--                        <a href="#">+</a>-->
-          <!--                    </div>-->
+          <p>Инициатор задачи: {{ getTask[0].initiator_name }}</p>
+          <p>Исполнитель задачи: {{
+              getTask[0].executor_name === null && 'не назначен' || getTask[0].executor_name
+            }}</p>
         </div>
 
         <div class="description">
           <p>Описание</p>
-          <p>{{ getTask.task[0].task_description }}</p>
+          <p>{{ getTask[0].task_description }}</p>
         </div>
 
         <div class="files">
@@ -40,11 +27,10 @@
           <TaskFiles/>
         </div>
 
-        <div class="checkList">
+        <div v-show="false" class="checkList">
           <!-- Тут добавляются чек листы -->
-          <!--                    <TaskCheckList/>-->
-          <!--                    <TaskCheckList/>-->
-
+          <TaskCheckList/>
+          <TaskCheckList/>
         </div>
 
         <!-- Блок записи комментария -->
@@ -58,13 +44,10 @@
         <div class="comments">
 
           <TaskComments
-              v-for="(comment, index) in getTaskFormComments"
-              :key="index"
+              v-for="comment in getTask[0].comments"
+              :key="comment.id"
+              ref="commentId"
               :comment="comment"
-              :index="index"
-              :user="getUserData"
-              todo_prop.sync="comment"
-              v-on:delete-coment="deleteTaskFormComments"
           />
 
         </div>
@@ -78,9 +61,8 @@
 <script>
 import TaskNav from "../../components/tasks/TaskNav";
 import TaskComments from "../../components/tasks/TaskComments";
-// import TaskCheckList from "../../components/tasks/TaskCheckList";
+import TaskCheckList from "../../components/tasks/TaskCheckList";
 import TaskFiles from "../../components/tasks/TaskFiles";
-import store from "../../store/store";
 import {mapGetters} from "vuex";
 
 
@@ -96,39 +78,32 @@ export default {
   components: {
     TaskNav,
     TaskComments,
-    // TaskCheckList,
+    TaskCheckList,
     TaskFiles,
   },
   methods: {
-    fetchTaskFormComments() {
-      store.dispatch('fetchTaskFormComments', this.$attrs.taskId);
-    },
-    fetchTask(data) {
-      store.dispatch('fetchTask', data);
+    fetchTask() {
+      const data = {
+        id: this.$route.params.id
+      }
+      this.$store.dispatch('fetchTask', data);
     },
     createTaskFormComments() {
       const data = {
-        content: document.getElementById(this.$refs.comments.id).value,
+        task_id: this.$refs.taskId.id,
+        content: this.$refs.comments.value,
         user_id: this.getUserData.id,
-        task_id: this.$attrs.taskId,
       };
-      store.dispatch('createTaskFormComment', data)
-    },
-    deleteTaskFormComments(id) {
-      const data = {id: id}
-      store.dispatch('deleteTaskFormComment', data)
+      this.$store.dispatch('createTaskFormComment', data)
     },
   },
   mounted() {
-    this.fetchTaskFormComments();
-    this.fetchTask(this.$attrs.taskId)
+    this.fetchTask()
   },
   computed: {
     ...mapGetters([
-      'getTaskFormComments',
       'getUserData',
       'getTask',
-
     ]),
   }
 }
