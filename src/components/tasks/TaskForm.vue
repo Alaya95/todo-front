@@ -36,6 +36,8 @@
           <div class="fileTitle">
             <p>Вложения</p>
           </div>
+
+
           <TaskFiles/>
           <TaskFiles/>
         </div>
@@ -118,6 +120,11 @@ export default {
       const data = {id: id}
       store.dispatch('deleteTaskFormComment', data)
     },
+      getUserName(user_id){
+
+          console.log(user_id)
+          store.dispatch('', user_id)
+      },
   },
   mounted() {
     this.fetchTaskFormComments();

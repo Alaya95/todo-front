@@ -8,7 +8,7 @@ const taskFormModule = {
     mutations: {
         fetchTaskForm(state, data) {
             const comments = data.result.filter(function (comment) {
-                return comment.task_id === parseInt(data.task_id);
+                return comment.task_id === (data.task_id);
             });
             state.task = {...state.task, comment: comments};
             state.isLoaded = true
@@ -25,7 +25,8 @@ const taskFormModule = {
         },
         deleteComment(state, data) {
             state.task.comment.splice(state.task.comment.findIndex((item) => item.id == data.id), 1)
-        }
+        },
+
     },
     actions: {
         async fetchTaskFormComments({commit}, task_id) {
@@ -85,6 +86,8 @@ const taskFormModule = {
                 console.log(error)
             }
         },
+
+
     },
     getters: {
         getTaskFormComments(state) {
@@ -93,6 +96,7 @@ const taskFormModule = {
         getTask(state) {
             return state.task
         },
+
     }
 }
 
