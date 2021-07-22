@@ -7,7 +7,7 @@
       <label>
         <input class="radio" name="bubu" type="radio">
         <span class="pseudo-radio"></span>
-        {{ task.task_name }}
+        {{ task.name }}
 
       </label>
       <div>
@@ -23,7 +23,7 @@
           </i></button>-->
       </div>
         </summary>
-        <p class="task_description">{{ task.task_description }}</p>
+        <p class="task_description">{{ task.deadline }}</p>
       </details>
     </div>
   </div>

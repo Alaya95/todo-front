@@ -25,13 +25,15 @@
         <div class="profile-edit_name">
           <label for="username"> Изменить имя</label>
           <input id="username" name="username" ref="username" type="text">
-          <button>Подтвердить изменения</button>
+          <!--<button>Подтвердить изменения</button>-->
+          <button>Изменить</button>
         </div>
         <div class="profile-edit_email">
 
           <label for="emailUser"> Изменить почту</label>
           <input id="emailUser" name="emailUser" ref="userEmail" type="email">
-          <button>Подтвердить изменения</button>
+          <!--<button>Подтвердить изменения</button>-->
+          <button>Изменить</button>
         </div>
 
         <div class="profile-edit_pass">
@@ -43,7 +45,8 @@
           <label for="confirmNewPass">Повторите пароль</label>
           <input id="confirmNewPass" name="confirmNewPass" ref="confirmNewPass" type="password">
 
-          <button>Подтвердить изменения</button>
+          <!--<button>Подтвердить изменения</button>-->
+          <button>Изменить</button>
         </div>
       </div>
 

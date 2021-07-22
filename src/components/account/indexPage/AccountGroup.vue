@@ -3,14 +3,25 @@
     <div class="accounts" >
       <details>
         <summary>
-          <label>
-
-            {{ group.name}}
-
+          <label class="visible_label" v-if="show">
+            <div class="group_name">{{group.name}}</div>
           </label>
+          <label v-if="!show">
+            <input type="hidden" ref="group_id" :id="group.id">
+            <input class="edit_group_name" type="text" :value="group.name" style="background: #414141"
+                   id="group_name" name="group_name" ref="group_name"
+            >
+          </label>
+          <div class="edit_btns">
+          <button
+              v-if="!show"><i class="fas fa-pen-fancy" v-on:click="editGroupName"></i>
+          </button>
+          <button
+              v-if="!show"><i class="far fa-trash-alt" v-on:click="removeGroup"></i>
+          </button>
+          </div>
           <div>
-            <a href="#"><i class="fas fa-edit"></i></a>
-
+           <button><i class="fas fa-edit" v-on:click="show = !show;"></i></button>
           </div>
         </summary>
         <div>
@@ -51,19 +62,97 @@
 import GroupMembers from "./GroupMembers";
 import GroupBoards from "./GroupBoards";
 export default {
+
   name: "getGroups",
+
   components: {GroupBoards, GroupMembers},
+  data() {
+    return {
+      show: true,
+
+    }
+  },
+
+
   props: {
     group: {
       type: Object,
       required: true,
     }
   },
+
+  methods:{
+    editGroupName(){
+      const data = {
+        id: this.$refs.group_id.id,
+        name: this.$refs.group_name.value
+      }
+      this.$store.dispatch('editGroup' , data);
+    },
+
+    removeGroup(){
+      const data = {
+        id: this.$refs.group_id.id,
+      }
+      this.$store.dispatch('deleteGroup' , data);
+    }
+  }
 }
 
 </script>
 
 <style scoped>
+.edit_btns{
+  margin-left: 40%;
+}
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.fa-trash-alt:hover,
+.fa-pen-fancy:hover,
+.fa-edit:hover,
+.fas:hover{
+  color: #03ff6b;
+  transition-duration: 0.75s;
+}
+
+
+.fa-trash-alt{
+  color: #3f8778;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 1rem;
+}
+.fa-pen-fancy{
+  color: #3f8778;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.edit_group_name{
+  border: none;
+  width: 100%;
+}
+
+.group_name{
+  background: #414141;
+  border: none;
+  outline: none;
+  width: 100%;
+}
 
 .accounts {
   border: 1px solid #e0e0e0;
@@ -132,6 +221,11 @@ hr {
 label {
   margin-top: 1rem;
   cursor: pointer;
+  width: 50%;
+}
+.visible_label{
+  margin-top: 1rem;
+  width: auto;
 }
 
 details{
