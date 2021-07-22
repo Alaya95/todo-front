@@ -35,8 +35,22 @@ const accountModule = {
         },
         setSearchValue(state, value){
             state.searchValue = value;
-            //console.log(value);
+            state.isLoaded = true;
         },
+        createGroup(state, data){
+            state.groups.push(data);
+            console.log(state);
+        },
+        editGroup(state, data){
+
+            state.groups.forEach((group) => {
+                group.id === data.id && (group.name = data.name)
+            })
+        },
+        deleteGroup(state, data) {
+            state.groups.splice(state.groups
+                .findIndex((group) => group.id == data.id), 1)
+        }
 
 
     },
@@ -68,7 +82,7 @@ const accountModule = {
         },
         async fetchTasksAll({commit}) {
             try {
-                const result = await api("tasks");
+                const result = await api("tasks/naked_user");
                 commit('setTasksAll', result)
             } catch (error) {
                 console.log(error);
@@ -100,9 +114,15 @@ const accountModule = {
             try {
                 // в юрл нужно передавать id самой задачи.
                 const result = await api('group/' + data.id, "delete", data)
-                console.log(result, commit)
                 if (result) {
-                    console.log(result)
+                    if (result.message.includes(
+                        'SQLSTATE[23000]: Integrity constraint violation:' +
+                        ' 1451 Cannot delete or update a parent row')){
+                        console.log('Удалите доски из группы')
+                    }else {
+                        commit('deleteGroup', result)
+                        console.log(result)
+                    }
                 }
             } catch (error) {
                 console.log(error)
@@ -114,6 +134,35 @@ const accountModule = {
                 const result = await api('task/' + data.id, "delete", data)
                 console.log(result, commit)
                 if (result) {
+                    console.log(result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        //создать группу
+        async createGroup({ commit }, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('group/store', 'post', data)
+
+                console.log(result, commit)
+                if (!result.message) {
+                    commit('createGroup', result)
+                    console.log(result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async editGroup({ commit }, data) {
+            try {
+                // в юрл нужно передавать id самой задачи.
+                const result = await api('group/' + data.id, 'put', data)
+
+                console.log(result, commit)
+                if (!result.message) {
+                    commit('editGroup', result)
                     console.log(result)
                 }
             } catch (error) {

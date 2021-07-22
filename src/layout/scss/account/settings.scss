@@ -84,7 +84,10 @@ p{
         padding: 5px;
         color: #32B9A1;
         width: 240px;
+        //width:fit-content;
+        max-width: 240px;
         height: 40px;
+        //min-height: 40px;
       }
     }
 

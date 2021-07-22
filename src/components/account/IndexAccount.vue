@@ -52,5 +52,8 @@ export default {
 </script>
 
 <style scoped>
-
+.content {
+  height: auto;
+  min-height: 450px;
+}
 </style>
