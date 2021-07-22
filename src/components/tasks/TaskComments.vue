@@ -15,7 +15,7 @@
       ></textarea>
     </div>
 
-    <div class="commentEdit">
+    <div v-show="comment.user_name === getUserData.name && true || false" class="commentEdit">
       <button v-if="!isHiddenChange" type="button" @click="openInput">Редактировать</button>
       <button v-if="isHiddenSave" type="button" @click="changeTaskFormComments">Сохранить</button>
       <button type="button" @click="deleteTaskFormComments">Удалить</button>
