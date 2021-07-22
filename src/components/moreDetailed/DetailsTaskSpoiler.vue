@@ -12,8 +12,9 @@
       </div>
 
       <div class="spoiler-info_data">
-        <div>Дата создания: {{ task.created_at }}</div>
-        <div> срок сдачи: {{ task.task_period }}</div>
+        <div>Дата создания: {{ new Date(task.created_at).toLocaleDateString() }}</div>
+        <div> срок сдачи: {{ task.task_deadline === null && 'бессрочно' || task.task_deadline }}
+        </div>
       </div>
 
     </div>

@@ -1,5 +1,5 @@
 
-form {
+.form {
   color: #ffffff;
   background: #414141;
   box-sizing: content-box;
@@ -357,6 +357,10 @@ form {
               width: 30px;
               height: 30px;
               border-radius: 10px;
+            }
+
+            & p {
+              margin: 0;
             }
 
             & a {

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import store from "../../../store/store";
+import {mapGetters} from "vuex";
 
 export default {
   name: "CreateTask",
@@ -38,28 +38,23 @@ export default {
         column_id: this.id,
         name: this.$refs.nameTask.value,
         description: this.$refs.descriptionTask.value,
-        deadline:  this.$refs.deadlineTask.value,
+        deadline: this.$refs.deadlineTask.value,
         period: this.$refs.periodTask.value,
         board_id: 1,
-        executor_id: 1,
-        initiator_id: 1,
+        executor_id: this.getUserData.id,
+        initiator_id: this.getUserData.id,
         task_topics_id: 1,
         task_status: 1
       };
-      store.dispatch('createTask', data)
-
-      /* при нажатии на кнопку добавить, отправляется запрос и закрывается модалка */
+      this.$store.dispatch('createTask', data)
       this.closeCreateTaskForm()
-      // const index = Object.values(data).findIndex(elem => !elem);
-      // index === -1 && store.dispatch('createTask', data)
-
-      // Object.values(data).forEach( elem => {
-      //   console.log(elem)
-      //   elem = ''
-
-      // } )
     }
   },
+  computed: {
+    ...mapGetters([
+      'getUserData'
+    ])
+  }
 }
 </script>
 

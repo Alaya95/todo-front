@@ -62,7 +62,8 @@ export default {
         createColumn(state, data) {
             const column = {
                 id: data.id,
-                title: data.title
+                title: data.title,
+                tasks: []
             }
             state.columns.push(column);
         },

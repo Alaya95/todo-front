@@ -6,46 +6,24 @@ const taskFormModule = {
         isLoaded: false
     }),
     mutations: {
-        fetchTaskForm(state, data) {
-            const comments = data.result.filter(function (comment) {
-                return comment.task_id === parseInt(data.task_id);
-            });
-            state.task = {...state.task, comment: comments};
+        getTask(state, data) {
+            state.task = data
             state.isLoaded = true
         },
-        getTask(state, task) {
-            state.task = {...state.task, task: task}
-            state.isLoaded = true
-        },
-        createComment(state, data) {
-            state.task = {...state.task, comment: [...state.task.comment, data]};
-        },
+       createComment(state, data) {
+           state.task[0].comments.push(data)
+       },
         editComment(state, data) {
-            state.task.comment.splice(state.task.comment.findIndex((item) => item.id == data.id), 1, data)
+            state.task[0].comments.splice(state.task[0].comments.findIndex((comment) => comment.id == data.id), 1, data)
         },
         deleteComment(state, data) {
-            state.task.comment.splice(state.task.comment.findIndex((item) => item.id == data.id), 1)
+            state.task[0].comments.splice(state.task[0].comments.findIndex((comment) => comment.id == data.id), 1)
         }
     },
     actions: {
-        async fetchTaskFormComments({commit}, task_id) {
-            try {
-                const result = await api('comments')
-
-                if (result) {
-                    const data = {
-                        task_id, result
-                    }
-                    commit('fetchTaskForm', data)
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        },
         async fetchTask({commit}, data) {
             try {
-                const result = await api('task/' + data);
-
+                const result = await api('task/' + data.id);
                 if (result) {
                     commit('getTask', result)
                 }
@@ -56,7 +34,6 @@ const taskFormModule = {
         async createTaskFormComment({commit}, data) {
             try {
                 const result = await api('comment/store', "POST", data);
-
                 if (!result.message) {
                     commit("createComment", result);
                 }
@@ -77,7 +54,6 @@ const taskFormModule = {
         async deleteTaskFormComment({commit}, data) {
             try {
                 const result = await api('comment/' + data.id, "delete", data)
-
                 if (result.message) {
                     commit('deleteComment', data)
                 }
@@ -87,9 +63,6 @@ const taskFormModule = {
         },
     },
     getters: {
-        getTaskFormComments(state) {
-            return state.task.comment
-        },
         getTask(state) {
             return state.task
         },

@@ -1,5 +1,3 @@
-//import api from "../modules/api";
-
 import api from "../modules/api";
 
 const boardModule = {
@@ -19,27 +17,26 @@ const boardModule = {
     actions: {
         async fetchBoards({commit}) {
             try {
-                const result = await api('boards')
+                const result = await api('boards/user')
                 console.log(result)
-                commit('fetchBoards', result)
+                if(result) {
+                    commit('fetchBoards', result)
+                }
             } catch (error) {
-
                 console.log(error)
             }
-
         },
         async editBoards({commit}, data) {
             const result = await api('board/' + data.id, 'POST', data)
             console.log(result, data, commit)
         },
         async deleteBoard({commit}, data) {
-
             const result = await api('board/' + data.id, 'DELETE', data)
+
             if (result.message) {
                 commit('deleteBoard', data)
                 console.log(result, commit)
             }
-
         }
     },
     getters: {

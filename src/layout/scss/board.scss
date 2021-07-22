@@ -51,7 +51,7 @@
       font-size: 20px;
       margin: 5px 5px 10px 5px;
 
-      p {
+     p {
         margin: 10px;
         color: #32B9A1;
         padding: 4px;
@@ -138,10 +138,14 @@
         justify-content: space-between;
         width: -webkit-fill-available;
 
-        p {
+        a {
           color: #32B9A1;
-          padding:  4px 4px 4px 0;
-        ;
+          padding:  0 4px 4px 0;
+          text-decoration: none;
+          &:hover {
+            cursor: pointer;
+            color: #3f8778;
+          }
         }
 
         & input {
