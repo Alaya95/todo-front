@@ -6,7 +6,7 @@
       <input v-else ref="titleBoard" :value="board.name" name="titleBoard" type="text">
 
     </div>
-    <div class="board-icons">
+    <div v-show="false" class="board-icons">
 
       <button @click="editTitleBoard"><i class="fas fa-edit"></i></button>
       <button @click="deleteBoard"><i class="fas fa-trash-alt"></i></button>

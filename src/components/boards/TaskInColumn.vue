@@ -6,7 +6,7 @@
 
       <!-- заголовок задачи и выпадающее меню для ее редактирования-->
       <div class="task-title">
-        <p v-if="editTitleTask" :draggable="false">{{ task.title }}</p>
+        <router-link :to="'task/' + task.id" v-if="editTitleTask" :draggable="false">{{ task.title }}</router-link>
         <input
             v-else :id='("nameTask" + task.title)'
             ref="titleTask" name="titleTask"

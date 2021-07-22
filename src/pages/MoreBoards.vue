@@ -56,7 +56,10 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
+.test {
+  width: 100%;
+}
 
 .show-groups {
   width: 94%;
@@ -76,12 +79,17 @@ input {
 
 .search {
   background:  #212529;
+  width: 85%;
+  margin: 0 3%;
+
+
+  & form {
+    background:  #212529;
+    display: flex;
+    width: 100%;
+  }
 }
-form {
-  background:  #212529;
-  display: flex;
-  min-width: 100%;
-}
+
 .fa-search::before{
   font-size: 30px;
   border: none;
