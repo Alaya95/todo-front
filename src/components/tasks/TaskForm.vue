@@ -1,5 +1,5 @@
 <template>
-  <form :id="getTask[0].task_id" ref="taskId">
+  <div class="form" :id="getTask[0].task_id" ref="taskId">
     <div class="title">
       <p>{{ getTask[0].task_name }}</p>
       <p>в колонке <a href="#">{{ getTask[0].column_name }}</a></p>
@@ -55,7 +55,7 @@
 
       <TaskNav/>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
