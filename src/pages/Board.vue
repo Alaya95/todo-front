@@ -1,6 +1,6 @@
 <template>
   <div class="account-content">
-    <NavbarAccount />
+    <Navbar />
     <div class="board">
 
       <TaskColumn v-for="column in getDesk" :key="column.id" :column="column" />
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 import TaskColumn from "../components/boards/TaskColumn";
 import {mapGetters} from "vuex";
 import CreateColumn from "@/components/boards/forms/CreateColumn";
@@ -27,7 +27,7 @@ export default {
   name: "Board",
   components: {
     CreateColumn,
-    NavbarAccount,
+    Navbar,
     TaskColumn,
   },
   data() {

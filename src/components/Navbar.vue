@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "NavbarAccount",
+  name: "Navbar",
   methods: {
     logout(){
       this.$store.dispatch("logout");

@@ -1,6 +1,6 @@
 <template>
   <div class="account-content">
-    <NavbarAccount/>
+    <Navbar />
     <div class="profile">
       <div class="profile-info">
         <div class="profile-info_avatar">
@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 
 export default {
   name: "AccountSettings",
-  components: {NavbarAccount}
+  components: {Navbar}
 }
 </script>
 

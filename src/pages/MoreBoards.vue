@@ -2,7 +2,7 @@
 
   <div>
     <div class="account-content groups-search">
-      <NavbarAccount/>
+      <Navbar/>
 
 
       <div class="test tusk">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 import DetailsBoardSpoiler from "../components/moreDetailed/DetailsBoardSpoiler";
 import {mapGetters} from "vuex";
 
@@ -37,7 +37,7 @@ export default {
   name: "MoreBoards",
   components: {
     DetailsBoardSpoiler,
-    NavbarAccount,
+    Navbar,
   },
   methods: {
     fetchBoards() {

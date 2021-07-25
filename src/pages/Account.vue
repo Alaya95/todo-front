@@ -1,7 +1,7 @@
 <template>
   <div class="account-content">
 
-    <NavbarAccount />
+    <Navbar />
 
     <IndexAccount v-show="true" />
 
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 import IndexAccount from "../components/account/IndexAccount";
 //import {mapGetters} from "vuex";
 
@@ -17,7 +17,7 @@ export default {
   name: "Account",
   components: {
     IndexAccount,
-    NavbarAccount,
+    Navbar,
   },
 //  computed: {
 //    ...mapGetters([
