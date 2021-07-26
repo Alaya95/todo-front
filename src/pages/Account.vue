@@ -19,20 +19,6 @@ export default {
     IndexAccount,
     Navbar,
   },
-//  computed: {
-//    ...mapGetters([
-//      'getTasks',
-//    ]),
-//  },
-  //methods: {
-    //fetchTasks() {
-    //  this.$store.dispatch('fetchTasks');
-    //  console.log(this.$store.dispatch('fetchTasks'))
-    //},
-  //},
-  //mounted() {
-    //this.fetchTasks();
-  //}
 }
 </script>
 
