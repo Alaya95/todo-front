@@ -11,7 +11,7 @@
 <script>
 import Navbar from "../components/Navbar";
 import IndexAccount from "../components/account/IndexAccount";
-//import {mapGetters} from "vuex";
+
 
 export default {
   name: "Account",
@@ -23,5 +23,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../layout/scss/account.scss";
+  @import "../layout/scss/account.scss";
 </style>
