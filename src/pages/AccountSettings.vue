@@ -1,5 +1,5 @@
 <template>
-  <div class="account-content">
+  <div class="content">
     <Navbar />
     <div class="profile">
       <div class="profile-info">

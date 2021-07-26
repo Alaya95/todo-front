@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <div class="account-content groups-search">
+    <div class="content groups-search">
       <Navbar/>
 
 
