@@ -43,3 +43,6 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+@import "layout/scss/main";
+</style>
