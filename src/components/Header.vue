@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="header-menu">
+    <div class="header-menu flex-row_center">
       <router-link :to="{ name: 'main' }" class="header-menu_logo">
         <i class="fas fa-tasks icon"></i>
         Kanban
