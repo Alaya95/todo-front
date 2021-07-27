@@ -36,6 +36,9 @@ export default {
         name: this.$refs.name_group.value
       };
       this.$store.dispatch('createGroup', data);
+      this.$refs.name_group.value = '';
+      this.closePopup();
+
     },
     closePopup() {
       this.$emit('closePopup')

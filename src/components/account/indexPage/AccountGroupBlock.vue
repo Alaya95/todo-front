@@ -11,7 +11,7 @@
 
       <div class="tusks" >
         <AccountGroup
-            v-for="group in getGroups.slice(0,4)"
+            v-for="group in paginatedGroups"
             :key="group.item"
             group_prop.sync="group"
             v-bind:group="group"
@@ -25,6 +25,16 @@
               v-if="show"
               @closePopup="ClosePopup"
           />
+        <div class="pagination">
+          <div class="page"
+              v-for="page in pages"
+               :key="page"
+               :class="{'page_selected' : page === pageNumber} "
+               v-on:click="pageClick(page)"
+          >{{page}}
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +52,8 @@ export default {
   data() {
     return {
       show: false,
+      groupsCount: 4,
+      pageNumber: 1,
 
     }
   },
@@ -61,6 +73,10 @@ export default {
     fetchGroups() {
       this.$store.dispatch('fetchGroups')
     },
+
+    pageClick(page){
+      this.pageNumber = page;
+    }
   },
 
   mounted() {
@@ -70,11 +86,40 @@ export default {
     ...mapGetters([
       'getGroups',
     ]),
+
+    pages(){
+        return Math.ceil(this.getGroups.length / 4)
+    },
+
+    paginatedGroups(){
+      let from = (this.pageNumber - 1) * this.groupsCount;
+      let to = from + this.groupsCount;
+
+      return this.getGroups.slice(from, to);
+    }
   },
+
 
 }
 </script>
 <style scoped>
+.page_selected{
+  color: #3f8778;
+}
+
+.page:hover {
+  color: #3f8778;
+}
+.page {
+  padding: 10px;
+  border: 1px solid #3f8778;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.pagination{
+  display: flex;
+  justify-content: center;
+}
 
 
 .fa-plus-square:hover{
