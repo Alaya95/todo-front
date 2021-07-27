@@ -88,7 +88,8 @@ form {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  border-radius: 30px;;
+  border-radius: 30px;
+  width: 91%;
 }
 
 input{

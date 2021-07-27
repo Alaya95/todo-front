@@ -5,8 +5,8 @@
 
       <div class="title">
         <p>Ваши группы</p>
-       <!-- <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>-->
-        <i class="fas fa-ellipsis-h"></i>
+       <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
+       <!-- <i class="fas fa-ellipsis-h"></i>-->
       </div>
 
       <div class="tusks" >

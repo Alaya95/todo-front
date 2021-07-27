@@ -40,8 +40,8 @@
 
 <script>
 export default {
-  name: "groups",
-
+  //name: "groups",
+  name: "group",
   props: {
     group: {
       type: Object,
