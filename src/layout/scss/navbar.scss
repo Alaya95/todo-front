@@ -11,6 +11,10 @@
   max-height: 800px;
   position: static;
 
+  @media screen and (max-width: 479px){
+    display: none;
+  }
+
   &-link {
     font-size: 20px;
     width: 150px;
