@@ -102,6 +102,10 @@ export default {
 </script>
 
 <style scoped>
+.account_group_main {
+  width: 98%;
+}
+
 .edit_btns{
   margin-left: 40%;
 }
@@ -154,9 +158,7 @@ button {
   width: 100%;
 }
 
-.accounts {
-  border: 1px solid #e0e0e0;
-}
+
 .accounts details + details {
   border-top: 1px solid #e0e0e0;
 }
@@ -211,7 +213,7 @@ button {
   justify-content: space-between;
   align-items: center;
   border: 2px solid #32B9A1;
-  margin: 0 10px 20px 5px;
+  margin: 0 0 20px 0;
   border-radius: 8px;
 }
 hr {
@@ -238,7 +240,7 @@ summary {
   justify-content: space-between;
   min-height: 55px;
   margin-bottom: 1px;
-  width: 99%;
+  width: 95%;
   margin-left: 0.5rem;
 
 }

@@ -1,125 +1,226 @@
-.block {
-  padding: 10px;
-  margin-right: 20px;
+.account-content {
+  width: 98%;
+  margin: 0 1%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
-  .card {
-    background: #414141;
-    border-radius: 30px;
+.card, .bigBlock {
+  background: #414141;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  padding: 5px 0;
+}
+
+@media screen and (max-width: 479px) and (orientation: portrait) {
+  .card, .bigBlock {
+    border-radius: 10px;
+    margin: 0 auto 10px auto;
+  }
+  .bigBlock {
+    & .title {
+      margin-top: 5px;
+    }
+
+    & .tusks {
+      justify-content: center;
+      align-items: center;
+      width: 98%;
+      margin: 10px 1%;
+    }
+
+    & .date {
+      width: 90%;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .card, .bigBlock {
+    border-radius: 10px;
+    margin: 0 auto 10px auto;
   }
 
   .bigBlock {
-    background: #414141;
-    border-radius: 30px;
-    min-height: 300px;
-    min-width: 450px;
-    //max-height: 600px;
-    padding: 10px;
+    width: 97%;
+    margin: 0 2% 1% 1%;
+  }
+}
 
+@media screen and (max-width: 767px) {
+  .card, .bigBlock {
+    border-radius: 10px;
+  }
+}
 
-    .title {
-      width: initial;
-      height: 60px;
-      margin: 0 30px 20px 30px;
+.bigBlock {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  @media screen and (max-width: 479px) {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 98%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 58%;
+
+    &:nth-child(2n) {
+      width: 38%;
+    }
+
+    &:last-child {
+      width: 98%;
+    }
+  }
+
+  & .title, & .radius {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  & .title {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto 20px auto;
+    justify-content: space-between;
+    font-size: 1em;
+
+    @media screen and (max-width: 479px) {
+      font-size: 1em;
+      margin: 0 10px 10px 10px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 1em;
+      margin: 0 10px 10px 10px;
+    }
+
+    & p {
+      color: #32b9a1;
+      font-weight: 400;
+      font-size: x-large;
+
+      @media screen and (max-width: 479px) {
+        font-size: 1em;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 1em;
+      }
+    }
+
+    & i {
+      padding: 10px;
+
+      &:hover {
+        color: #32b9a1;
+      }
+    }
+  }
+
+  & .radius {
+    justify-content: space-around;
+    height: 90%;
+
+    &Block {
+      text-align: center;
+      margin-bottom: 10px;
+      height: 100%;
+
+      & p {
+        margin-bottom: 10px;
+        font-weight: 500;
+        @media screen and (max-width: 479px) {
+          font-size: 0.9em;
+          font-weight: 400;
+          margin-bottom: 10px;
+        }
+      }
+
+      & div {
+        border: 3px solid #32B9A1;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 50px;
+        min-height: 50px;
+        height: 75px;
+        width: 75px;
+        @media screen and (max-width: 479px) {
+          height: 50px;
+          width: 50px;
+          font-size: 0.9em;
+          margin-bottom: 10px;
+        }
+
+        & p {
+          line-height: 0;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  & .tusks {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 1em;
+
+    & .tusk {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      border: 2px solid #32B9A1;
+      border-radius: 8px;
+      width: 96%;
+      min-height: 50px;
+      margin-bottom: 10px;
 
-      & p {
-        color: #32b9a1;
-        font-weight: 400;
-        font-size: x-large;
+      @media screen and (max-width: 479px) {
+        width: 96%;
+        font-size: 1em;
       }
 
-      & i {
-        padding: 10px;
-
-        &:hover {
-          color: #32b9a1;
-        }
-      }
-    }
-
-    & .radius {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-
-      &Block {
+      label {
         text-align: center;
-        width: 140px;
-        height: 180px;
-        margin-bottom: 10px;
+        font-size: 1em;
+        margin-left: 5px;
+        text-wrap: normal;
+        @media screen and (max-width: 767px) {
+          font-size: 0.85em;
+        }
 
-        & p {
-          font-weight: 500;
+        .radio {
+          display: none;
+        }
+
+        .pseudo-radio {
           font-size: 16px;
-          margin: 0 0 20px 0;
-        }
-
-        & div {
-          width: 120px;
-          height: 120px;
-          max-width: 150px;
-          max-height: 150px;
-          border: 3px solid #32B9A1;
-          border-radius: 50%;
-          margin: 0 auto;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          & p {
-            max-width: 100px;
-            max-height: 100px;
-            text-align: center;
-            margin: 5px;
-          }
-        }
-      }
-    }
-
-    & .tusks {
-      width: initial;
-
-      & .tusk {
-        min-height: 60px;
-        width: initial;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        border: 2px solid #32B9A1;
-        margin: 0 10px 20px 5px;
-        border-radius: 8px;
-
-        label {
-          margin-left: 20px;
-          text-align: center;
-
-          .radio {
-            display: none;
+          display: none;
+          position: relative;
+          width: 1em;
+          height: 1em;
+          border: 2px solid #32B9A1;
+          cursor: pointer;
+          margin-right: 10px;
+          @media screen and (max-width: 767px) {
+            display: inline-block;
           }
 
-          .pseudo-radio {
-            font-size: 16px;
-            display: none;
-            position: relative;
-            width: 1em;
-            height: 1em;
-            border: 2px solid #32B9A1;
-            cursor: pointer;
-            margin-right: 10px;
-          }
-
-          .radio:checked + .pseudo-radio::before,
-          .radio:checked + .pseudo-radio::after {
-            display: block;
-          }
-
-          .pseudo-radio::before,
-          .pseudo-radio::after {
+          &::before, &::after {
             content: "";
             position: absolute;
             display: none;
@@ -132,7 +233,7 @@
             border-radius: 1em;
           }
 
-          .pseudo-radio::after {
+          &::after {
             bottom: 0.4em;
             left: 0.28em;
             transform: rotate(-60deg);
@@ -141,46 +242,52 @@
           }
         }
 
-        div {
-          display: none;
-          height: 30px;
-          margin: auto 10px auto 0;
+        .radio:checked + .pseudo-radio::before,
+        .radio:checked + .pseudo-radio::after {
+          display: block;
+        }
+      }
 
-          & button {
-            outline: none;
-            border: none;
-            background: none;
+      div {
+        display: none;
 
+        @media screen and (max-width: 767px) {
+          display: block;
+        }
+
+        & button {
+          outline: none;
+          border: none;
+          background: none;
+
+          &:first-child {
+            & i {
+              color: #3f8778;
+            }
+
+            &:hover {
+              & i {
+                color: #32B9A1;
+                transition-duration: 0.75s;
+              }
+            }
+          }
+
+          &:last-child {
             & i {
               color: #951414;
             }
-
             &:hover {
               & i {
                 color: #e3342f;
                 transition-duration: 0.75s;
               }
             }
-
-          }
-
-          & a {
-            width: 30px;
-            height: 30px;
-            padding: 10px;
-            margin: 5px;
-            & i {
-              color: #3f8778;
-            }
-            &:hover {
-              & i {
-                color: #03ff6b;
-                transition-duration: 0.75s;
-              }
-            }
           }
         }
+      }
 
+      @media screen and (min-width: 767px) {
         &:hover {
           .pseudo-radio {
             display: inline-block;
@@ -191,29 +298,45 @@
           }
         }
       }
-
-      & .activeTusk:hover {
-
-      }
-
-      & .date {
-        font-weight: 500;
-        font-size: 14px;
-        color: #ffffff;
-      }
     }
 
     & .date {
-      width: inherit;
-      margin: 0 30px;
-      height: 150px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 50px;
 
       & p {
-        font-size: x-large;
+        margin-bottom: 10px;
+      }
+    }
+
+    & button {
+      background: transparent;
+      border: none;
+      outline: none;
+      margin: 0.7rem;
+
+      &:hover {
+        & i {
+          color: #3f8778;
+        }
+      }
+    }
+  }
+
+  & .clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    & p {
+      font-size: x-large;
+
+      @media screen and (max-width: 479px) {
+        line-height: 1em;
+        font-size: 1em;
       }
     }
   }

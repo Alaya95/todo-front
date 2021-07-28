@@ -4,11 +4,9 @@
       <p>Дата и время</p>
       <i class="fas fa-ellipsis-h"></i>
     </div>
-    <div>
-      <div class="date">
-        <p> {{ localeDate }}</p>
-        <p>{{ showTime }}</p>
-      </div>
+    <div class="clock">
+      <p> {{ localeDate }}</p>
+      <p>{{ showTime }}</p>
     </div>
   </div>
 </template>
