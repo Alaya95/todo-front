@@ -35,7 +35,8 @@ const accountModule = {
         },
         setSearchValue(state, value){
             state.searchValue = value;
-            state.isLoaded = true;
+            //console.log(value);
+            //state.isLoaded = true;
         },
         createGroup(state, data){
             state.groups.push(data);
