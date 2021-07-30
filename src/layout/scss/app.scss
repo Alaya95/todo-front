@@ -15,6 +15,10 @@
     font-size: 1em;
     height: 100%;
 
+    @media screen and (max-width: 767px) {
+      height: 20%;
+    }
+
     @media screen and (max-width: 479px) and (orientation: portrait) {
       width: 100%;
       margin-bottom: 2%;
@@ -23,10 +27,12 @@
 
     @media screen and (min-width: 767px) and (orientation: portrait) {
       font-size: 1.5em;
+      height: 20%;
     }
 
     @media screen and (max-width: 767px) and (orientation: landscape) {
       width: 50%;
+      height: 90%;
     }
 
     @media screen and (min-width: 768px) and (orientation: landscape) {
@@ -54,6 +60,7 @@
         width: 90%;
       }
     }
+
     & h1 {
       font-family: 'Montserrat Subrayada', sans-serif;
     }
@@ -95,8 +102,6 @@
       width: 55%;
     }
   }
-
-
 }
 
 
