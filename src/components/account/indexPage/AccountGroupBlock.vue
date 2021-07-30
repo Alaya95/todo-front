@@ -1,18 +1,21 @@
 <template>
+  <div class="bigBlock">
 
-  <!--<div class="bigBlock card account_groups">
     <div class="title">
       <p>Ваши группы</p>
-       <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
-      <i class="fas fa-ellipsis-h"></i>
+      <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
+      <!-- <i class="fas fa-ellipsis-h"></i>-->
     </div>
+
+
     <div class="tusks">
       <AccountGroup
-          v-for="group in getGroups.slice(0,4)"
+          v-for="group in paginatedGroups"
           :key="group.item"
           group_prop.sync="group"
           v-bind:group="group"
       />
+
     </div>
     <div class="tusks">
       <button><i class="far fa-plus-square" v-on:click="show = !show;"> Cоздать группу</i>
@@ -20,47 +23,20 @@
       <popupGroup
           v-if="show"
           @closePopup="ClosePopup"
-      />-->
+      />
+      <div class="pagination">
+        <div v-for="page in pages"
+             :key="page"
+             :class="{'page_selected' : page === pageNumber} "
+             class="page"
+             v-on:click="pageClick(page)"
+        >{{ page }}
 
-  <div class="card col-xs-6 col-xl-7 m-sm-2 m-xl-3 account_groups">
-
-    <div class="bigBlock">
-
-      <div class="title">
-        <p>Ваши группы</p>
-       <router-link :to='{name: "usergroups"}'><i class="fas fa-ellipsis-h"></i></router-link>
-       <!-- <i class="fas fa-ellipsis-h"></i>-->
-      </div>
-
-      <div class="tusks" >
-        <AccountGroup
-            v-for="group in paginatedGroups"
-            :key="group.item"
-            group_prop.sync="group"
-            v-bind:group="group"
-        />
-
-      </div>
-      <div class="tusks">
-        <button><i class="far fa-plus-square" v-on:click="show = !show;"> Cоздать группу</i>
-          </button>
-          <popupGroup
-              v-if="show"
-              @closePopup="ClosePopup"
-          />
-        <div class="pagination">
-          <div class="page"
-              v-for="page in pages"
-               :key="page"
-               :class="{'page_selected' : page === pageNumber} "
-               v-on:click="pageClick(page)"
-          >{{page}}
-
-          </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 <script>
 import AccountGroup from "./AccountGroup";
@@ -94,7 +70,7 @@ export default {
       this.$store.dispatch('fetchGroups')
     },
 
-    pageClick(page){
+    pageClick(page) {
       this.pageNumber = page;
     }
   },
@@ -106,11 +82,11 @@ export default {
       'getGroups',
     ]),
 
-    pages(){
-        return Math.ceil(this.getGroups.length / 4)
+    pages() {
+      return Math.ceil(this.getGroups.length / 4)
     },
 
-    paginatedGroups(){
+    paginatedGroups() {
       let from = (this.pageNumber - 1) * this.groupsCount;
       let to = from + this.groupsCount;
 
@@ -120,28 +96,31 @@ export default {
 }
 </script>
 <style scoped>
-.page_selected{
+.page_selected {
   color: #3f8778;
 }
 
 .page:hover {
   color: #3f8778;
 }
+
 .page {
   padding: 10px;
   border: 1px solid #3f8778;
   cursor: pointer;
   margin-right: 10px;
 }
-.pagination{
+
+.pagination {
   display: flex;
   justify-content: center;
 }
 
 
-.fa-plus-square:hover{
+.fa-plus-square:hover {
   color: #3f8778;
 }
+
 button {
   background: transparent;
   border: none;
@@ -150,11 +129,12 @@ button {
 
 }
 
-.card{
+.card {
   width: 96%;
   height: 100%;
 }
-.bigBlock{
+
+.bigBlock {
 
   height: 100%;
 }
