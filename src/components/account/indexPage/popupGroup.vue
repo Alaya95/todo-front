@@ -36,6 +36,9 @@ export default {
         name: this.$refs.name_group.value
       };
       this.$store.dispatch('createGroup', data);
+      this.$refs.name_group.value = '';
+      this.closePopup();
+
     },
     closePopup() {
       this.$emit('closePopup')
@@ -88,7 +91,8 @@ form {
   display: flex;
   flex-direction: column;
   margin: 1rem;
-  border-radius: 30px;;
+  border-radius: 30px;
+  width: 91%;
 }
 
 input{

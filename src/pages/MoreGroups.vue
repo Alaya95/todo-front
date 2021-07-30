@@ -4,11 +4,11 @@
 <div class="content groups-search">
 <Navbar />
 
-  <div class="test tusk">
+  <div class="tusk">
   <div class="search">
-    <form >
-      <input type="text" placeholder="Поиск по всем группам..." v-model="searchValue">
-      <button type="submit"><i class="fas fa-search" @click="search(searchValue)"></i></button>
+    <form @submit.prevent="search(searchValue)">
+      <input class="input_search" type="text" placeholder="Поиск по всем группам..." v-model="searchValue">
+      <button type="submit"><i class="fas fa-search" ></i></button>
     </form>
   </div>
   <div class="show-groups" v-bind:groups="SearchValue" v-if="SearchValue.length">
@@ -18,6 +18,7 @@
         todo_prop.sync="group"
         v-bind:group="group"/>
   </div>
+    <div v-else> По вашему запросу ничего не нашли</div>
 
   </div>
 </div>
@@ -52,7 +53,7 @@ export default {
 
     search(value){
       this.findSearchValue(value);
-
+      this.searchValue = '';
     },
     searchGroup(value){
         if (value) {
@@ -88,16 +89,21 @@ export default {
 
 
 <style scoped>
+.tusk {
+  width: 50%;
+}
 
 .show-groups {
   width: 94%;
-  margin-left: 3%;
+  /*margin-left: 3%;*/
 }
-input {
+.input_search {
   height: 60px;
-  width: 70%;
+  /*width: 70%;*/
+  width: 92.5%;
   color: #212529;
   padding: 10px;
+  /*margin-bottom: 5%;*/
 }
 .groups-search{
   display: flex;
@@ -112,6 +118,9 @@ form {
   background:  #212529;
   display: flex;
   min-width: 100%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  /*margin: 5%;*/
 }
 .fa-search::before{
   font-size: 30px;
@@ -141,9 +150,10 @@ button:focus {
 
 input {
   background: #ffffff;
-  padding: 10px;
+  /*padding: 10px;*/
   border: 2px solid #32B9A1;
   border-radius: 8px;
-  width: inherit;
+  /*width: inherit;*/
+  margin-left: 0.5%;
 }
 </style>
