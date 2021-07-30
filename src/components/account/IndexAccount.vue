@@ -1,31 +1,10 @@
 <template>
-  <div>
-    <div class="content container-fluid d-flex flex-column ">
-
-      <div class="block d-flex flex-wrap row">
-
-
-        <ProgressForTheWeek/>
-
-        <DatetimeAccount/>
-
-        <div class="w-100"></div>
-
-        <ActiveTask />
-
-        <CompleteTask/>
-
-        <AccountGroupBlock/>
-
-       <!-- <AccountBoardBlock/> -->
-
-
-
-
-
-      </div>
-      <div class="w-100"></div>
-    </div>
+  <div class="account-content">
+    <ProgressForTheWeek/>
+    <DatetimeAccount/>
+    <ActiveTask/>
+    <CompleteTask/>
+    <AccountGroupBlock/>
   </div>
 </template>
 
@@ -35,12 +14,10 @@ import DatetimeAccount from "./indexPage/DatetimeAccount";
 import CompleteTask from "./indexPage/CompleteTaskBlock";
 import ActiveTask from "./indexPage/ActiveTask";
 import AccountGroupBlock from "./indexPage/AccountGroupBlock";
-//import AccountBoardBlock from "./indexPage/AccountBoardBlock";
 
 export default {
   name: "IndexAccount",
   components: {
-    //AccountBoardBlock,
     AccountGroupBlock,
     ProgressForTheWeek,
     DatetimeAccount,
@@ -51,9 +28,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.content {
-  height: auto;
-  min-height: 450px;
-}
-</style>
+<style scoped></style>

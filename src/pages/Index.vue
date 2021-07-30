@@ -1,36 +1,19 @@
 <template>
-  <div>
-    <div class="container-fluid color__bg-nav"></div>
-
-    <div class="container text-white">
-      <div class="block">
-
-        <div class="width__content-left">
-          <div>
-            <h1 class="font-montserrat-subrayada font-size__content mb-2">
-              KANBAN
-            </h1>
-
-            <p class="font-montserrat font-size__paragraph margin__bott">
-              Идеальное пространство для самых разных задач. Место для тех кто
-              любит планировать свое время
-            </p>
-
-            <a
-              class="font-montserrat font-size__paragraph content-link margin__bott"
-              href="board"
-            >
-              Начните прямо сейчас
-            </a>
-          </div>
-        </div>
-
-        <div class="text-center width__content-right">
-
-          <img src="../assets/13.png" alt="task" width="100%">
-
-        </div>
-      </div>
+  <div class="content width__content">
+    <div class="width__content-left">
+      <h1>
+        KANBAN
+      </h1>
+      <p>
+        Идеальное пространство для самых разных задач. Место для тех кто
+        любит планировать свое время
+      </p>
+      <a href="board">
+        Начните прямо сейчас
+      </a>
+    </div>
+    <div class="width__content-right">
+      <!--<img alt="task" src="../assets/13.png">-->
     </div>
   </div>
 </template>
@@ -38,5 +21,5 @@
 export default {};
 </script>
 <style lang="scss">
-@import "../layout/scss/app.scss";
+@import "../layout/scss/app";
 </style>

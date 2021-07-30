@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header/>
     <router-view></router-view>
   </div>
 </template>
@@ -8,8 +8,8 @@
 <script>
 import Header from "./components/Header";
 import router from "./router/router";
-
 import {mapGetters} from "vuex";
+
 export default {
   name: "App",
   components: {
@@ -22,8 +22,8 @@ export default {
     loginByToken() {
       this.$store.dispatch("loginByToken");
     },
-    redirect(name = "main"){
-      this.$route.name!==name && router.push({name});  
+    redirect(name = "main") {
+      this.$route.name !== name && router.push({name});
     }
   },
   computed: {
@@ -32,14 +32,17 @@ export default {
     ]),
   },
   watch: {
-    getAuthStatus: function (newVal){
+    getAuthStatus: function (newVal) {
       console.log(123);
       newVal ? this.redirect(localStorage.getItem("route")) : this.redirect();
     },
-    "$route.name": function(newVal){
+    "$route.name": function (newVal) {
       console.log(123);
       this.getAuthStatus ? localStorage.setItem("route", newVal) : this.redirect();
     }
   }
 };
 </script>
+<style lang="scss">
+@import "layout/scss/main";
+</style>

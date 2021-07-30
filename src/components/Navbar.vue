@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "NavbarAccount",
+  name: "Navbar",
   methods: {
     logout(){
       this.$store.dispatch("logout");
@@ -35,6 +35,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  @import "src/layout/scss/navbar.scss";
 </style>

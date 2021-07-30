@@ -1,26 +1,21 @@
 <template>
-  <div class="card col-xs-6 col-xl-7 m-sm-2 m-xl-3">
-    <div class="bigBlock">
-
-      <div class="title">
-        <p>Срок для завершения задачи истекает</p>
-        <i class="fas fa-ellipsis-h"></i>
-      </div>
-      <div class="tusks" v-bind:tasks="getTasksAll" v-if="getTasksAll.length">
-        <!-- здесь откручиваем задачи  сделать скрол -->
-        <Tasks
-            v-for="task in getTasksAll.slice(0,4)"
-            :key="task.item"
-            todo_prop.sync="task"
-            v-bind:task="task"
-            v-on:remove-task="removeTask"
-        />
-
-      </div>
-      <p v-else>Активных задач нет</p>
+  <div class="bigBlock card">
+    <div class="title">
+      <p>Срок для завершения задачи истекает</p>
+      <i class="fas fa-ellipsis-h"></i>
     </div>
+    <div v-if="getTasksAll.length" class="tusks" v-bind:tasks="getTasksAll">
+      <!-- здесь откручиваем задачи  сделать скрол -->
+      <Tasks
+          v-for="task in getTasksAll.slice(0,4)"
+          :key="task.item"
+          todo_prop.sync="task"
+          v-bind:task="task"
+          v-on:remove-task="removeTask"
+      />
+    </div>
+    <p v-else>Активных задач нет</p>
   </div>
-
 </template>
 
 <script>
@@ -31,7 +26,6 @@ import store from "../../../store/store";
 export default {
   name: "ActiveTask",
   components: {Tasks},
-
   methods: {
     removeTask(id) {
       const data = {id: id}

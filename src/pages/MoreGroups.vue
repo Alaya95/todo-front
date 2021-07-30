@@ -1,8 +1,8 @@
 <template>
 
   <div>
-<div class="account-content groups-search">
-<NavbarAccount/>
+<div class="content groups-search">
+<Navbar />
 
   <div class="tusk">
   <div class="search">
@@ -29,7 +29,7 @@
 
 <script>
 
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 import DetailsGroupSpoiler from "../components/moreDetailed/DetailsGroupSpoiler";
 import {mapGetters} from "vuex";
 import {mapActions} from "vuex";
@@ -38,7 +38,7 @@ export default {
   name: "MoreGroups",
   components: {
     DetailsGroupSpoiler,
-    NavbarAccount,
+    Navbar,
   },
   data(){
     return {

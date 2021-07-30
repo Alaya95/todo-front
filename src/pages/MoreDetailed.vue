@@ -1,6 +1,6 @@
 <template>
-  <div class="account-content">
-    <NavbarAccount/>
+  <div class="content">
+    <Navbar/>
 
     <div class="moreTask">
       <div class="task-list">
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import NavbarAccount from "../components/account/NavbarAccount";
+import Navbar from "../components/Navbar";
 import DetailsTaskSpoiler from "../components/moreDetailed/DetailsTaskSpoiler";
 import {mapGetters} from "vuex";
 
@@ -20,7 +20,7 @@ export default {
   name: "MoreDetailed",
   components: {
     DetailsTaskSpoiler,
-    NavbarAccount,
+    Navbar,
   },
   computed: {
     ...mapGetters([
