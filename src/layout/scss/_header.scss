@@ -12,6 +12,11 @@ header {
     font-size: 1.5rem;
     line-height: 50px;
   }
+  @media screen and (min-width: 1000px) {
+    font-size: 1.5rem;
+    line-height: 50px;
+    height: 3%;
+  }
 
   .header-menu {
     height: 100%;
