@@ -53,6 +53,7 @@ export default {
                 column.id === data.column_id &&
                 column.tasks.splice(column.tasks.findIndex(({id}) => id == task.id), 1, task)
             });
+
         },
         deleteTask(state, data) {
             state.columns.forEach((column) => {
@@ -68,6 +69,11 @@ export default {
             state.columns.push(column);
         },
         editColumn(state, data) {
+            state.columns.forEach((column) => {
+                column.id === data.id && (column.title = data.title)
+            })
+        },
+        setTaskStatus(state, data) {
             state.columns.forEach((column) => {
                 column.id === data.id && (column.title = data.title)
             })
@@ -119,6 +125,18 @@ export default {
         async editTask({commit}, data) {
             try {
                 const result = await api('task/' + data.id, "put", data)
+
+                if (!result.message) {
+                    commit('setTaskStatus', result)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async setTaskStatus({commit},data) {
+            try {
+                console.log('sdad')
+                const result = await api('task/' + data.id, "PUT", data)
 
                 if (!result.message) {
                     commit('editTask', result)
